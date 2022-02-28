@@ -1,10 +1,12 @@
 package com.example.MasterproofTool.user;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
+@Entity
+@DiscriminatorValue("4")
 
 public class Company extends User{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private double longitude;
@@ -13,7 +15,8 @@ public class Company extends User{
 
     public Company(){}
 
-    public Company(Long id, String name, double longitude, double latitude, int btwnummer) {
+    public Company(String firstName, String surname, Long keyId, int GSM, String email, String rol, Long id, String name, double longitude, double latitude, int btwnummer) {
+        super(firstName, surname, keyId, GSM, email, rol);
         this.id = id;
         this.name = name;
         this.longitude = longitude;
@@ -21,7 +24,8 @@ public class Company extends User{
         this.btwnummer = btwnummer;
     }
 
-    public Company(String name, double longitude, double latitude, int btwnummer) {
+    public Company(String firstName, String surname, int GSM, String email, String rol, String name, double longitude, double latitude, int btwnummer) {
+        super(firstName, surname, GSM, email, rol);
         this.name = name;
         this.longitude = longitude;
         this.latitude = latitude;

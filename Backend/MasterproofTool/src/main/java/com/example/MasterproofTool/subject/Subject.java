@@ -1,21 +1,25 @@
 package com.example.MasterproofTool.subject;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import com.example.MasterproofTool.user.Company;
 
-import java.util.Arrays;
+import javax.persistence.*;
 
+
+import java.util.Arrays;
+@Entity
 public class Subject {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String title;
     private String description;
     private String discipline;
     private String remark;
+    @ManyToOne
+    @JoinColumn(name = "company_id")
     private Company company;
     private int aStudents;
+    @Transient
     private String[] campus, education;
 
     public Subject(String title, String description, String discipline, String remark, Company company, int aStudents, String[] campus, String[] education) {

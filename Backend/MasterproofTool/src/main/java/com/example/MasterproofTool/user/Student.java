@@ -1,28 +1,35 @@
 package com.example.MasterproofTool.user;
-import com.example.MasterproofTool.subject.Subject;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
+
+@Entity
+@DiscriminatorValue("1")
 public class Student extends User {
+    @Id
     private char studentNumber;
-    private Subject firstChoice;
-    private Subject secondChoice;
-    private Subject thirdChoice;
+    private Long firstChoice;
+    private Long secondChoice;
+    private Long thirdChoice;
+    private String discipline;
 
-    public Student(char studentNumber, Subject firstChoice, Subject secondChoice, Subject thirdChoice) {
+    public Student(String firstName, String surname, Long keyId, int GSM, String email, String rol, char studentNumber, Long firstChoice, Long secondChoice, Long thirdChoice, String discipline) {
+        super(firstName, surname, keyId, GSM, email, rol);
         this.studentNumber = studentNumber;
         this.firstChoice = firstChoice;
         this.secondChoice = secondChoice;
         this.thirdChoice = thirdChoice;
+        this.discipline = discipline;
     }
 
-    public Student(Subject firstChoice, Subject secondChoice, Subject thirdChoice) {
+    public Student(String firstName, String surname, int GSM, String email, String rol, Long firstChoice, Long secondChoice, Long thirdChoice, String discipline) {
+        super(firstName, surname, GSM, email, rol);
         this.firstChoice = firstChoice;
         this.secondChoice = secondChoice;
         this.thirdChoice = thirdChoice;
+        this.discipline = discipline;
     }
+
     public Student(){}
 
     public char getStudentNumber() {
@@ -33,28 +40,36 @@ public class Student extends User {
         this.studentNumber = studentNumber;
     }
 
-    public Subject getFirstChoice() {
+    public Long getFirstChoice() {
         return firstChoice;
     }
 
-    public void setFirstChoice(Subject firstChoice) {
+    public void setFirstChoice(Long firstChoice) {
         this.firstChoice = firstChoice;
     }
 
-    public Subject getSecondChoice() {
+    public Long getSecondChoice() {
         return secondChoice;
     }
 
-    public void setSecondChoice(Subject secondChoice) {
+    public void setSecondChoice(Long secondChoice) {
         this.secondChoice = secondChoice;
     }
 
-    public Subject getThirdChoice() {
+    public Long getThirdChoice() {
         return thirdChoice;
     }
 
-    public void setThirdChoice(Subject thirdChoice) {
+    public void setThirdChoice(Long thirdChoice) {
         this.thirdChoice = thirdChoice;
+    }
+
+    public String getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(String discipline) {
+        this.discipline = discipline;
     }
 
     @Override
@@ -64,6 +79,7 @@ public class Student extends User {
                 ", firstChoice=" + firstChoice +
                 ", secondChoice=" + secondChoice +
                 ", thirdChoice=" + thirdChoice +
+                ", discipline= "+ discipline +
                 '}';
     }
 }

@@ -1,14 +1,23 @@
 package com.example.MasterproofTool.user;
 
+import javax.persistence.*;
+
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="user_type",
+        discriminatorType = DiscriminatorType.INTEGER)
 public class User {
+
     private String firstName;
     private String surname;
-    private int keyId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
+    private Long keyId;
     private int GSM;
     private String email;
     private String rol;
 
-    public User(String firstName, String surname, int keyId, int GSM, String email, String rol) {
+    public User(String firstName, String surname, Long keyId, int GSM, String email, String rol) {
         this.firstName = firstName;
         this.surname = surname;
         this.keyId = keyId;
@@ -42,11 +51,11 @@ public class User {
         this.surname = surname;
     }
 
-    public int getKeyId() {
+    public Long getKeyId() {
         return keyId;
     }
 
-    public void setKeyId(int keyId) {
+    public void setKeyId(Long keyId) {
         this.keyId = keyId;
     }
 
