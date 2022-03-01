@@ -1,5 +1,4 @@
 package com.example.MasterproofTool.subject;
-
 import com.example.MasterproofTool.user.Company;
 import com.example.MasterproofTool.user.Coördinator;
 import com.example.MasterproofTool.user.Promotor;
@@ -148,4 +147,5 @@ public class Subject {
                 ", education=" + Arrays.toString(education) +
                 '}';
     }
+
 }
