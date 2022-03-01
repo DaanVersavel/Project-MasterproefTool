@@ -1,6 +1,10 @@
 package com.example.MasterproofTool.subject;
 
 import com.example.MasterproofTool.user.Company;
+import com.example.MasterproofTool.user.Coördinator;
+import com.example.MasterproofTool.user.Promotor;
+import com.example.MasterproofTool.user.Student;
+import com.sun.xml.bind.v2.runtime.Coordinator;
 
 import javax.persistence.*;
 
@@ -18,27 +22,46 @@ public class Subject {
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
+    @ManyToOne
+    @JoinColumn(name= "coördinator_id")
+    private Coördinator coordinator;
+    @ManyToOne
+    @JoinColumn(name="promotor_id")
+    private Promotor promotor;
+    @OneToOne
+    @JoinColumn(name="boostedStudent_id")
+    private Student boostedStudent;
+
     private int aStudents;
     @Transient
     private String[] campus, education;
 
-    public Subject(String title, String description, String discipline, String remark, Company company, int aStudents, String[] campus, String[] education) {
+    public Subject(Long id, String title, String description, String discipline, String remark, Company company, Coördinator coordinator, Promotor promotor, Student boostedStudent, int aStudents, String[] campus, String[] education) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.discipline = discipline;
         this.remark = remark;
         this.company = company;
+        this.coordinator = coordinator;
+        this.promotor = promotor;
+        this.boostedStudent = boostedStudent;
         this.aStudents = aStudents;
         this.campus = campus;
         this.education = education;
     }
+
     public Subject(){}
 
-    public Subject(String description, String discipline, String remark, Company company, int aStudents, String[] campus, String[] education) {
+    public Subject(String title, String description, String discipline, String remark, Company company, Coördinator coordinator, Promotor promotor, Student boostedStudent, int aStudents, String[] campus, String[] education) {
+        this.title = title;
         this.description = description;
         this.discipline = discipline;
         this.remark = remark;
         this.company = company;
+        this.coordinator = coordinator;
+        this.promotor = promotor;
+        this.boostedStudent = boostedStudent;
         this.aStudents = aStudents;
         this.campus = campus;
         this.education = education;
@@ -111,11 +134,15 @@ public class Subject {
     @Override
     public String toString() {
         return "Subject{" +
-                "title='" + title + '\'' +
+                "id=" + id +
+                ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", discipline='" + discipline + '\'' +
                 ", remark='" + remark + '\'' +
                 ", company=" + company +
+                ", coordinator=" + coordinator +
+                ", promotor=" + promotor +
+                ", boostedStudent=" + boostedStudent +
                 ", aStudents=" + aStudents +
                 ", campus=" + Arrays.toString(campus) +
                 ", education=" + Arrays.toString(education) +

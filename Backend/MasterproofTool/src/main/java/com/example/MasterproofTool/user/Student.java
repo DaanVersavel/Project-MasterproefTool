@@ -1,6 +1,8 @@
 package com.example.MasterproofTool.user;
 
 
+import com.example.MasterproofTool.subject.Subject;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,22 +14,33 @@ public class Student extends User {
     private Long secondChoice;
     private Long thirdChoice;
     private String discipline;
+    @ManyToOne
+    @JoinColumn(name="assignedSubject_id")
+    private Subject assignedSubject;
+    @OneToOne(mappedBy = "boostedStudent")
+    private Subject boostedSubject;
 
-    public Student(String firstName, String surname, Long keyId, int GSM, String email, String rol, char studentNumber, Long firstChoice, Long secondChoice, Long thirdChoice, String discipline) {
+
+    public Student(String firstName, String surname, Long keyId, int GSM, String email, String rol, char studentNumber, Long firstChoice, Long secondChoice, Long thirdChoice, String discipline, Subject assignedSubject, Subject boostedSubject) {
         super(firstName, surname, keyId, GSM, email, rol);
         this.studentNumber = studentNumber;
         this.firstChoice = firstChoice;
         this.secondChoice = secondChoice;
         this.thirdChoice = thirdChoice;
         this.discipline = discipline;
+        this.assignedSubject = assignedSubject;
+        this.boostedSubject=boostedSubject;
     }
 
-    public Student(String firstName, String surname, int GSM, String email, String rol, Long firstChoice, Long secondChoice, Long thirdChoice, String discipline) {
+    public Student(String firstName, String surname, int GSM, String email, String rol, char studentNumber, Long firstChoice, Long secondChoice, Long thirdChoice, String discipline, Subject assignedSubject, Subject boostedSubject) {
         super(firstName, surname, GSM, email, rol);
+        this.studentNumber = studentNumber;
         this.firstChoice = firstChoice;
         this.secondChoice = secondChoice;
         this.thirdChoice = thirdChoice;
         this.discipline = discipline;
+        this.assignedSubject = assignedSubject;
+        this.boostedSubject=boostedSubject;
     }
 
     public Student(){}
@@ -72,6 +85,22 @@ public class Student extends User {
         this.discipline = discipline;
     }
 
+    public Subject getAssignedSubject() {
+        return assignedSubject;
+    }
+
+    public void setAssignedSubject(Subject assignedSubject) {
+        this.assignedSubject = assignedSubject;
+    }
+
+    public Subject getBoostedSubject() {
+        return boostedSubject;
+    }
+
+    public void setBoostedSubject(Subject boostedSubject) {
+        this.boostedSubject = boostedSubject;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -79,7 +108,9 @@ public class Student extends User {
                 ", firstChoice=" + firstChoice +
                 ", secondChoice=" + secondChoice +
                 ", thirdChoice=" + thirdChoice +
-                ", discipline= "+ discipline +
+                ", discipline='" + discipline + '\'' +
+                ", assignedSubject=" + assignedSubject +
+                ", boostedSubject=" + boostedSubject +
                 '}';
     }
 }
