@@ -2,6 +2,7 @@ package com.example.MasterproofTool.user;
 
 import javax.persistence.*;
 
+@Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="user_type",
         discriminatorType = DiscriminatorType.INTEGER)
