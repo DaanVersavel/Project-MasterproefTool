@@ -15,6 +15,9 @@ public class Student extends User {
     private Long thirdChoice;
     private String discipline;
     @ManyToOne
+    @JoinColumn(name="campus_id")
+    private Campus campus;
+    @ManyToOne
     @JoinColumn(name="assignedSubject_id")
     private Subject assignedSubject;
     @OneToOne(mappedBy = "boostedStudent")
