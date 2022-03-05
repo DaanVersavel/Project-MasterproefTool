@@ -11,6 +11,21 @@ class BForm extends Component {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicText">
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control type="text" placeholder="Enter description of the subject" />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicText">
+                    <Form.Label>Discipline</Form.Label>
+                    <Form.Control type="text" placeholder="Enter discipline" />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicText">
+                    <Form.Label>Remark</Form.Label>
+                    <Form.Control type="text" placeholder="Enter a remark" />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicText">
                     <Form.Label>Company</Form.Label>
                     <Form.Control type="text" placeholder="Enter your company" />
                 </Form.Group>
@@ -28,6 +43,21 @@ class BForm extends Component {
                 <Form.Group className="mb-3" controlId="formBasicText">
                     <Form.Label>Boosted student</Form.Label>
                     <Form.Control type="text" placeholder="Enter the boosted student" />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicText">
+                    <Form.Label>A Students</Form.Label>
+                    <Form.Control type="text" placeholder="Enter A students" />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicText">
+                    <Form.Label>Campus</Form.Label>
+                    <Form.Control type="text" placeholder="Enter campus" />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicText">
+                    <Form.Label>Education</Form.Label>
+                    <Form.Control type="text" placeholder="Enter education" />
                 </Form.Group>
 
                 <Button variant="primary" type="submit">

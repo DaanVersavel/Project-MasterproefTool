@@ -5,7 +5,7 @@ import KULogo from '../KU_Leuven_logo.svg'
 class BNavbar extends Component {
     render() {
         return (
-            <Navbar bg="dark" variant="dark" expand="lg">
+            <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
                 <Container fluid>
                     <Navbar.Brand href="#home">
                         <img
