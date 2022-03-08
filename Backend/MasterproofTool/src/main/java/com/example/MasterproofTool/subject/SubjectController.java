@@ -27,4 +27,21 @@ public class SubjectController {
     @CrossOrigin(origins = "http://localhost:3000")
     public List<Subject> getSubjects(){ return subjectService.getSubjects();
     }
+
+    @GetMapping
+    @CrossOrigin(origins = "http://localhost:3000")
+    public List<Subject> getSubjectsCampus(){ return subjectService.getSubjects();
+    }
+    //Campus Leuven
+    //Campus Groep T Leuven
+    //Campus Brussel
+    //Campus Sint-Lucas Brussel
+    //Campus Antwerpen
+    //Campus Geel
+    //Campus De Nayer Sint-Katelijne-Waver
+    //Campus Sint-Lucas Gent
+    //Technologiecampus Gent
+    //
+    //
+    //
 }
