@@ -70,6 +70,15 @@ public class Subject {
     public void setId(Long id) {
         this.id = id;
     }
+    public Subject(String title, String description, String discipline, String remark,  int aStudents, String[] campus, String[] education) {
+        this.title = title;
+        this.description = description;
+        this.discipline = discipline;
+        this.remark = remark;
+        this.aStudents = aStudents;
+        this.campus = campus;
+        this.education = education;
+    }
 
     public String getTitle() {
         return title;
