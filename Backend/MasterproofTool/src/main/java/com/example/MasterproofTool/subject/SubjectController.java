@@ -3,6 +3,8 @@ package com.example.MasterproofTool.subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "Subject/")
 public class SubjectController {
@@ -14,12 +16,15 @@ public class SubjectController {
         this.subjectService = subjectService;
     }
 
-    @PostMapping
+    @PostMapping(path="Post/")
     @CrossOrigin(origins = "http://localhost:3000")
     public void registerNewSubject(@RequestBody Subject subject){
         subjectService.addNewSubject(subject);
     }
 
 
-
+    @GetMapping
+    @CrossOrigin(origins = "http://localhost:3000")
+    public List<Subject> getSubjects(){ return subjectService.getSubjects();
+    }
 }
