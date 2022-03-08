@@ -1,11 +1,9 @@
 package com.example.MasterproofTool.subject;
 import com.example.MasterproofTool.user.*;
-import com.sun.xml.bind.v2.runtime.Coordinator;
 
 import javax.persistence.*;
 
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -70,14 +68,12 @@ public class Subject {
     public void setId(Long id) {
         this.id = id;
     }
-    public Subject(String title, String description, String discipline, String remark,  int aStudents, String[] campus, String[] education) {
+    public Subject(String title, String description, /*Set<Discipline> disciplines,*/ String remark,  int aStudents) {
         this.title = title;
         this.description = description;
-        this.discipline = discipline;
+        //this.disciplines = disciplines;
         this.remark = remark;
         this.aStudents = aStudents;
-        this.campus = campus;
-        this.education = education;
     }
 
     public String getTitle() {
