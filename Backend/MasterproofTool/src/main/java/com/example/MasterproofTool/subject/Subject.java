@@ -68,7 +68,8 @@ public class Subject {
     public void setId(Long id) {
         this.id = id;
     }
-    public Subject(String title, String description, /*Set<Discipline> disciplines,*/ String remark,  int aStudents) {
+
+   public Subject(String title, String description, /*Set<Discipline> disciplines,*/ String remark,  int aStudents) {
         this.title = title;
         this.description = description;
         //this.disciplines = disciplines;

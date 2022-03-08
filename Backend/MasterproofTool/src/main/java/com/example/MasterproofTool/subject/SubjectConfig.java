@@ -18,7 +18,6 @@ public class SubjectConfig {
         return  args -> {
             Subject onderwerp1= new Subject("titelken", " Beschrijving",  "opmerking",
                     1);
-
             repository.saveAll(List.of(onderwerp1));
         };
     }
