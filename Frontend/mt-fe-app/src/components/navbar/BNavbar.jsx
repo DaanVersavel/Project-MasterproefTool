@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Container, Form, FormControl, Nav, Navbar, NavDropdown} from "react-bootstrap";
-import KULogo from '../KU_Leuven_logo.svg'
+import KULogo from '../../KU_Leuven_logo.svg'
 
 class BNavbar extends Component {
     render() {
@@ -34,7 +34,7 @@ class BNavbar extends Component {
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
-                        <Form className="d-flex">
+                        <Form className="d-flex" >
                             <FormControl
                                 type="search"
                                 placeholder="Search"
