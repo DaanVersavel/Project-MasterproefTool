@@ -21,7 +21,7 @@ public class Discipline {
     Set<Campus> campussen=new HashSet<>();
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
-            name = "Discioline_subject",
+            name = "Discipline_subject",
             joinColumns = {@JoinColumn(name="discipline_id")},
             inverseJoinColumns = {@JoinColumn(name="subject_id")}
     )

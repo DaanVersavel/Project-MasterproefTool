@@ -5,6 +5,7 @@ import com.example.MasterproofTool.subject.Subject;
 
 import javax.persistence.*;
 
+
 @Entity
 @DiscriminatorValue("1")
 public class Student extends User {
