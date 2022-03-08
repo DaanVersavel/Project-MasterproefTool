@@ -10,7 +10,7 @@ public class Campus {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long campus_id;
     private String naam;
-    @ManyToMany(mappedBy = "disciplines")
+    @ManyToMany(mappedBy = "campussen")
     private Set<Discipline> disciplines=new HashSet<>();
     private double longitude;
     private double latitude;

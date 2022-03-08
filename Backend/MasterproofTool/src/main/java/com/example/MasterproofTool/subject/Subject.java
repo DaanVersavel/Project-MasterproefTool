@@ -30,7 +30,7 @@ public class Subject {
     @OneToOne
     @JoinColumn(name="boostedStudent_id")
     private Student boostedStudent;
-    @ManyToMany(mappedBy = "disciplines")
+    @ManyToMany(mappedBy = "subjects")
     private Set<Discipline>disciplines=new HashSet<>();
 
     private int aStudents;
