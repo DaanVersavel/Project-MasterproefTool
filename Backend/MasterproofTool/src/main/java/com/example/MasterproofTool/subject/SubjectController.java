@@ -27,7 +27,7 @@ public class SubjectController {
     @GetMapping
     @CrossOrigin(origins = "http://localhost:3000")
     public List<Subject> getSubjects() {
-        return subjectService.getSubjects();
+         return subjectService.getSubjects();
     }
 
     //get method for not yet accepted methods

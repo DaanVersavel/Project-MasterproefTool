@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository //responsible for data acces
 public interface SubjectRepository extends JpaRepository<Subject,Long> {
-//@Query("SELECT s FROM Subject WHERE s.titlee =?1")
+    @Query(value = "SELECT t FROM Subject t WHERE t.title =?1")
     Optional<Subject> findSubjectByTitle(String title);
 
     @Query(value = "SELECT s FROM Subject s WHERE s.approved = false ")

@@ -19,7 +19,7 @@ public class SubjectService {
         this.subjectRepository = subjectRepository;
     }
 
-   public List<Subject> getSubjects() { return subjectRepository.findAll(); }
+    public List<Subject> getSubjects() { return subjectRepository.findAll(); }
 
 
 
