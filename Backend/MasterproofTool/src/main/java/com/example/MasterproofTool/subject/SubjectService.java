@@ -31,7 +31,9 @@ public class SubjectService {
             throw  new IllegalStateException("Subject title already taken");
         }
         subjectRepository.save(subject);
-
     }
 
+    public List<Subject> getSubjectsForReview() {
+        return subjectRepository.findSubjectByApprovedFalse();
+    }
 }

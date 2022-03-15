@@ -16,32 +16,27 @@ public class SubjectController {
         this.subjectService = subjectService;
     }
 
-    @PostMapping(path="Post/")
+    //post methode for submitting a subject
+    @PostMapping(path = "Post/")
     @CrossOrigin(origins = "http://localhost:3000")
-    public void registerNewSubject(@RequestBody Subject subject){
+    public void registerNewSubject(@RequestBody Subject subject) {
         subjectService.addNewSubject(subject);
     }
 
-
+    //get method for list of subject
     @GetMapping
     @CrossOrigin(origins = "http://localhost:3000")
-    public List<Subject> getSubjects(){ return subjectService.getSubjects();
+    public List<Subject> getSubjects() {
+        return subjectService.getSubjects();
     }
 
-    @GetMapping
+    //get method for not yet accepted methods
+    @GetMapping(path = "Review/")
     @CrossOrigin(origins = "http://localhost:3000")
-    public List<Subject> getSubjectsCampus(){ return subjectService.getSubjects();
+    public List<Subject> getSubjectForReview(){
+        return subjectService.getSubjectsForReview();
     }
-    //Campus Leuven
-    //Campus Groep T Leuven
-    //Campus Brussel
-    //Campus Sint-Lucas Brussel
-    //Campus Antwerpen
-    //Campus Geel
-    //Campus De Nayer Sint-Katelijne-Waver
-    //Campus Sint-Lucas Gent
-    //Technologiecampus Gent
-    //
-    //
-    //
+
+
+
 }

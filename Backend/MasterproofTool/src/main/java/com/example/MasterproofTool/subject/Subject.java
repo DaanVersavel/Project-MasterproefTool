@@ -14,6 +14,7 @@ public class Subject {
     private Long id;
     private String title;
     private String description;
+    private boolean  approved;
 
     private String remark;
     @ManyToOne
@@ -44,6 +45,7 @@ public class Subject {
         this.boostedStudent = boostedStudent;
         this.disciplines = disciplines;
         this.aStudents = aStudents;
+        this.approved=false;
     }
 
     public Subject(String title, String description, String remark, Company company, Coördinator coordinator, Promotor promotor, Student boostedStudent, Set<Discipline> disciplines, int aStudents) {
@@ -56,6 +58,7 @@ public class Subject {
         this.boostedStudent = boostedStudent;
         this.disciplines = disciplines;
         this.aStudents = aStudents;
+        this.approved=false;
     }
 
     public Subject() {
@@ -74,8 +77,12 @@ public class Subject {
         //this.disciplines = disciplines;
         this.remark = remark;
         this.aStudents = aStudents;
+        this.approved=false;
     }
 
+    public void setApprovedTrue() {
+        this.approved=true;
+    }
     public String getTitle() {
         return title;
     }
