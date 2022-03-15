@@ -1,20 +1,28 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.css';
+import {Route, Routes, BrowserRouter as Router} from 'react-router-dom';
+import BNavbar from "./components/navbar/BNavbar"
 
-import BNavbar from './components/navbar/BNavbar.jsx'
-import Form from "./components/form/Form";
+import Home from "./pages/home/Home"
+import SignUp from "./pages/sign up/SignUp"
+import Contact from "./pages/contact/Contact"
+import Subjects from "./pages/subjects/Subjects"
 
 
-class App extends Component {
-    render() {
-        return (
+function App () {
+    return (
+        <Router>
+            <BNavbar/>
             <div className={"App"}>
-                <BNavbar />
-                <Form />
+                <Routes>
+                    <Route path = '/' element = {<Home/>} />
+                    <Route path = '/subjects' element = {<Subjects/>} />
+                    <Route path = '/sign-up' element = {<SignUp/>} />
+                    <Route path = '/contact' element = {<Contact/>} />
+                </Routes>
             </div>
-        );
-    }
+        </Router>
+    );
 }
 
 export default App;
