@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-import FormSubject from "./FormSubject";
+import FormSubmition from "./FormSignUp";
 import FormSuccess from "./FormSucces";
-import './Form.css'
+import './FormSU.css'
 
-const Form = () => {
+const FormSU = () => {
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     function submitForm(){
@@ -15,12 +15,12 @@ const Form = () => {
             <div className="form-container">
                 <span className={'close-btn'}>x</span>
                 <div className="form-content-left">
-                    <img src="" alt="form image" className={'form-img'}/>
+                    {/*<img src="" alt="form image" className={'form-img'}/>*/}
                 </div>
-                {!isSubmitted ? (<FormSubject submitForm={submitForm} />) : (<FormSuccess />)}
+                {!isSubmitted ? (<FormSubmition submitForm={submitForm} />) : (<FormSuccess />)}
             </div>
         </>
     );
 }
 
-export default Form;
+export default FormSU;
