@@ -11,7 +11,6 @@ const FormS = () => {
         remark: "",
         coordinator: "",
         promoter: "",
-        boostedStudent: "",
         disciplines: "",
         aStudents: ""
     })
@@ -42,10 +41,9 @@ const FormS = () => {
             </Button>
 
             <Row className="mb-3">
-                <Form.Group as={Col} controlId="formGridTitle">
+                <Form.Group as={Col} controlId="title">
                     <Form.Label>Title</Form.Label>
                     <Form.Control
-                        id={"title"}
                         type="text"
                         placeholder="Enter subject title"
                         value={formData.title}
@@ -53,10 +51,9 @@ const FormS = () => {
                     />
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridCompany">
+                <Form.Group as={Col} controlId="company">
                     <Form.Label>Company</Form.Label>
                     <Form.Control
-                        id={"company"}
                         type="text"
                         placeholder="Enter company name"
                         value={formData.company}
@@ -66,9 +63,8 @@ const FormS = () => {
                 </Form.Group>
             </Row>
 
-            <FloatingLabel controlId="floatingTextarea" label="Description">
+            <FloatingLabel controlId="description" label="Description">
                 <Form.Control
-                    id={"description"}
                     as="textarea"
                     placeholder="Give a description about the subject"
                     style={{ height: '100px' }}
@@ -77,9 +73,8 @@ const FormS = () => {
                 />
             </FloatingLabel>
 
-            <FloatingLabel controlId="floatingTextarea" label="Remark">
+            <FloatingLabel controlId="remark" label="Remark">
                 <Form.Control
-                    id={"remark"}
                     as="textarea"
                     placeholder="Give some remarks about the subject"
                     style={{ height: '80px' }}
@@ -89,10 +84,9 @@ const FormS = () => {
             </FloatingLabel>
 
             <Row className="mb-3">
-                <Form.Group as={Col} controlId="formGridCoordinator">
+                <Form.Group as={Col} controlId="coordinator">
                     <Form.Label>Coordinator</Form.Label>
                     <Form.Control
-                        id={"coordinator"}
                         type="text"
                         placeholder="Name of the coordinator"
                         value={formData.coordinator}
@@ -100,32 +94,19 @@ const FormS = () => {
                     />
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridPromoter">
+                <Form.Group as={Col} controlId="promoter">
                     <Form.Label>Promoter</Form.Label>
                     <Form.Control
-                        id={"promoter"}
                         type="text"
                         placeholder="Name of the promotor"
                         value={formData.promoter}
                         onChange={(e) => setFormData({...formData, promoter: e.target.value})}
                     />
                 </Form.Group>
-
-                <Form.Group as={Col} controlId="formGridBoostedStudent">
-                    <Form.Label>Boosted student</Form.Label>
-                    <Form.Control
-                        id={"boostedStudent"}
-                        type="text"
-                        placeholder="Name of the boosted student"
-                        value={formData.boostedStudent}
-                        onChange={(e) => setFormData({...formData, boostedStudent: e.target.value})}
-                    />
-                </Form.Group>
             </Row>
 
-            <FloatingLabel controlId="floatingSelectGrid" label="Disciplines">
+            <FloatingLabel controlId="disciplines" label="Disciplines">
                 <Form.Select
-                    id={"disciplines"}
                     aria-label="Floating label select example"
                     value={formData.disciplines}
                     onChange={(e) => setFormData({...formData, disciplines: e.target.value})}
