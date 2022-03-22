@@ -1,6 +1,9 @@
 package com.example.MasterproofTool.user;
 
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -16,23 +19,26 @@ public class User {
     private Long keyId;
     private int GSM;
     private String email;
-    private String rol;
+    private String password;
+    @ManyToMany(fetch =FetchType.EAGER)
+    private Collection<Role> roles= new ArrayList<>();
 
-    public User(String firstName, String surname, Long keyId, int GSM, String email, String rol) {
+
+    public User(String firstName, String surname, Long keyId, int GSM, String email) {
         this.firstName = firstName;
         this.surname = surname;
         this.keyId = keyId;
         this.GSM = GSM;
         this.email = email;
-        this.rol = rol;
+
     }
 
-    public User(String firstName, String surname, int GSM, String email, String rol) {
+    public User(String firstName, String surname, int GSM, String email) {
         this.firstName = firstName;
         this.surname = surname;
         this.GSM = GSM;
         this.email = email;
-        this.rol = rol;
+
     }
     public User(){}
 
@@ -76,13 +82,16 @@ public class User {
         this.email = email;
     }
 
-    public String getRol() {
-        return rol;
+    public Collection<Role> getRol() {
+        return roles;
+    }
+    public Collection<Role> getRoles() {
+        return roles;
     }
 
-    public void setRol(String rol) {
-        this.rol = rol;
-    }
+//    public void setRol(String rol) {
+//        this.rol = rol;
+//    }
 
     @Override
     public String toString() {
@@ -92,7 +101,6 @@ public class User {
                 ", keyId=" + keyId +
                 ", GSM=" + GSM +
                 ", email='" + email + '\'' +
-                ", rol='" + rol + '\'' +
                 '}';
     }
 }

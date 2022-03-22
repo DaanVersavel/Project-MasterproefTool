@@ -1,4 +1,5 @@
 package com.example.MasterproofTool.user;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,14 +15,14 @@ public class Coördinator extends User {
     private Campus campus;
 
     public Coördinator(String firstName, String surname, Long keyId, int GSM, String email, String rol, Long id, String discipline, Campus campus) {
-        super(firstName, surname, keyId, GSM, email, rol);
+        super(firstName, surname, keyId, GSM, email);
         Id = id;
         this.discipline = discipline;
         this.campus = campus;
     }
 
-    public Coördinator(String firstName, String surname, int GSM, String email, String rol, String discipline, Campus campus) {
-        super(firstName, surname, GSM, email, rol);
+    public Coördinator(String firstName, String surname, int GSM, String email, String discipline, Campus campus) {
+        super(firstName, surname, GSM, email);
         this.discipline = discipline;
         this.campus = campus;
     }

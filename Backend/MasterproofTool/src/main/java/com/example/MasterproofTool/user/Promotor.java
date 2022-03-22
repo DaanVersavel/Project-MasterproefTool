@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @DiscriminatorValue("2")
 
-public class Promotor extends User{
+public class Promotor extends User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
@@ -16,8 +16,8 @@ public class Promotor extends User{
 
     public Promotor(){}
 
-    public Promotor(String firstName, String surname, Long keyId, int GSM, String email, String rol, Long id, Long courseId, boolean boost, String campus, String discipline) {
-        super(firstName, surname, keyId, GSM, email, rol);
+    public Promotor(String firstName, String surname, Long keyId, int GSM, String email, Long id, Long courseId, boolean boost, String campus, String discipline) {
+        super(firstName, surname, keyId, GSM, email);
         Id = id;
         this.courseId = courseId;
         this.boost = boost;
@@ -25,8 +25,8 @@ public class Promotor extends User{
         this.discipline = discipline;
     }
 
-    public Promotor(String firstName, String surname, int GSM, String email, String rol, Long courseId, boolean boost, String campus, String discipline) {
-        super(firstName, surname, GSM, email, rol);
+    public Promotor(String firstName, String surname, int GSM, String email, Long courseId, boolean boost, String campus, String discipline) {
+        super(firstName, surname, GSM, email);
         this.courseId = courseId;
         this.boost = boost;
         this.campus = campus;

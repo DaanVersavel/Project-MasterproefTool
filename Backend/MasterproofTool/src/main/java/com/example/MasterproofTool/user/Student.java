@@ -25,8 +25,8 @@ public class Student extends User {
     private Subject boostedSubject;
 
 
-    public Student(String firstName, String surname, Long keyId, int GSM, String email, String rol, char studentNumber, Long firstChoice, Long secondChoice, Long thirdChoice, String discipline, Subject assignedSubject, Subject boostedSubject) {
-        super(firstName, surname, keyId, GSM, email, rol);
+    public Student(String firstName, String surname, Long keyId, int GSM, String email, char studentNumber, Long firstChoice, Long secondChoice, Long thirdChoice, String discipline, Subject assignedSubject, Subject boostedSubject) {
+        super(firstName, surname, keyId, GSM, email);
         this.studentNumber = studentNumber;
         this.firstChoice = firstChoice;
         this.secondChoice = secondChoice;
@@ -36,8 +36,8 @@ public class Student extends User {
         this.boostedSubject=boostedSubject;
     }
 
-    public Student(String firstName, String surname, int GSM, String email, String rol, char studentNumber, Long firstChoice, Long secondChoice, Long thirdChoice, String discipline, Subject assignedSubject, Subject boostedSubject) {
-        super(firstName, surname, GSM, email, rol);
+    public Student(String firstName, String surname, int GSM, String email, char studentNumber, Long firstChoice, Long secondChoice, Long thirdChoice, String discipline, Subject assignedSubject, Subject boostedSubject) {
+        super(firstName, surname, GSM, email);
         this.studentNumber = studentNumber;
         this.firstChoice = firstChoice;
         this.secondChoice = secondChoice;
