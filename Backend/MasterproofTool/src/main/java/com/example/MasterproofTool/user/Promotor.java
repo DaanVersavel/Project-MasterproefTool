@@ -6,7 +6,7 @@ import javax.persistence.*;
 @DiscriminatorValue("2")
 
 public class Promotor extends User {
-    @Id
+    //@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
     private Long courseId;

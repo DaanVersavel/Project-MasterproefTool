@@ -6,7 +6,7 @@ import javax.persistence.*;
 @DiscriminatorValue("4")
 
 public class Company extends User {
-    @Id
+    //@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;

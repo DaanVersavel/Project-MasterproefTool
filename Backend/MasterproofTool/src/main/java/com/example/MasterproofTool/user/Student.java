@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @DiscriminatorValue("1")
 public class Student extends User {
-    @Id
+    //@Id
     private char studentNumber;
     private Long firstChoice;
     private Long secondChoice;

@@ -6,7 +6,7 @@ import javax.persistence.*;
 @DiscriminatorValue("3")
 
 public class Coördinator extends User {
-    @Id
+    //@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
     private String discipline;

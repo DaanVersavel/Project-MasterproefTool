@@ -4,12 +4,15 @@ import com.example.MasterproofTool.user.Role;
 import com.example.MasterproofTool.user.RoleRepository;
 import com.example.MasterproofTool.user.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
-@Service @Transactional @RequiredArgsConstructor
+@Component
+@Service
+@Transactional
+@RequiredArgsConstructor
 public class UserServiceImplementation implements UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;

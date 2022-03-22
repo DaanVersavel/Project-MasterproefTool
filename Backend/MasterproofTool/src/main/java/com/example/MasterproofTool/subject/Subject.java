@@ -1,6 +1,7 @@
 package com.example.MasterproofTool.subject;
 import com.example.MasterproofTool.user.*;
 
+
 import javax.persistence.*;
 
 
