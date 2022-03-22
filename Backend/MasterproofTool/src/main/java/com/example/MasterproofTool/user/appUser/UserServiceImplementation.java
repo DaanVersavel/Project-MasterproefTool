@@ -28,15 +28,15 @@ public class UserServiceImplementation implements UserService {
         return roleRepository.save(role);
     }
     @Override
-    public void addRoleToUser(String username, String rolename){
-        User user = userRepository.findByUsername(username);
+    public void addRoleToUser(String email, String rolename){
+        User user = userRepository.findByEmail(email);
         Role role = roleRepository.findByName(rolename);
         user.getRoles().add(role);
     }
 
     @Override
-    public User getUser(String username){
-        return userRepository.findByUsername(username);
+    public User getUser(String email){
+        return userRepository.findByEmail(email);
     }
 
     public List<User> getUsers(){
