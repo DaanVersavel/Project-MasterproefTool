@@ -2,7 +2,7 @@ import React from 'react';
 import {Container, Nav, Navbar, NavDropdown} from 'react-bootstrap'
 import KULogo from '../../KU_Leuven_logo.svg'
 
-function BNavbar() {
+const BNavbar = () => {
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
             <Container>
@@ -36,6 +36,6 @@ function BNavbar() {
             </Container>
         </Navbar>
     );
-}
+};
 
 export default BNavbar;
