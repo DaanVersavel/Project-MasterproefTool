@@ -1,6 +1,6 @@
 import React from 'react';
 import validate from './validateInfo';
-import useForm from '../../components/formSignUp/hooks/useForm';
+import useForm from './useForm';
 import './FormSU.css';
 
 const FormSignup = ({ submitForm }) => {

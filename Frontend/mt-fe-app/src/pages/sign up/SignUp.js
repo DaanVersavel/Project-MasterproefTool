@@ -1,7 +1,7 @@
 import React from 'react';
 import FormSU from "../../components/formSignUp/FormSU";
 
-function SignUp() {
+export default function SignUp() {
     return (
         <div>
             <FormSU/>
@@ -9,4 +9,3 @@ function SignUp() {
     );
 }
 
-export default SignUp;
