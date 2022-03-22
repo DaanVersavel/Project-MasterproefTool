@@ -1,10 +1,10 @@
 .form-container {
-    margin: 80px auto;
-    width: 80%;
+    margin: 100px auto;
+    width: 1000px;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
     position: relative;
     border-radius: 10px;
-    height: 800px;
+    height: 600px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -82,7 +82,7 @@
 }
 
 .form-inputs {
-    margin-bottom: 0.1rem;
+    margin-bottom: 0.5rem;
     width: 80%;
 }
 
@@ -140,7 +140,7 @@
     transition: all 0.4s ease-out;
 }
 
-.form-input-questions {
+.form-input-login {
     font-size: 0.8rem;
     margin-top: 10px;
     color: #fff;
@@ -148,7 +148,7 @@
     text-align: center;
 }
 
-.form-input-questions a {
+.form-input-login a {
     text-decoration: none;
     color: #27cdff;
     font-weight: 600;

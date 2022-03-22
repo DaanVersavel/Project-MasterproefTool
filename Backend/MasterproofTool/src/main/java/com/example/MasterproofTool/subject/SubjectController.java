@@ -36,7 +36,5 @@ public class SubjectController {
     public List<Subject> getSubjectForReview(){
         return subjectService.getSubjectsForReview();
     }
-
-
-
 }
+
