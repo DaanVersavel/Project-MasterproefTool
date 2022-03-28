@@ -10,9 +10,9 @@ import java.util.List;
 @Component
 public interface UserService {
 
-    Appuser saveUser(Appuser user);
+    Appuser saveAppuser(Appuser user);
     Role saveRole(Role role);
-    void addRoleToUser(String username,String rolename);
-    Appuser getUser(String email);
-    List<Appuser>getUsers();
+    void addRoleToAppuser(String username,String rolename);
+    Appuser getAppuser(String email);
+    List<Appuser>getAppusers();
 }

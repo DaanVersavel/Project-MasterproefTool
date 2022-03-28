@@ -16,7 +16,7 @@ public class Company extends Appuser {
 
     public Company(){}
 
-    public Company(String firstName, String surname, Long keyId, int GSM, String email,  Long id, String name, double longitude, double latitude, int btwnummer) {
+    public Company(String firstName, String surname, Long keyId, String GSM, String email,  Long id, String name, double longitude, double latitude, int btwnummer) {
         super(firstName, surname, keyId, GSM, email);
         this.id = id;
         this.name = name;
@@ -25,7 +25,7 @@ public class Company extends Appuser {
         this.btwnummer = btwnummer;
     }
 
-    public Company(String firstName, String surname, int GSM, String email, String name, double longitude, double latitude, int btwnummer) {
+    public Company(String firstName, String surname, String GSM, String email, String name, double longitude, double latitude, int btwnummer) {
         super(firstName, surname, GSM, email);
         this.name = name;
         this.longitude = longitude;

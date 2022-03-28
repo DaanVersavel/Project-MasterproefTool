@@ -25,7 +25,7 @@ public class Student extends Appuser {
     private Subject boostedSubject;
 
 
-    public Student(String firstName, String surname, Long keyId, int GSM, String email, char studentNumber, Long firstChoice, Long secondChoice, Long thirdChoice, String discipline, Subject assignedSubject, Subject boostedSubject) {
+    public Student(String firstName, String surname, Long keyId, String GSM, String email, char studentNumber, Long firstChoice, Long secondChoice, Long thirdChoice, String discipline, Subject assignedSubject, Subject boostedSubject) {
         super(firstName, surname, keyId, GSM, email);
         this.studentNumber = studentNumber;
         this.firstChoice = firstChoice;
@@ -36,7 +36,7 @@ public class Student extends Appuser {
         this.boostedSubject=boostedSubject;
     }
 
-    public Student(String firstName, String surname, int GSM, String email, char studentNumber, Long firstChoice, Long secondChoice, Long thirdChoice, String discipline, Subject assignedSubject, Subject boostedSubject) {
+    public Student(String firstName, String surname, String GSM, String email, char studentNumber, Long firstChoice, Long secondChoice, Long thirdChoice, String discipline, Subject assignedSubject, Subject boostedSubject) {
         super(firstName, surname, GSM, email);
         this.studentNumber = studentNumber;
         this.firstChoice = firstChoice;

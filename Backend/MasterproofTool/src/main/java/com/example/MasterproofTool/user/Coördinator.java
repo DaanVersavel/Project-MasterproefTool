@@ -14,14 +14,14 @@ public class Coördinator extends Appuser {
     @JoinColumn(name="campus_id")
     private Campus campus;
 
-    public Coördinator(String firstName, String surname, Long keyId, int GSM, String email, String rol, Long id, String discipline, Campus campus) {
+    public Coördinator(String firstName, String surname, Long keyId, String GSM, String email, String rol, Long id, String discipline, Campus campus) {
         super(firstName, surname, keyId, GSM, email);
         Id = id;
         this.discipline = discipline;
         this.campus = campus;
     }
 
-    public Coördinator(String firstName, String surname, int GSM, String email, String discipline, Campus campus) {
+    public Coördinator(String firstName, String surname, String GSM, String email, String discipline, Campus campus) {
         super(firstName, surname, GSM, email);
         this.discipline = discipline;
         this.campus = campus;

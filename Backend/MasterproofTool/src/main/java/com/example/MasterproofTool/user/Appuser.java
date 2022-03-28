@@ -18,23 +18,32 @@ public class Appuser {
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Long keyId;
-    private int GSM;
+    private String GSM;
     private String email;
     private String password;
     @ManyToMany(fetch =FetchType.EAGER)
     private Collection<Role> roles= new ArrayList<>();
 
 
-    public Appuser(String firstName, String surname, Long keyId, int GSM, String email) {
+    public Appuser(String firstName, String surname, Long keyId, String GSM, String email) {
         this.firstName = firstName;
         this.surname = surname;
         this.keyId = keyId;
         this.GSM = GSM;
         this.email = email;
-
     }
 
-    public Appuser(String firstName, String surname, int GSM, String email) {
+
+    public Appuser(String firstName, String surname, Long keyId, String GSM, String email,String password) {
+        this.firstName = firstName;
+        this.surname = surname;
+        this.keyId = keyId;
+        this.GSM = GSM;
+        this.email = email;
+        this.password= password;
+    }
+
+    public Appuser(String firstName, String surname, String GSM, String email) {
         this.firstName = firstName;
         this.surname = surname;
         this.GSM = GSM;
@@ -67,11 +76,11 @@ public class Appuser {
         this.keyId = keyId;
     }
 
-    public int getGSM() {
+    public String getGSM() {
         return GSM;
     }
 
-    public void setGSM(int GSM) {
+    public void setGSM(String GSM) {
         this.GSM = GSM;
     }
 

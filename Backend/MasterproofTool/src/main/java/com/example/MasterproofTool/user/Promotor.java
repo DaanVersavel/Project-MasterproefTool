@@ -16,7 +16,7 @@ public class Promotor extends Appuser {
 
     public Promotor(){}
 
-    public Promotor(String firstName, String surname, Long keyId, int GSM, String email, Long id, Long courseId, boolean boost, String campus, String discipline) {
+    public Promotor(String firstName, String surname, Long keyId, String GSM, String email, Long id, Long courseId, boolean boost, String campus, String discipline) {
         super(firstName, surname, keyId, GSM, email);
         Id = id;
         this.courseId = courseId;
@@ -25,7 +25,7 @@ public class Promotor extends Appuser {
         this.discipline = discipline;
     }
 
-    public Promotor(String firstName, String surname, int GSM, String email, Long courseId, boolean boost, String campus, String discipline) {
+    public Promotor(String firstName, String surname, String GSM, String email, Long courseId, boolean boost, String campus, String discipline) {
         super(firstName, surname, GSM, email);
         this.courseId = courseId;
         this.boost = boost;

@@ -19,7 +19,7 @@ public class UserServiceImplementation implements UserService {
 
 
     @Override
-    public Appuser saveUser(Appuser user){
+    public Appuser saveAppuser(Appuser user){
         return userRepository.save(user);
     }
 
@@ -28,18 +28,18 @@ public class UserServiceImplementation implements UserService {
         return roleRepository.save(role);
     }
     @Override
-    public void addRoleToUser(String email, String rolename){
+    public void addRoleToAppuser(String email, String rolename){
         Appuser user = userRepository.findByEmail(email);
         Role role = roleRepository.findByName(rolename);
         user.getRoles().add(role);
     }
 
     @Override
-    public Appuser getUser(String email){
+    public Appuser getAppuser(String email){
         return userRepository.findByEmail(email);
     }
 
-    public List<Appuser> getUsers(){
+    public List<Appuser> getAppusers(){
         return userRepository.findAll();
     }
 }
