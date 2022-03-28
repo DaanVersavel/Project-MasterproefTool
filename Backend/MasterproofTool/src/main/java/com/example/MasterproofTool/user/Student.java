@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("1")
-public class Student extends User {
+public class Student extends Appuser {
     //@Id
     private char studentNumber;
     private Long firstChoice;

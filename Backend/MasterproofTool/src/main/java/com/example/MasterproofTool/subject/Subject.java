@@ -15,7 +15,7 @@ public class Subject {
     private Long id;
     private String title;
     private String description;
-    private boolean  approved;
+    private boolean approved;
 
     private String remark;
     @ManyToOne

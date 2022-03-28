@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @DiscriminatorValue("4")
 
-public class Company extends User {
+public class Company extends Appuser {
     //@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

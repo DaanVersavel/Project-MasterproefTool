@@ -1,7 +1,7 @@
 package com.example.MasterproofTool.user.appUser;
 
 
-import com.example.MasterproofTool.user.User;
+import com.example.MasterproofTool.user.Appuser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,7 +24,7 @@ public class UserController {
 
     @GetMapping(value = "/users/")
     @CrossOrigin(origins = "http://localhost:3000")
-    public ResponseEntity<List<User>> getUsers(){
+    public ResponseEntity<List<Appuser>> getUsers(){
         return ResponseEntity.ok().body(userService.getUsers());
     }
 }

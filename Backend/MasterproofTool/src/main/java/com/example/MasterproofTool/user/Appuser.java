@@ -10,7 +10,7 @@ import java.util.Collection;
 @DiscriminatorColumn(name="user_type",
         discriminatorType = DiscriminatorType.INTEGER)
 @Entity
-public class User {
+public class Appuser {
 
     private String firstName;
     private String surname;
@@ -25,7 +25,7 @@ public class User {
     private Collection<Role> roles= new ArrayList<>();
 
 
-    public User(String firstName, String surname, Long keyId, int GSM, String email) {
+    public Appuser(String firstName, String surname, Long keyId, int GSM, String email) {
         this.firstName = firstName;
         this.surname = surname;
         this.keyId = keyId;
@@ -34,14 +34,14 @@ public class User {
 
     }
 
-    public User(String firstName, String surname, int GSM, String email) {
+    public Appuser(String firstName, String surname, int GSM, String email) {
         this.firstName = firstName;
         this.surname = surname;
         this.GSM = GSM;
         this.email = email;
 
     }
-    public User(){}
+    public Appuser(){}
 
     public String getFirstName() {
         return firstName;

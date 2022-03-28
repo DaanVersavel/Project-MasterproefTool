@@ -2,7 +2,7 @@ package com.example.MasterproofTool.user.appUser;
 
 import com.example.MasterproofTool.user.Role;
 import com.example.MasterproofTool.user.RoleRepository;
-import com.example.MasterproofTool.user.User;
+import com.example.MasterproofTool.user.Appuser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ public class UserServiceImplementation implements UserService {
 
 
     @Override
-    public User saveUser(User user){
+    public Appuser saveUser(Appuser user){
         return userRepository.save(user);
     }
 
@@ -29,17 +29,17 @@ public class UserServiceImplementation implements UserService {
     }
     @Override
     public void addRoleToUser(String email, String rolename){
-        User user = userRepository.findByEmail(email);
+        Appuser user = userRepository.findByEmail(email);
         Role role = roleRepository.findByName(rolename);
         user.getRoles().add(role);
     }
 
     @Override
-    public User getUser(String email){
+    public Appuser getUser(String email){
         return userRepository.findByEmail(email);
     }
 
-    public List<User> getUsers(){
+    public List<Appuser> getUsers(){
         return userRepository.findAll();
     }
 }
