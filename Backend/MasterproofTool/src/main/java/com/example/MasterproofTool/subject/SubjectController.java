@@ -15,16 +15,25 @@ public class SubjectController {
     public SubjectController(SubjectService subjectService) {
         this.subjectService = subjectService;
     }
-
+  
     @PostMapping(path="/Post")
     @CrossOrigin(origins = "*")
     public void registerNewSubject(@RequestBody Subject subject){
         subjectService.addNewSubject(subject);
     }
 
-
+    //get method for list of subject
     @GetMapping
+
     @CrossOrigin(origins = "*")
     public List<Subject> getSubjects(){ return subjectService.getSubjects();
     }
+
+    //get method for not yet accepted methods
+    @GetMapping(path = "Review/")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public List<Subject> getSubjectForReview(){
+        return subjectService.getSubjectsForReview();
+    }
 }
+
