@@ -17,7 +17,7 @@ public class Role {
         this.id= id;
         this.name = roleName;
     }
-
+    public Role() {}
     public Long getId() {
         return id;
     }
