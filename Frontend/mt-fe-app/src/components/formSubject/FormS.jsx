@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import {Button, Col, FloatingLabel, Form, Row} from "react-bootstrap";
 
 const FormS = () => {
+    const [amountStudents, setAmountStudents] = useState(1)
     const [formData, setFormData] = useState({
         title: "",
         company: "",
@@ -12,14 +12,23 @@ const FormS = () => {
         coordinator: "",
         promoter: "",
         disciplines: "",
-        aStudents: ""
+        aStudents: amountStudents
     })
+
+    const handleChange = (e) => {
+        const{name, value} = e.target;
+        setFormData({...formData, [name]: value})
+    }
+
+    const handleRadio = (e) => {
+        setAmountStudents({amountStudents: e.target.value})
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(formData)
         axios
-            .post('https://localhost:8080/Subject/Post', formData)
+            .post('http://localhost:8080/Subject/Post', formData)
             .then(response => {
                 console.log(response)
             })
@@ -28,36 +37,28 @@ const FormS = () => {
             })
     }
 
-    const navigate = useNavigate();
-
-    const handleClick = () => {
-        navigate("/listOfSubjects");
-    }
-
     return (
         <Form onSubmit={handleSubmit}>
-            <Button onClick={handleClick}>
-                View all available subjects
-            </Button>
-
             <Row className="mb-3">
-                <Form.Group as={Col} controlId="title">
+                <Form.Group as={Col} controlId="title" >
                     <Form.Label>Title</Form.Label>
                     <Form.Control
+                        name={"title"}
                         type="text"
                         placeholder="Enter subject title"
                         value={formData.title}
-                        onChange={(e) => setFormData({...formData, title: e.target.value})}
+                        onChange={handleChange}
                     />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="company">
                     <Form.Label>Company</Form.Label>
                     <Form.Control
+                        name={"company"}
                         type="text"
                         placeholder="Enter company name"
                         value={formData.company}
-                        onChange={(e) => setFormData({...formData, company: e.target.value})}
+                        onChange={handleChange}
                     />
 
                 </Form.Group>
@@ -65,21 +66,23 @@ const FormS = () => {
 
             <FloatingLabel controlId="description" label="Description">
                 <Form.Control
+                    name={"description"}
                     as="textarea"
                     placeholder="Give a description about the subject"
                     style={{ height: '100px' }}
                     value={formData.description}
-                    onChange={(e) => setFormData({...formData, description: e.target.value})}
+                    onChange={handleChange}
                 />
             </FloatingLabel>
 
             <FloatingLabel controlId="remark" label="Remark">
                 <Form.Control
+                    name={"remark"}
                     as="textarea"
                     placeholder="Give some remarks about the subject"
                     style={{ height: '80px' }}
                     value={formData.remark}
-                    onChange={(e) => setFormData({...formData, remark: e.target.value})}
+                    onChange={handleChange}
                 />
             </FloatingLabel>
 
@@ -87,73 +90,76 @@ const FormS = () => {
                 <Form.Group as={Col} controlId="coordinator">
                     <Form.Label>Coordinator</Form.Label>
                     <Form.Control
+                        name={"coordinator"}
                         type="text"
                         placeholder="Name of the coordinator"
                         value={formData.coordinator}
-                        onChange={(e) => setFormData({...formData, coordinator: e.target.value})}
+                        onChange={handleChange}
                     />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="promoter">
                     <Form.Label>Promoter</Form.Label>
                     <Form.Control
+                        name={"promoter"}
                         type="text"
-                        placeholder="Name of the promotor"
+                        placeholder="Name of the promoter"
                         value={formData.promoter}
-                        onChange={(e) => setFormData({...formData, promoter: e.target.value})}
+                        onChange={handleChange}
                     />
                 </Form.Group>
             </Row>
 
             <FloatingLabel controlId="disciplines" label="Disciplines">
                 <Form.Select
+                    name = "disciplines"
                     aria-label="Floating label select example"
                     value={formData.disciplines}
-                    onChange={(e) => setFormData({...formData, disciplines: e.target.value})}
+                    onChange={handleChange}
                 >
                     <option>Select the discipline for whom this subject maybe of interest</option>
                     <option value="1">Erasmus Mundus Japan - Master of Science in Imaging and Light in Extended Reality (Ghent et al)</option>
-                    <option value="2">Master in de industriële wetenschappen: biochemie (Gent)</option>
-                    <option value="3">Master in de industriële wetenschappen: bouwkunde (Gent)</option>
-                    <option value="4">Master of Civil Engineering Technology (Ghent)</option>
-                    <option value="5">Master in de industriële wetenschappen: chemie (Gent)</option>
-                    <option value="6">Master in de industriële wetenschappen: elektromechanica (Gent)</option>
-                    <option value="7">Master in de industriële wetenschappen: elektronica-ICT (Gent)</option>
-                    <option value="8">Master in de industriële wetenschappen: energie (Gent)</option>
-                    <option value="9">European Master of Food Science, Technology and Business (no new enrollments as from 2020-2021) (Ghent et al)</option>
-                    <option value="10">European Master of Sustainable Food Systems Engineering, Technology and Business (Ghent et al)</option>
-                    <option value="11">Educatieve master in de wetenschappen en technologie (verkort programma) (Gent)</option>
+                    <option value="bc">Master in de industriële wetenschappen: biochemie (Gent)</option>
+                    <option value="bk">Master in de industriële wetenschappen: bouwkunde (Gent)</option>
+                    <option value="cet">Master of Civil Engineering Technology (Ghent)</option>
+                    <option value="c">Master in de industriële wetenschappen: chemie (Gent)</option>
+                    <option value="em">Master in de industriële wetenschappen: elektromechanica (Gent)</option>
+                    <option value="elict">Master in de industriële wetenschappen: elektronica-ICT (Gent)</option>
+                    <option value="e">Master in de industriële wetenschappen: energie (Gent)</option>
+                    <option value="fs,t & b">European Master of Food Science, Technology and Business (no new enrollments as from 2020-2021) (Ghent)</option>
+                    <option value="sfse, t & b">European Master of Sustainable Food Systems Engineering, Technology and Business (Ghent)</option>
+                    <option value="edu">Educatieve master in de wetenschappen en technologie (verkort programma) (Gent)</option>
                 </Form.Select>
             </FloatingLabel>
 
 
-            <div title={"Amount of students"} id={"aStudents"}>
+            <div id={"aStudents"}>
                 <Form.Check
                     inline
-                    label="1"
                     name="group1"
+                    label="1 student"
                     type={"radio"}
-                    id={`radio1`}
-                    value={formData.aStudents}
-                    onChange={(e) => setFormData({...formData, aStudents: e.target.value})}
-                />
-                <Form.Check
-                    inline
-                    label="2"
-                    name="group1"
-                    type={"radio"}
-                    id={`radio2`}
-                    value={formData.aStudents}
-                    onChange={(e) => setFormData({...formData, aStudents: e.target.value})}
+                    id={`aS1`}
+                    value={1}
+                    onChange={handleRadio}
                 />
                 <Form.Check
                     inline
                     name="group1"
-                    label="3"
+                    label="2 students"
                     type={"radio"}
-                    id={`radio3`}
-                    value={formData.aStudents}
-                    onChange={(e) => setFormData({...formData, aStudents: e.target.value})}
+                    id={`aS2`}
+                    value={2}
+                    onChange={handleRadio}
+                />
+                <Form.Check
+                    inline
+                    name="group1"
+                    label="3 students"
+                    type={"radio"}
+                    id={`aS3`}
+                    value={3}
+                    onChange={handleRadio}
                 />
             </div>
 

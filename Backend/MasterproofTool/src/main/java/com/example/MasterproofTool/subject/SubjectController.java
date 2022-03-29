@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "Subject/")
+@RequestMapping(path = "/Subjects")
 public class SubjectController {
 
     private final SubjectService subjectService;
@@ -15,19 +15,18 @@ public class SubjectController {
     public SubjectController(SubjectService subjectService) {
         this.subjectService = subjectService;
     }
-
-    //post methode for submitting a subject
-    @PostMapping(path = "Post/")
-    @CrossOrigin(origins = "http://localhost:3000")
-    public void registerNewSubject(@RequestBody Subject subject) {
+  
+    @PostMapping(path="/Post")
+    @CrossOrigin(origins = "*")
+    public void registerNewSubject(@RequestBody Subject subject){
         subjectService.addNewSubject(subject);
     }
 
     //get method for list of subject
     @GetMapping
-    @CrossOrigin(origins = "http://localhost:3000")
-    public List<Subject> getSubjects() {
-         return subjectService.getSubjects();
+
+    @CrossOrigin(origins = "*")
+    public List<Subject> getSubjects(){ return subjectService.getSubjects();
     }
 
     //get method for not yet accepted methods
