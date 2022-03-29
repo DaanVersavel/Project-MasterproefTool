@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "Subject/")
+@RequestMapping(path = "/Subjects")
 public class SubjectController {
 
     private final SubjectService subjectService;
@@ -16,19 +16,15 @@ public class SubjectController {
         this.subjectService = subjectService;
     }
 
-    @PostMapping(path="Post/")
-    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(path="/Post")
+    @CrossOrigin(origins = "*")
     public void registerNewSubject(@RequestBody Subject subject){
         subjectService.addNewSubject(subject);
     }
 
 
     @GetMapping
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "*")
     public List<Subject> getSubjects(){ return subjectService.getSubjects();
     }
-
-
-
-
 }
