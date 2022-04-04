@@ -9,6 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 @SpringBootApplication
@@ -24,7 +26,12 @@ public class MasterproefToolApplication {
 		SpringApplication.run(MasterproefToolApplication.class, args);
 	}
 
-	//@Bean
+	@Bean
+	PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
+	@Bean
 	CommandLineRunner run(UserService userService){
 		return args -> {
 			userService.saveRole(new Role(null,"ROLE_ADMIN"));
@@ -33,9 +40,11 @@ public class MasterproefToolApplication {
 			userService.saveRole(new Role(null,"ROLE_STUDENT"));
 			userService.saveRole(new Role(null,"ROLE_COMPANY"));
 
-			userService.saveAppuser(new Appuser("Bob", "Smith", null, "0489005054","bob.smith@gmail.com","bob123"));
+			userService.saveAppuser(new Appuser("Bob", "Smith", "0489005054","bob.smith@gmail.com","bob123"));
+			userService.saveAppuser(new Appuser("Bart", "Smith", "0489005054","bart.smith@gmail.com","bart123"));
 
 			userService.addRoleToAppuser("bob.smith@gmail.com","ROLE_ADMIN");
+			userService.addRoleToAppuser("bart.smith@gmail.com","ROLE_STUDENT");
 
 
 		};

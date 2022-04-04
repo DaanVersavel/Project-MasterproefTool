@@ -1,6 +1,9 @@
 package com.example.MasterproofTool.user;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,6 +13,8 @@ import java.util.Collection;
 @DiscriminatorColumn(name="user_type",
         discriminatorType = DiscriminatorType.INTEGER)
 @Entity
+@Getter
+@Setter
 public class Appuser {
 
     private String firstName;
@@ -42,7 +47,13 @@ public class Appuser {
         this.email = email;
         this.password= password;
     }
-
+    public Appuser(String firstName, String surname, String GSM, String email,String password) {
+        this.firstName = firstName;
+        this.surname = surname;
+        this.GSM = GSM;
+        this.email = email;
+        this.password= password;
+    }
     public Appuser(String firstName, String surname, String GSM, String email) {
         this.firstName = firstName;
         this.surname = surname;
@@ -52,7 +63,7 @@ public class Appuser {
     }
     public Appuser(){}
 
-    public String getFirstName() {
+    /*public String getFirstName() {
         return firstName;
     }
 
@@ -102,6 +113,8 @@ public class Appuser {
 //    public void setRol(String rol) {
 //        this.rol = rol;
 //    }
+
+     */
 
     @Override
     public String toString() {

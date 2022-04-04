@@ -2,6 +2,7 @@ package com.example.MasterproofTool.subject;
 import com.example.MasterproofTool.user.*;
 
 
+
 import javax.persistence.*;
 
 
@@ -62,8 +63,7 @@ public class Subject {
         this.approved=false;
     }
 
-    public Subject() {
-    }
+    public Subject() {}
 
     public Long getId() {
         return id;

@@ -1,6 +1,5 @@
 package com.example.MasterproofTool.user.appUser;
 
-
 import com.example.MasterproofTool.user.Appuser;
 import com.example.MasterproofTool.user.Role;
 import lombok.Data;
@@ -13,7 +12,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(path ="/User/")
+@RequestMapping(path ="/User")
 public class UserController {
     private final UserService userService;
 
@@ -23,30 +22,30 @@ public class UserController {
     }
 
     //list of users
-    @GetMapping(value = "/users/")
+    @GetMapping(value = "/users")
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<List<Appuser>> getUsers(){
         return ResponseEntity.ok().body(userService.getAppusers());
     }
 
 
-    @PostMapping(value = "/users/save/")
+    @PostMapping(value = "/users/save")
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<Appuser> saveAppuser(@RequestBody Appuser appuser){
         URI uri=  URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/User/users/save/").toUriString());
+                .path("/User/users/save").toUriString());
         return ResponseEntity.created(uri).body(userService.saveAppuser(appuser));
     }
 
-    @PostMapping(value = "/role/save/")
+    @PostMapping(value = "/role/save")
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<Role> saveRole(@RequestBody Role role){
         URI uri=  URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/User/role/save/").toUriString());
+                .path("/User/role/save").toUriString());
         return ResponseEntity.created(uri).body(userService.saveRole(role));
     }
 
-    @PostMapping(value = "/role/addtouser/")
+    @PostMapping(value = "/role/addtouser")
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<Role> addRoleToAppuser(@RequestBody Role role){
 
