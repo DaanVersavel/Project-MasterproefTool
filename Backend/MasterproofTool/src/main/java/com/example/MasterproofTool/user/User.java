@@ -18,6 +18,11 @@ public class User {
     private String email;
     private String rol;
 
+    public User(String firstName, String surname) {
+        this.firstName = firstName;
+        this.surname = surname;
+    }
+
     public User(String firstName, String surname, Long keyId, int GSM, String email, String rol) {
         this.firstName = firstName;
         this.surname = surname;

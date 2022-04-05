@@ -31,7 +31,7 @@ public class SubjectController {
 
     //get method for not yet accepted methods
     @GetMapping(path = "/Review")
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://localhost:3000")
     public List<Subject> getSubjectForReview(){
         return subjectService.getSubjectsForReview();
     }
