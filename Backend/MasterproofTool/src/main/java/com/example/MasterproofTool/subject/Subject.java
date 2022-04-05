@@ -1,5 +1,6 @@
 package com.example.MasterproofTool.subject;
 import com.example.MasterproofTool.user.*;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 
@@ -14,7 +15,8 @@ public class Subject {
     private Long id;
     private String title;
     private String description;
-    private boolean  approved;
+    @Nullable
+    private boolean approved=false;
 
     private String remark;
     @ManyToOne

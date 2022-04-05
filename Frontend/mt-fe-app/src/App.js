@@ -18,7 +18,7 @@ export default function App () {
                 <Routes>
                     <Route path = '/' element = {<Home/>} />
                     <Route path = '/Subjects' element = {<Subjects/>} />
-                    <Route path = '/Subjects/Post' element = {<AddSubjects/>} />
+                    <Route path = '/Subject/Post' element = {<AddSubjects/>} />
                     <Route path = '/SignUp' element = {<SignUp/>} />
                     <Route path = '/Contact' element = {<Contact/>} />
                 </Routes>

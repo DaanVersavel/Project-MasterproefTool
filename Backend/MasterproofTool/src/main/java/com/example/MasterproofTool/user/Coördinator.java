@@ -29,6 +29,10 @@ public class Coördinator extends User {
     public Coördinator() {
     }
 
+    public Coördinator(String voornaam, String achternaam) {
+        super(voornaam,achternaam);
+    }
+
     public Long getId() {
         return Id;
     }
