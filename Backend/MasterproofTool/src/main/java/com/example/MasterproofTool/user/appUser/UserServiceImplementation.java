@@ -59,7 +59,7 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
     @Override
     public void addRoleToAppuser(String email, String rolename){
         Appuser user = userRepository.findByEmail(email);
-        Role role = roleRepository.findByName(rolename);
+        Role role = roleRepository.findByRoleName(rolename);
         user.getRoles().add(role);
     }
 

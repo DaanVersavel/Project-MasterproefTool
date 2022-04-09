@@ -63,58 +63,6 @@ public class Appuser {
     }
     public Appuser(){}
 
-    /*public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public Long getKeyId() {
-        return keyId;
-    }
-
-    public void setKeyId(Long keyId) {
-        this.keyId = keyId;
-    }
-
-    public String getGSM() {
-        return GSM;
-    }
-
-    public void setGSM(String GSM) {
-        this.GSM = GSM;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Collection<Role> getRol() {
-        return roles;
-    }
-    public Collection<Role> getRoles() {
-        return roles;
-    }
-
-//    public void setRol(String rol) {
-//        this.rol = rol;
-//    }
-
-     */
 
     @Override
     public String toString() {

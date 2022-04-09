@@ -34,20 +34,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        CustomAuthenticationFilter costumAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
-        costumAuthenticationFilter.setFilterProcessesUrl("/login");
+
+        //CustomAuthenticationFilter custumAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
+        //custumAuthenticationFilter.setFilterProcessesUrl("/login");
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().and().formLogin().loginPage("/login").permitAll();
-        http.authorizeRequests().antMatchers(/*"/login/**",*/"/User/token/refresh/**").permitAll();
+        http.authorizeRequests().antMatchers("/").permitAll();
+        //http.authorizeRequests().antMatchers(GET,"/login").permitAll();
+        //http.authorizeRequests().antMatchers(POST,"/login").permitAll();
+        http.authorizeRequests().antMatchers("/login/**","/User/token/refresh/**").permitAll();
         http.authorizeRequests().antMatchers(GET,"/Subject/").hasAnyAuthority("ROLE_STUDENT");
+        http.authorizeRequests().antMatchers("/User/**").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers(GET,"/Subject/Review/").permitAll();
         http.authorizeRequests().antMatchers(POST,"/Subject/Post/").hasAnyAuthority("ROLE_STUDENT");
         http.authorizeRequests().anyRequest().authenticated();
 
+        http.authorizeRequests().and().formLogin().loginPage("/login")/*.defaultSuccessUrl("/Subject/",true)*/;
 
-
-        http.addFilter(costumAuthenticationFilter);
+        //http.addFilter(custumAuthenticationFilter);
+        http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 

@@ -16,6 +16,7 @@ public class SubjectController {
         this.subjectService = subjectService;
     }
 
+
     //post methode for submitting a subject
     @PostMapping(path = "Post/")
     @CrossOrigin(origins = "http://localhost:3000")
