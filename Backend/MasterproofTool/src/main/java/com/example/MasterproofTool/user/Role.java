@@ -1,5 +1,8 @@
 package com.example.MasterproofTool.user;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,6 +10,8 @@ import javax.persistence.Id;
 import static javax.persistence.GenerationType.AUTO;
 
 @Entity
+@Getter
+@Setter
 public class Role {
     @Id
     @GeneratedValue(strategy = AUTO)
@@ -18,19 +23,5 @@ public class Role {
         this.roleName = roleName;
     }
     public Role() {}
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return roleName;
-    }
-
-    public void setName(String name) {
-        this.roleName = name;
-    }
 }

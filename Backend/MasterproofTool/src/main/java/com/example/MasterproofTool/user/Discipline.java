@@ -1,12 +1,16 @@
 package com.example.MasterproofTool.user;
 
 import com.example.MasterproofTool.subject.Subject;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
 public class Discipline {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,37 +47,6 @@ public class Discipline {
     public Discipline() {
     }
 
-    public long getDiscipline_id() {
-        return discipline_id;
-    }
-
-    public void setDiscipline_id(long discipline_id) {
-        this.discipline_id = discipline_id;
-    }
-
-    public String getNaam() {
-        return naam;
-    }
-
-    public void setNaam(String naam) {
-        this.naam = naam;
-    }
-
-    public Set<Campus> getCampussen() {
-        return campussen;
-    }
-
-    public void setCampussen(Set<Campus> campussen) {
-        this.campussen = campussen;
-    }
-
-    public Set<Subject> getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(Set<Subject> subjects) {
-        this.subjects = subjects;
-    }
 
     @Override
     public String toString() {

@@ -1,9 +1,14 @@
 package com.example.MasterproofTool.user;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("4")
+@Setter
+@Getter
 
 public class Company extends Appuser {
     //@Id
@@ -33,45 +38,7 @@ public class Company extends Appuser {
         this.btwnummer = btwnummer;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public int getBtwnummer() {
-        return btwnummer;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public void setBtwnummer(int btwnummer) {
-        this.btwnummer = btwnummer;
-    }
 
     @Override
     public String toString() {

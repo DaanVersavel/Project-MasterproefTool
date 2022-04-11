@@ -1,10 +1,14 @@
 package com.example.MasterproofTool.user;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("3")
-
+@Getter
+@Setter
 public class Coördinator extends Appuser {
     //@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,29 +34,6 @@ public class Coördinator extends Appuser {
     public Coördinator() {
     }
 
-    public Long getId() {
-        return Id;
-    }
-
-    public void setId(Long id) {
-        Id = id;
-    }
-
-    public String getDiscipline() {
-        return discipline;
-    }
-
-    public void setDiscipline(String discipline) {
-        this.discipline = discipline;
-    }
-
-    public Campus getCampus() {
-        return campus;
-    }
-
-    public void setCampus(Campus campus) {
-        this.campus = campus;
-    }
 
     @Override
     public String toString() {

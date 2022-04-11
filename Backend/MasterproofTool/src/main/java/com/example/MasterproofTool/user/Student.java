@@ -2,12 +2,16 @@ package com.example.MasterproofTool.user;
 
 
 import com.example.MasterproofTool.subject.Subject;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 
 @Entity
 @DiscriminatorValue("1")
+@Getter
+@Setter
 public class Student extends Appuser {
     //@Id
     private char studentNumber;
@@ -48,62 +52,6 @@ public class Student extends Appuser {
     }
 
     public Student(){}
-
-    public char getStudentNumber() {
-        return studentNumber;
-    }
-
-    public void setStudentNumber(char studentNumber) {
-        this.studentNumber = studentNumber;
-    }
-
-    public Long getFirstChoice() {
-        return firstChoice;
-    }
-
-    public void setFirstChoice(Long firstChoice) {
-        this.firstChoice = firstChoice;
-    }
-
-    public Long getSecondChoice() {
-        return secondChoice;
-    }
-
-    public void setSecondChoice(Long secondChoice) {
-        this.secondChoice = secondChoice;
-    }
-
-    public Long getThirdChoice() {
-        return thirdChoice;
-    }
-
-    public void setThirdChoice(Long thirdChoice) {
-        this.thirdChoice = thirdChoice;
-    }
-
-    public String getDiscipline() {
-        return discipline;
-    }
-
-    public void setDiscipline(String discipline) {
-        this.discipline = discipline;
-    }
-
-    public Subject getAssignedSubject() {
-        return assignedSubject;
-    }
-
-    public void setAssignedSubject(Subject assignedSubject) {
-        this.assignedSubject = assignedSubject;
-    }
-
-    public Subject getBoostedSubject() {
-        return boostedSubject;
-    }
-
-    public void setBoostedSubject(Subject boostedSubject) {
-        this.boostedSubject = boostedSubject;
-    }
 
     @Override
     public String toString() {

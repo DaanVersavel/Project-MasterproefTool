@@ -1,10 +1,14 @@
 package com.example.MasterproofTool.user;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("2")
-
+@Getter
+@Setter
 public class Promotor extends Appuser {
     //@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,44 +37,5 @@ public class Promotor extends Appuser {
         this.discipline = discipline;
     }
 
-    public Long getId() {
-        return Id;
-    }
-
-    public void setId(Long id) {
-        Id = id;
-    }
-
-    public Long getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(Long courseId) {
-        this.courseId = courseId;
-    }
-
-    public boolean isBoost() {
-        return boost;
-    }
-
-    public String getCampus() {
-        return campus;
-    }
-
-    public void setCampus(String campus) {
-        this.campus = campus;
-    }
-
-    public String getDiscipline() {
-        return discipline;
-    }
-
-    public void setDiscipline(String discipline) {
-        this.discipline = discipline;
-    }
-
-    public void setBoost(boolean boost) {
-        this.boost = boost;
-    }
 
 }
