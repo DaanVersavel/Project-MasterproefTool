@@ -16,7 +16,7 @@ public class Subject {
     private String title;
     private String description;
     @Nullable
-    private boolean approved=false;
+    private boolean approved;
 
     private String remark;
     @ManyToOne
@@ -81,6 +81,21 @@ public class Subject {
         this.remark = remark;
         this.aStudents = aStudents;
         this.approved=false;
+    }
+
+    public Subject(String title, String description, boolean approved, String remark,  int aStudents) {
+        this.title = title;
+        this.description = description;
+        this.approved = approved;
+        this.remark = remark;
+        this.aStudents = aStudents;
+    }
+    public Subject(String title, String description,Coördinator coordinator, String remark,  int aStudents) {
+        this.title = title;
+        this.description = description;
+        this.coordinator = coordinator;
+        this.remark = remark;
+        this.aStudents = aStudents;
     }
 
     public void setApprovedTrue() {
