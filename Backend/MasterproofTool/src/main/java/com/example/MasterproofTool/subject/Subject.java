@@ -2,11 +2,8 @@ package com.example.MasterproofTool.subject;
 import com.example.MasterproofTool.user.*;
 import lombok.Getter;
 import lombok.Setter;
-
-
+import org.springframework.lang.Nullable;
 import javax.persistence.*;
-
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -76,6 +73,25 @@ public class Subject {
         this.remark = remark;
         this.aStudents = aStudents;
         this.approved=false;
+    }
+
+    public Subject(String title, String description, boolean approved, String remark,  int aStudents) {
+        this.title = title;
+        this.description = description;
+        this.approved = approved;
+        this.remark = remark;
+        this.aStudents = aStudents;
+    }
+    public Subject(String title, String description,Coördinator coordinator, String remark,  int aStudents) {
+        this.title = title;
+        this.description = description;
+        this.coordinator = coordinator;
+        this.remark = remark;
+        this.aStudents = aStudents;
+    }
+
+    public void setApprovedTrue() {
+        this.approved=true;
     }
 
 

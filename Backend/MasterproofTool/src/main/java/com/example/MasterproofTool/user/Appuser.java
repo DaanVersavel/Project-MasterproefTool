@@ -29,7 +29,6 @@ public class Appuser {
     @ManyToMany(fetch =FetchType.EAGER)
     private Collection<Role> roles= new ArrayList<>();
 
-
     public Appuser(String firstName, String surname, Long keyId, String GSM, String email) {
         this.firstName = firstName;
         this.surname = surname;
@@ -62,6 +61,11 @@ public class Appuser {
 
     }
     public Appuser(){}
+
+    public Appuser(String firstName, String surname) {
+        this.firstName = firstName;
+        this.surname = surname;
+    }
 
 
     @Override

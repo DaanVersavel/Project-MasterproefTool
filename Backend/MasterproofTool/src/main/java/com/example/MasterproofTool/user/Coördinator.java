@@ -34,6 +34,10 @@ public class Coördinator extends Appuser {
     public Coördinator() {
     }
 
+    public Coördinator(String firstname, String surname) {
+        super(firstname,surname);
+    }
+
 
     @Override
     public String toString() {

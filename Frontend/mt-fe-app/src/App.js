@@ -6,8 +6,8 @@ import BNavbar from "./components/navbar/BNavbar"
 import Home from "./pages/home/Home"
 import SignUp from "./pages/sign up/SignUp"
 import Contact from "./pages/contact/Contact"
-import Subjects from "./pages/subjects/Subjects"
-import List from "./pages/subjects/ListOfSubjects"
+import AddSubjects from "./pages/subjects/AddSubjects"
+import Subjects from "./pages/subjects/ListOfSubjects"
 
 
 export default function App () {
@@ -17,10 +17,10 @@ export default function App () {
             <div className={"App"}>
                 <Routes>
                     <Route path = '/' element = {<Home/>} />
-                    <Route path = '/subjects' element = {<Subjects/>} />
-                    <Route path = '/sign-up' element = {<SignUp/>} />
-                    <Route path = '/contact' element = {<Contact/>} />
-                    <Route path = '/listOfSubjects' element = {<List/>} />
+                    <Route path = '/Subjects' element = {<Subjects/>} />
+                    <Route path = '/Subject/Post' element = {<AddSubjects/>} />
+                    <Route path = '/SignUp' element = {<SignUp/>} />
+                    <Route path = '/Contact' element = {<Contact/>} />
                 </Routes>
             </div>
         </Router>
