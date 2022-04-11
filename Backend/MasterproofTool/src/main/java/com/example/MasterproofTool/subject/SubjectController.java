@@ -17,7 +17,7 @@ public class SubjectController {
         this.subjectService = subjectService;
     }
 
-    //Post method for subjects
+    //post methode for submitting a subject
     @PostMapping(path="/Post")
     @CrossOrigin(origins = "*")
     public void registerNewSubject(@RequestBody Subject subject){
@@ -43,7 +43,6 @@ public class SubjectController {
         return ResponseEntity.ok(subjectService.updateSubjectReviewedTrue(id));
     }
 
-
     //TODO doesn't work yet
     //get method for getting your specific subjects
     @GetMapping(path = "/MySubjects")
@@ -51,8 +50,5 @@ public class SubjectController {
     public List<Subject> getSubjectForUser(@RequestBody long coordinator_id){
         return subjectService.getSubjectForUser(coordinator_id);
     }
-
-
-
 }
 

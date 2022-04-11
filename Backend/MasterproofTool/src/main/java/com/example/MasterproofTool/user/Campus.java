@@ -1,10 +1,15 @@
 package com.example.MasterproofTool.user;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
 public class Campus {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,25 +38,6 @@ public class Campus {
     public Campus() {
     }
 
-    public void setCampus_id(Long campus_id) {
-        this.campus_id = campus_id;
-    }
-
-    public void setNaam(String naam) {
-        this.naam = naam;
-    }
-
-    public void setDisciplines(Set<Discipline> disciplines) {
-        this.disciplines = disciplines;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
 
     @Override
     public String toString() {
