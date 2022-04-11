@@ -12,6 +12,7 @@ const FormSList = () => {
     const [subjects, setSubjects] = useState([]);
     const [allSubjects, setAllSubjects] = useState([]);
 
+
     useEffect(() => {
         const fetchSubjects = async () =>{
             setLoading(true);
@@ -28,11 +29,7 @@ const FormSList = () => {
         fetchSubjects()
     }, []);
 
-    {/* const navigate = useNavigate();
 
-    const handleClick = () => {
-        navigate("/Subjects/Post");
-    }*/}
     const filterCards = event => {
         const value = event.target.value.toLowerCase();
         const filteredSubjects = allSubjects.filter(subject => (`${subject.title} ${subject.description}`.toLowerCase().includes(value)));
