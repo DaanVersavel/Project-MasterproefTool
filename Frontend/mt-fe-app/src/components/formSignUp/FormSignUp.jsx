@@ -18,10 +18,10 @@ const FormSignup = ({ submitForm }) => {
                 <div className='form-inputs'>
                     <label className='form-label'>Username</label>
                     <input
-                        className='form-input'
-                        type='text'
-                        name='username'
-                        placeholder='Enter your username'
+                        className={"form-input"}
+                        type={"text"}
+                        name={"username"}
+                        placeholder={"Enter your username"}
                         value={values.username}
                         onChange={handleChange}
                     />
@@ -30,10 +30,10 @@ const FormSignup = ({ submitForm }) => {
                 <div className='form-inputs'>
                     <label className='form-label'>Email</label>
                     <input
-                        className='form-input'
-                        type='email'
-                        name='email'
-                        placeholder='Enter your email'
+                        className={"form-input"}
+                        type={"email"}
+                        name={"email"}
+                        placeholder={"Enter your email"}
                         value={values.email}
                         onChange={handleChange}
                     />
@@ -54,10 +54,10 @@ const FormSignup = ({ submitForm }) => {
                 <div className='form-inputs'>
                     <label className='form-label'>Confirm Password</label>
                     <input
-                        className='form-input'
-                        type='password'
-                        name='password2'
-                        placeholder='Confirm your password'
+                        className={"form-input"}
+                        type={"password"}
+                        name={"password2"}
+                        placeholder={"Confirm your password"}
                         value={values.password2}
                         onChange={handleChange}
                     />
@@ -67,7 +67,7 @@ const FormSignup = ({ submitForm }) => {
                     Sign up
                 </button>
                 <span className='form-input-login'>
-                    Already have an account? Login <a href='#'>here</a>
+                    Already have an account? Login <a href='/Login'>here</a>
                 </span>
             </form>
         </div>

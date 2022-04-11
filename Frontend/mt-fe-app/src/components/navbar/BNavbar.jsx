@@ -20,14 +20,14 @@ const BNavbar = () => {
                     <Nav className="me-auto">
                         <NavDropdown title="Subjects" id="collasible-nav-dropdown">
                             <NavDropdown.Item href="/Subjects">Subject List</NavDropdown.Item>
-                            <NavDropdown.Item href="/Subjects/Post">Add Subject</NavDropdown.Item>
+                            <NavDropdown.Item href="/Subject/Post">Add Subject</NavDropdown.Item>
                             <NavDropdown.Item href="/Preferences">Enlist for Subject</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="/Subjects/Review">Approve Subject</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="/SignUp">Sign Up</Nav.Link>
+                        <Nav.Link href="/Login">Login</Nav.Link>
                     </Nav>
                     <Nav>
                         <Nav.Link href="/Contact">Contact</Nav.Link>

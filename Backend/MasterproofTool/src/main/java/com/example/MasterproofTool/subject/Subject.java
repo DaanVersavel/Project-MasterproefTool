@@ -1,22 +1,22 @@
 package com.example.MasterproofTool.subject;
 import com.example.MasterproofTool.user.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.lang.Nullable;
-
 import javax.persistence.*;
-
-
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
 public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String title;
     private String description;
-    @Nullable
-    private boolean approved=false;
+    private boolean approved;
 
     private String remark;
     @ManyToOne
@@ -63,16 +63,8 @@ public class Subject {
         this.approved=false;
     }
 
-    public Subject() {
-    }
+    public Subject() {}
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
    public Subject(String title, String description, /*Set<Discipline> disciplines,*/ String remark,  int aStudents) {
         this.title = title;
@@ -83,80 +75,25 @@ public class Subject {
         this.approved=false;
     }
 
+    public Subject(String title, String description, boolean approved, String remark,  int aStudents) {
+        this.title = title;
+        this.description = description;
+        this.approved = approved;
+        this.remark = remark;
+        this.aStudents = aStudents;
+    }
+    public Subject(String title, String description,Coördinator coordinator, String remark,  int aStudents) {
+        this.title = title;
+        this.description = description;
+        this.coordinator = coordinator;
+        this.remark = remark;
+        this.aStudents = aStudents;
+    }
+
     public void setApprovedTrue() {
         this.approved=true;
     }
-    public String getTitle() {
-        return title;
-    }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
-    public Coördinator getCoordinator() {
-        return coordinator;
-    }
-
-    public void setCoordinator(Coördinator coordinator) {
-        this.coordinator = coordinator;
-    }
-
-    public Promotor getPromotor() {
-        return promotor;
-    }
-
-    public void setPromotor(Promotor promotor) {
-        this.promotor = promotor;
-    }
-
-    public Student getBoostedStudent() {
-        return boostedStudent;
-    }
-
-    public void setBoostedStudent(Student boostedStudent) {
-        this.boostedStudent = boostedStudent;
-    }
-
-    public Set<Discipline> getDisciplines() {
-        return disciplines;
-    }
-
-    public void setDisciplines(Set<Discipline> disciplines) {
-        this.disciplines = disciplines;
-    }
-
-    public int getaStudents() {
-        return aStudents;
-    }
-
-    public void setaStudents(int aStudents) {
-        this.aStudents = aStudents;
-    }
 
     @Override
     public String toString() {

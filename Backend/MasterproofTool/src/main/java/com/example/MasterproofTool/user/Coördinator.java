@@ -1,11 +1,16 @@
 package com.example.MasterproofTool.user;
+
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("3")
-
-public class Coördinator extends User {
-    @Id
+@Getter
+@Setter
+public class Coördinator extends Appuser {
+    //@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
     private String discipline;
@@ -13,15 +18,15 @@ public class Coördinator extends User {
     @JoinColumn(name="campus_id")
     private Campus campus;
 
-    public Coördinator(String firstName, String surname, Long keyId, int GSM, String email, String rol, Long id, String discipline, Campus campus) {
-        super(firstName, surname, keyId, GSM, email, rol);
+    public Coördinator(String firstName, String surname, Long keyId, String GSM, String email, String rol, Long id, String discipline, Campus campus) {
+        super(firstName, surname, keyId, GSM, email);
         Id = id;
         this.discipline = discipline;
         this.campus = campus;
     }
 
-    public Coördinator(String firstName, String surname, int GSM, String email, String rol, String discipline, Campus campus) {
-        super(firstName, surname, GSM, email, rol);
+    public Coördinator(String firstName, String surname, String GSM, String email, String discipline, Campus campus) {
+        super(firstName, surname, GSM, email);
         this.discipline = discipline;
         this.campus = campus;
     }
@@ -29,33 +34,10 @@ public class Coördinator extends User {
     public Coördinator() {
     }
 
-    public Coördinator(String voornaam, String achternaam) {
-        super(voornaam,achternaam);
+    public Coördinator(String firstname, String surname) {
+        super(firstname,surname);
     }
 
-    public Long getId() {
-        return Id;
-    }
-
-    public void setId(Long id) {
-        Id = id;
-    }
-
-    public String getDiscipline() {
-        return discipline;
-    }
-
-    public void setDiscipline(String discipline) {
-        this.discipline = discipline;
-    }
-
-    public Campus getCampus() {
-        return campus;
-    }
-
-    public void setCampus(Campus campus) {
-        this.campus = campus;
-    }
 
     @Override
     public String toString() {

@@ -2,7 +2,9 @@ package com.example.MasterproofTool.subject;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,7 +13,7 @@ import java.util.Optional;
 public class SubjectService {
 
 
-    //public static List<Subject> getSubjects(){ return subjectRepository.findAll(); };
+
     private final SubjectRepository subjectRepository;
 
     @Autowired
@@ -19,7 +21,7 @@ public class SubjectService {
         this.subjectRepository = subjectRepository;
     }
 
-    public List<Subject> getSubjects() { return subjectRepository.findAll(); }
+    public List<Subject> getSubjectsApproved() { return subjectRepository.findSubjectByApprovedTrue(); }
 
 
 
@@ -35,5 +37,15 @@ public class SubjectService {
 
     public List<Subject> getSubjectsForReview() {
         return subjectRepository.findSubjectByApprovedFalse();
+    }
+
+    public Subject updateSubjectReviewedTrue(@PathVariable long id){
+        Subject subject = subjectRepository.findSubjectById(id);
+        subject.setApprovedTrue();
+        return subjectRepository.save(subject);
+    }
+
+    public List<Subject> getSubjectForUser(long coordinator_id) {
+        return subjectRepository.findSubjectByCoordinator_Id( coordinator_id);
     }
 }
