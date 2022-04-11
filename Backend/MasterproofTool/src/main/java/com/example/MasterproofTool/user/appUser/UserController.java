@@ -84,7 +84,7 @@ public class UserController {
                         .withSubject(appuser.getEmail())
                         .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
                         .withIssuer(request.getRequestURL().toString())
-                        .withClaim("roles", appuser.getRoles().stream().map(Role::getName).collect(Collectors.toList()))
+                        .withClaim("roles", appuser.getRoles().stream().map(Role::getRoleName).collect(Collectors.toList()))
                         .sign(algorithm);
                 Map<String, String> tokens = new HashMap<>();
                 tokens.put("access_token", access_token);
@@ -107,6 +107,7 @@ public class UserController {
 }
 
 @Data
+
 class RoleToAppuserForm{
     private String username;
     private String rolename;
