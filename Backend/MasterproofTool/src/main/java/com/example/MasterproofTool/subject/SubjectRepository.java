@@ -23,4 +23,5 @@ public interface SubjectRepository extends JpaRepository<Subject,Long> {
 
     @Query(value = "SELECT s FROM Subject s WHERE s.coordinator =?1")
     List<Subject> findSubjectByCoordinator_Id(long coördinator_id);
+
 }

@@ -25,7 +25,7 @@ export default function App () {
                     <Route path = '/Subject/Post' element = {<AddSubjects/>} />
                     <Route path = '/Account' element = {<Account/>} />
                     <Route path = '/Contact' element = {<Contact/>} />
-                    <Route path={'/User/users'} element = {} />
+
                 </Routes>
             </div>
 

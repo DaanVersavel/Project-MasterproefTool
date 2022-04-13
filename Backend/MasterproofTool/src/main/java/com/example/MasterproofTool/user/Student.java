@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -14,7 +16,7 @@ import javax.persistence.*;
 @Setter
 public class Student extends Appuser {
     //@Id
-    private char studentNumber;
+    private String studentNumber;
     private Long firstChoice;
     private Long secondChoice;
     private Long thirdChoice;
@@ -28,8 +30,11 @@ public class Student extends Appuser {
     @OneToOne(mappedBy = "boostedStudent")
     private Subject boostedSubject;
 
+    @ManyToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+    Set<Subject> starredSubjects = new HashSet<>();
 
-    public Student(String firstName, String surname, Long keyId, String GSM, String email, char studentNumber, Long firstChoice, Long secondChoice, Long thirdChoice, String discipline, Subject assignedSubject, Subject boostedSubject) {
+
+    public Student(String firstName, String surname, Long keyId, String GSM, String email, String studentNumber, Long firstChoice, Long secondChoice, Long thirdChoice, String discipline, Subject assignedSubject, Subject boostedSubject) {
         super(firstName, surname, keyId, GSM, email);
         this.studentNumber = studentNumber;
         this.firstChoice = firstChoice;
@@ -40,7 +45,7 @@ public class Student extends Appuser {
         this.boostedSubject=boostedSubject;
     }
 
-    public Student(String firstName, String surname, String GSM, String email, char studentNumber, Long firstChoice, Long secondChoice, Long thirdChoice, String discipline, Subject assignedSubject, Subject boostedSubject) {
+    public Student(String firstName, String surname, String GSM, String email, String studentNumber, Long firstChoice, Long secondChoice, Long thirdChoice, String discipline, Subject assignedSubject, Subject boostedSubject) {
         super(firstName, surname, GSM, email);
         this.studentNumber = studentNumber;
         this.firstChoice = firstChoice;
@@ -52,6 +57,10 @@ public class Student extends Appuser {
     }
 
     public Student(){}
+    public Student(String firstName,String surname,String GSM, String email,String studentNumber){
+        super(firstName, surname, GSM, email);
+        this.studentNumber=studentNumber;
+    }
 
     @Override
     public String toString() {
