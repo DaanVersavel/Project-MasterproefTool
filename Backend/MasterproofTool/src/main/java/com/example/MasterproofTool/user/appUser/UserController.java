@@ -45,7 +45,7 @@ public class UserController {
         return ResponseEntity.ok().body(userService.getAppusers());
     }
 
-
+    //save user
     @PostMapping(value = "/users/save")
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<Appuser> saveAppuser(@RequestBody Appuser appuser){
@@ -54,6 +54,7 @@ public class UserController {
         return ResponseEntity.created(uri).body(userService.saveAppuser(appuser));
     }
 
+    //save role
     @PostMapping(value = "/role/save")
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<Role> saveRole(@RequestBody Role role){
@@ -62,6 +63,7 @@ public class UserController {
         return ResponseEntity.created(uri).body(userService.saveRole(role));
     }
 
+    //save role to user
     @PostMapping(value = "/role/addtouser")
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<Role> addRoleToAppuser(@RequestBody RoleToAppuserForm form){
@@ -69,6 +71,7 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
+    //refresh token
     @GetMapping("/token/refresh")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String authorizationHeader = request.getHeader(AUTHORIZATION);
@@ -107,7 +110,6 @@ public class UserController {
 }
 
 @Data
-
 class RoleToAppuserForm{
     private String username;
     private String rolename;
