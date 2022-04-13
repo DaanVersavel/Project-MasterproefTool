@@ -35,7 +35,16 @@ public class Campus {
         this.latitude = latitude;
     }
 
+    public Campus(String naam, double latitude, double longitude) {
+        this.naam = naam;
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
+
     public Campus() {
+    }
+    public void addDisciplines(Discipline dis){
+        disciplines.add(dis);
     }
 
 
