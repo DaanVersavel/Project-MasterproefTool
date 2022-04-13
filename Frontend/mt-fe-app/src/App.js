@@ -4,7 +4,6 @@ import {Route, Routes, BrowserRouter as Router} from 'react-router-dom';
 import BNavbar from "./components/navbar/BNavbar"
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login"
-import Register from "./pages/Register/Register";
 import Account from "./pages/account/account"
 import SignUp from "./pages/sign up/SignUp";
 
@@ -26,6 +25,7 @@ export default function App () {
                     <Route path = '/Subject/Post' element = {<AddSubjects/>} />
                     <Route path = '/Account' element = {<Account/>} />
                     <Route path = '/Contact' element = {<Contact/>} />
+                    <Route path={'/User/users'} element = {} />
                 </Routes>
             </div>
 
