@@ -10,7 +10,7 @@ import SignUp from "./pages/sign up/SignUp";
 import Account from "./pages/account/account"
 import Contact from "./pages/contact/Contact"
 import ListSubjects from "./pages/subjects/Subjects"
-import AddSubjects from "./pages/subjects/AddSubjects"
+import AddSubjects from "./pages/subjects
 
 export default function App () {
     return (

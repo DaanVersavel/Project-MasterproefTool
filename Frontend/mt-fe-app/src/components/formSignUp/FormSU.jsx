@@ -13,7 +13,8 @@ const FormSU = () => {
     return (
         <>
             <div className="form-container">
-                <span className={'close-btn'}>x</span>
+                {/*<span className={'close-btn'}>x</span>*/}
+                <button className={'close-btn'} type={"button"}>x</button>
                 <div className="form-content-left">
                     <img src={KULBuilding} alt="kuleuven building" className={'form-img'}/>
                 </div>

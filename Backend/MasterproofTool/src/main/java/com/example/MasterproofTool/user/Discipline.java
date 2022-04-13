@@ -16,14 +16,15 @@ public class Discipline {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long discipline_id;
     private String naam;
-    @ManyToMany(cascade = {CascadeType.ALL})
+
+    @ManyToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
     @JoinTable(
             name = "Discipline_Campus",
             joinColumns = {@JoinColumn(name="discipline_id")},
             inverseJoinColumns = {@JoinColumn(name="campus_id")}
     )
     Set<Campus> campussen=new HashSet<>();
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "Discipline_subject",
             joinColumns = {@JoinColumn(name="discipline_id")},
@@ -37,12 +38,20 @@ public class Discipline {
         this.campussen = campussen;
         this.subjects = subjects;
     }
+    public Discipline( String naam ) {
+        this.naam = naam;
+    }
 
     public Discipline(String naam, Set<Campus> campussen, Set<Subject> subjects) {
         this.naam = naam;
         this.campussen = campussen;
         this.subjects = subjects;
     }
+    public void addCampus(Campus c) {
+        campussen.add(c);
+    }
+
+
 
     public Discipline() {
     }
