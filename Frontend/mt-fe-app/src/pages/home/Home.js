@@ -1,6 +1,6 @@
 import React from "react";
-import "./Home.css";
-function Home(){
+
+export default function Home(){
     return(
         <div>
             <div className="headerTitles">
@@ -12,9 +12,7 @@ function Home(){
                 src={require('../../kaartCampussen.png')}
                 alt="Overview of location of campusses"
             />*/}
-
             <button >Login</button>
         </div>
     );
 }
-export default Home;

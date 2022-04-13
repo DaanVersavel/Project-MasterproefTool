@@ -17,22 +17,19 @@ public class SubjectController {
         this.subjectService = subjectService;
     }
 
-    //post methode for submitting a subject
+    //get method for list of subject
+    @GetMapping
+    public List<Subject> getSubjects(){
+        return subjectService.getSubjectsApproved();
+    }
+    //Post method for subjects
     @PostMapping(path="/Post")
-    @CrossOrigin(origins = "*")
     public void registerNewSubject(@RequestBody Subject subject){
         subjectService.addNewSubject(subject);
     }
 
-    //get method for list of subject that are approved
-    @GetMapping
-    @CrossOrigin(origins = "*")
-    public List<Subject> getSubjectsApproved(){ return subjectService.getSubjectsApproved();
-    }
-
     //get method for not yet accepted methods
     @GetMapping(path = "/Review")
-    @CrossOrigin(origins = "https://localhost:3000")
     public List<Subject> getSubjectForReview(){
         return subjectService.getSubjectsForReview();
     }
@@ -46,7 +43,6 @@ public class SubjectController {
     //TODO doesn't work yet
     //get method for getting your specific subjects
     @GetMapping(path = "/MySubjects")
-    @CrossOrigin(origins = "https://localhost:3000")
     public List<Subject> getSubjectForUser(@RequestBody long coordinator_id){
         return subjectService.getSubjectForUser(coordinator_id);
     }

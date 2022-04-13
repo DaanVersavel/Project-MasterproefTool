@@ -7,6 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,6 +28,18 @@ public class MasterproefToolApplication {
 		SpringApplication.run(MasterproefToolApplication.class, args);
 	}
 
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer(){
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/Subjects").allowedOrigins("*");
+				registry.addMapping("/Subjects/Post").allowedOrigins("*");
+				registry.addMapping("/Subjects/Review").allowedOrigins("*");
+				registry.addMapping("/Subjects/MySubjects").allowedOrigins("*");
+			}
+		};
+	}
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();

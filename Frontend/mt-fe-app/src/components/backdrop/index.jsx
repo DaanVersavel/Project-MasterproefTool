@@ -1,7 +1,6 @@
 import {motion} from "framer-motion";
 
-const Backdrop = ({ children, onClick }) => {
-
+const Backdrop = ({children, onClick}) => {
     return (
         <motion.div
             onClick={onClick}

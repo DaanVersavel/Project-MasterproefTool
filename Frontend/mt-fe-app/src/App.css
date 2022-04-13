@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
-@import-normalize;
 
 * {
     box-sizing: border-box;
@@ -7,6 +6,9 @@
     padding: 0;
     font-family: 'PT Sans', sans-serif;
 }
+
+
+
 :root {
     --dark: #101315;
     --light: #eeeeee;
@@ -14,10 +16,6 @@
     --gradient2: linear-gradient(15deg, #04ea00, #00d17d);
     --gradient3: linear-gradient(15deg, #b648ff, #ef5dff);
     font-size: 1rem;
-}
-
-* {
-    box-sizing: border-box;
 }
 
 body {
