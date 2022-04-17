@@ -44,6 +44,14 @@ public class Student extends Appuser {
         this.assignedSubject = assignedSubject;
         this.boostedSubject=boostedSubject;
     }
+    public Student(String firstName, String surname, String GSM, String email, String studentNumber){
+        super(firstName, surname, GSM, email);
+        this.studentNumber = studentNumber;        
+    }
+    public Student(String firstName, String surname, String GSM, String email, String studentNumber, String password){
+        super(firstName, surname, GSM, email,password);
+        this.studentNumber = studentNumber;
+    }
 
     public Student(String firstName, String surname, String GSM, String email, String studentNumber, Long firstChoice, Long secondChoice, Long thirdChoice, String discipline, Subject assignedSubject, Subject boostedSubject) {
         super(firstName, surname, GSM, email);
@@ -57,10 +65,8 @@ public class Student extends Appuser {
     }
 
     public Student(){}
-    public Student(String firstName,String surname,String GSM, String email,String studentNumber){
-        super(firstName, surname, GSM, email);
-        this.studentNumber=studentNumber;
-    }
+
+
 
     @Override
     public String toString() {

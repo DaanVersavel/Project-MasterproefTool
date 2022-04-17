@@ -14,29 +14,29 @@ public class Campus {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long campus_id;
-    private String naam;
+    private String name;
     @ManyToMany(mappedBy = "campussen")
     private Set<Discipline> disciplines=new HashSet<>();
     private double longitude;
     private double latitude;
 
-    public Campus(Long campus_id, String naam, Set<Discipline> disciplines, double longitude, double latitude) {
+    public Campus(Long campus_id, String name, Set<Discipline> disciplines, double longitude, double latitude) {
         this.campus_id = campus_id;
-        this.naam = naam;
+        this.name = name;
         this.disciplines = disciplines;
         this.longitude = longitude;
         this.latitude = latitude;
     }
 
-    public Campus(String naam, Set<Discipline> disciplines, double longitude, double latitude) {
-        this.naam = naam;
+    public Campus(String name, Set<Discipline> disciplines, double longitude, double latitude) {
+        this.name = name;
         this.disciplines = disciplines;
         this.longitude = longitude;
         this.latitude = latitude;
     }
 
-    public Campus(String naam, double latitude, double longitude) {
-        this.naam = naam;
+    public Campus(String name, double latitude, double longitude) {
+        this.name = name;
         this.longitude = longitude;
         this.latitude = latitude;
     }
@@ -52,7 +52,7 @@ public class Campus {
     public String toString() {
         return "Campus{" +
                 "campus_id=" + campus_id +
-                ", naam='" + naam + '\'' +
+                ", naam='" + name + '\'' +
                 ", disciplines=" + disciplines +
                 ", longitude=" + longitude +
                 ", latitude=" + latitude +
