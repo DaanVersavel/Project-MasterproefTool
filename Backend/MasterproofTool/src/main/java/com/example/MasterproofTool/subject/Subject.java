@@ -66,10 +66,9 @@ public class Subject {
     public Subject() {}
 
 
-   public Subject(String title, String description, /*Set<Discipline> disciplines,*/ String remark,  int aStudents) {
+   public Subject(String title, String description,String remark,  int aStudents) {
         this.title = title;
         this.description = description;
-        //this.disciplines = disciplines;
         this.remark = remark;
         this.aStudents = aStudents;
         this.approved=false;

@@ -17,9 +17,15 @@ import java.util.Set;
 public class Student extends Appuser {
     //@Id
     private String studentNumber;
-    private Long firstChoice;
-    private Long secondChoice;
-    private Long thirdChoice;
+    @ManyToOne
+    @JoinColumn(name = "first_choice_id")
+    private Subject firstChoice;
+    @ManyToOne
+    @JoinColumn(name = "second_choice_id")
+    private Subject secondChoice;
+    @ManyToOne
+    @JoinColumn(name = "third_choice_id")
+    private Subject thirdChoice;
     private String discipline;
     @ManyToOne
     @JoinColumn(name="campus_id")
@@ -34,8 +40,8 @@ public class Student extends Appuser {
     Set<Subject> starredSubjects = new HashSet<>();
 
 
-    public Student(String firstName, String surname, Long keyId, String GSM, String email, String studentNumber, Long firstChoice, Long secondChoice, Long thirdChoice, String discipline, Subject assignedSubject, Subject boostedSubject) {
-        super(firstName, surname, keyId, GSM, email);
+    public Student(String firstName, String surname, Long keyId, String gsm, String email, String studentNumber, Subject firstChoice, Subject secondChoice, Subject thirdChoice, String discipline, Subject assignedSubject, Subject boostedSubject) {
+        super(firstName, surname, keyId, gsm, email);
         this.studentNumber = studentNumber;
         this.firstChoice = firstChoice;
         this.secondChoice = secondChoice;
@@ -44,17 +50,17 @@ public class Student extends Appuser {
         this.assignedSubject = assignedSubject;
         this.boostedSubject=boostedSubject;
     }
-    public Student(String firstName, String surname, String GSM, String email, String studentNumber){
-        super(firstName, surname, GSM, email);
+    public Student(String firstName, String surname, String gsm, String email, String studentNumber){
+        super(firstName, surname, gsm, email);
         this.studentNumber = studentNumber;        
     }
-    public Student(String firstName, String surname, String GSM, String email, String studentNumber, String password){
-        super(firstName, surname, GSM, email,password);
+    public Student(String firstName, String surname, String gsm, String email, String studentNumber, String password){
+        super(firstName, surname, gsm, email,password);
         this.studentNumber = studentNumber;
     }
 
-    public Student(String firstName, String surname, String GSM, String email, String studentNumber, Long firstChoice, Long secondChoice, Long thirdChoice, String discipline, Subject assignedSubject, Subject boostedSubject) {
-        super(firstName, surname, GSM, email);
+    public Student(String firstName, String surname, String gsm, String email, String studentNumber, Subject firstChoice, Subject secondChoice, Subject thirdChoice, String discipline, Subject assignedSubject, Subject boostedSubject) {
+        super(firstName, surname, gsm, email);
         this.studentNumber = studentNumber;
         this.firstChoice = firstChoice;
         this.secondChoice = secondChoice;

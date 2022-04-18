@@ -10,25 +10,26 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class Coördinator extends Appuser {
-    //@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
     private String discipline;
     @ManyToOne
     @JoinColumn(name="campus_id")
     private Campus campus;
 
-    public Coördinator(String firstName, String surname, Long keyId, String GSM, String email, String rol, Long id, String discipline, Campus campus) {
-        super(firstName, surname, keyId, GSM, email);
-        Id = id;
+    public Coördinator(String firstName, String surname, Long keyId, String gsm, String email, String discipline, Campus campus) {
+        super(firstName, surname, keyId, gsm, email);
         this.discipline = discipline;
         this.campus = campus;
     }
 
-    public Coördinator(String firstName, String surname, String GSM, String email, String discipline, Campus campus) {
-        super(firstName, surname, GSM, email);
+    public Coördinator(String firstName, String surname, String gsm, String email, String discipline, Campus campus) {
+        super(firstName, surname, gsm, email);
         this.discipline = discipline;
         this.campus = campus;
+    }
+    public Coördinator(String firstName, String surname, String gsm, String email, String discipline,String password) {
+        super(firstName, surname, gsm, email,password);
+        this.discipline = discipline;
+
     }
 
     public Coördinator() {
@@ -42,7 +43,6 @@ public class Coördinator extends Appuser {
     @Override
     public String toString() {
         return "Coördinator{" +
-                "Id=" + Id +
                 ", discipline='" + discipline + '\'' +
                 ", campus=" + campus +
                 '}';

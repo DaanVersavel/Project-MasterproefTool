@@ -27,6 +27,12 @@ import java.util.List;
 		,"com.example.MasterproofTool.user.appUser"})
 
 public class MasterproefToolApplication {
+	//roles
+	public static final String ROLE_ADMIN="ROLE_ADMIN";
+	public static final String ROLE_COÖRDINATOR="ROLE_COÖRDINATOR";
+	public static final String ROLE_PROMOTOR="ROLE_PROMOTOR";
+	public static final String ROLE_STUDENT="ROLE_STUDENT";
+	public static final String ROLE_COMPANY="ROLE_COMPANY";
 
 	public static void main(String[] args) {
 		SpringApplication.run(MasterproefToolApplication.class, args);
@@ -41,22 +47,22 @@ public class MasterproefToolApplication {
 	CommandLineRunner run1(UserService userService, StudentService studentService){
 		return args -> {
 			//UserService
-			userService.saveRole(new Role(null,"ROLE_ADMIN"));
-			userService.saveRole(new Role(null,"ROLE_COÖRDINATOR"));
-			userService.saveRole(new Role(null,"ROLE_PROMOTOR"));
-			userService.saveRole(new Role(null,"ROLE_STUDENT"));
-			userService.saveRole(new Role(null,"ROLE_COMPANY"));
+			userService.saveRole(new Role(null,ROLE_ADMIN));
+			userService.saveRole(new Role(null,ROLE_COÖRDINATOR));
+			userService.saveRole(new Role(null,ROLE_PROMOTOR));
+			userService.saveRole(new Role(null,ROLE_STUDENT));
+			userService.saveRole(new Role(null,ROLE_COMPANY));
 
 			userService.saveAppuser(new Appuser("Bob", "Smith", "0489005054","bob.smith@gmail.com","bob123"));
 			userService.saveAppuser(new Appuser("Bart", "Smith", "0489005054","bart.smith@gmail.com","bart123"));
 
-			userService.addRoleToAppuser("bob.smith@gmail.com","ROLE_ADMIN");
-			userService.addRoleToAppuser("bart.smith@gmail.com","ROLE_STUDENT");
+			userService.addRoleToAppuser("bob.smith@gmail.com",ROLE_ADMIN);
+			userService.addRoleToAppuser("bart.smith@gmail.com",ROLE_STUDENT);
 
 			//student service
 			studentService.saveStudent(new Student("lotte", "Vanlanduyt", "084655465", "lotte@gmail.com","R045645" ,"lotte123"));
 
-			userService.addRoleToAppuser("lotte@gmail.com","ROLE_STUDENT");
+			userService.addRoleToAppuser("lotte@gmail.com",ROLE_STUDENT);
 		};
 	}
 	@Bean
