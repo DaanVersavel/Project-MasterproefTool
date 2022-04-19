@@ -3,7 +3,7 @@ import axios from '../../api/axios'
 import {Button} from "react-bootstrap";
 import "./Login.css"
 
-const Login = () => {
+const Login = ({setUser}) => {
     const [data, setData] = useState({
         email: '',
         password: ''
@@ -18,6 +18,7 @@ const Login = () => {
             .then((response) => {
                 console.log(response)
                 localStorage.setItem('token', response.data.token)
+
             })
             .catch(error => {
                 console.log(error)
@@ -31,7 +32,7 @@ const Login = () => {
 
     return(
         <>
-            <form onSubmit={handleSubmit}>
+            <form className={"logForm"} onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="email">
                         Email:
