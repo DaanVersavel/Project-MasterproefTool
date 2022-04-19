@@ -11,30 +11,31 @@ import javax.persistence.*;
 @Getter
 
 public class Company extends Appuser {
-    //@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     private String name;
     private double longitude;
     private double latitude;
-    private int btwnummer;
+    private String btwnummer;
 
     public Company(){}
 
-    public Company(String firstName, String surname, Long keyId, String GSM, String email,  Long id, String name, double longitude, double latitude, int btwnummer) {
-        super(firstName, surname, keyId, GSM, email);
-        this.id = id;
+    public Company(String firstName, String surname, Long keyId, String gsm, String email, String name, double longitude, double latitude, String btwnummer) {
+        super(firstName, surname, keyId, gsm, email);
         this.name = name;
         this.longitude = longitude;
         this.latitude = latitude;
         this.btwnummer = btwnummer;
     }
 
-    public Company(String firstName, String surname, String GSM, String email, String name, double longitude, double latitude, int btwnummer) {
-        super(firstName, surname, GSM, email);
+    public Company(String firstName, String surname, String gsm, String email, String name, double longitude, double latitude, String btwnummer) {
+        super(firstName, surname, gsm, email);
         this.name = name;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.btwnummer = btwnummer;
+    }
+    public Company(String firstName, String surname, String gsm, String email, String name, String btwnummer, String password) {
+        super(firstName, surname, gsm, email, password);
+        this.name = name;
         this.btwnummer = btwnummer;
     }
 
@@ -43,7 +44,6 @@ public class Company extends Appuser {
     @Override
     public String toString() {
         return "Company{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", longitude=" + longitude +
                 ", latitude=" + latitude +

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CampusRepository extends JpaRepository<Campus,Long> {
 
-    Campus findByNaam(String naam);
+    Campus findByName(String name);
 
 
 }

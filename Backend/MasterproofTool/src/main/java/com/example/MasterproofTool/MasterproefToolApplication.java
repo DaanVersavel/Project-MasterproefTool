@@ -2,13 +2,11 @@ package com.example.MasterproofTool;
 
 import com.example.MasterproofTool.subject.Subject;
 import com.example.MasterproofTool.subject.SubjectRepository;
-import com.example.MasterproofTool.user.Appuser;
-import com.example.MasterproofTool.user.Campus;
-import com.example.MasterproofTool.user.Discipline;
-import com.example.MasterproofTool.user.Role;
+import com.example.MasterproofTool.user.*;
 import com.example.MasterproofTool.user.appUser.UserService;
 import com.example.MasterproofTool.user.campus.CampusRepository;
 import com.example.MasterproofTool.user.disciplines.DisciplineRepository;
+import com.example.MasterproofTool.user.student.StudentService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -31,6 +29,12 @@ import java.util.List;
 		,"com.example.MasterproofTool.user.appUser"})
 
 public class MasterproefToolApplication {
+	//roles
+	public static final String ROLE_ADMIN="ROLE_ADMIN";
+	public static final String ROLE_COÖRDINATOR="ROLE_COÖRDINATOR";
+	public static final String ROLE_PROMOTOR="ROLE_PROMOTOR";
+	public static final String ROLE_STUDENT="ROLE_STUDENT";
+	public static final String ROLE_COMPANY="ROLE_COMPANY";
 
 	public static void main(String[] args) {
 		SpringApplication.run(MasterproefToolApplication.class, args);
@@ -54,21 +58,25 @@ public class MasterproefToolApplication {
 	}
 
 	@Bean
-	CommandLineRunner run1(UserService userService){
+	CommandLineRunner run1(UserService userService, StudentService studentService){
 		return args -> {
-			userService.saveRole(new Role(null,"ROLE_ADMIN"));
-			userService.saveRole(new Role(null,"ROLE_COÖRDINATOR"));
-			userService.saveRole(new Role(null,"ROLE_PROMOTOR"));
-			userService.saveRole(new Role(null,"ROLE_STUDENT"));
-			userService.saveRole(new Role(null,"ROLE_COMPANY"));
+			//UserService
+			userService.saveRole(new Role(null,ROLE_ADMIN));
+			userService.saveRole(new Role(null,ROLE_COÖRDINATOR));
+			userService.saveRole(new Role(null,ROLE_PROMOTOR));
+			userService.saveRole(new Role(null,ROLE_STUDENT));
+			userService.saveRole(new Role(null,ROLE_COMPANY));
 
 			userService.saveAppuser(new Appuser("Bob", "Smith", "0489005054","bob.smith@gmail.com","bob123"));
 			userService.saveAppuser(new Appuser("Bart", "Smith", "0489005054","bart.smith@gmail.com","bart123"));
 
-			userService.addRoleToAppuser("bob.smith@gmail.com","ROLE_ADMIN");
-			userService.addRoleToAppuser("bart.smith@gmail.com","ROLE_STUDENT");
+			userService.addRoleToAppuser("bob.smith@gmail.com",ROLE_ADMIN);
+			userService.addRoleToAppuser("bart.smith@gmail.com",ROLE_STUDENT);
 
+			//student service
+			studentService.saveStudent(new Student("lotte", "Vanlanduyt", "084655465", "lotte@gmail.com","R045645" ,"lotte123"));
 
+			userService.addRoleToAppuser("lotte@gmail.com",ROLE_STUDENT);
 		};
 	}
 	@Bean
@@ -101,6 +109,7 @@ public class MasterproefToolApplication {
 			Campus campus11 = new Campus("Kulak Kortrijk", 50.80650883614343, 3.2927428929074503);
 			Campus campus12 = new Campus("Brugge", 51.19521867012457, 3.2178691243900936);
 			Campus campus13 = new Campus("Diepenbeek", 50.92880854884159, 5.395334413327267);
+			campusRepository.saveAll(List.of(campus1,campus2, campus3, campus4, campus5, campus6, campus7, campus8, campus9, campus10, campus11, campus12, campus13));
 
 			//Linking of disciplines to campus
 //			campus9.addDisciplines(dis1);
@@ -121,15 +130,15 @@ public class MasterproefToolApplication {
 			dis5.addCampus(campus9);
 			dis6.addCampus(campus9);
 
-			dis7.addCampus(campus1);
-			dis8.addCampus(campus1);
+			Campus c=campusRepository.findByName("Leuven");
+			dis7.addCampus(c);
+			dis8.addCampus(c);
 
-			Subject sub= subjectRepository.findSubjectById(15);
+			Subject sub= subjectRepository.findSubjectById(5);
 			dis5.getSubjects().add(sub);
 
-
 			disciplineRepository.saveAll(List.of(dis1, dis2, dis3, dis4, dis5, dis6, dis7, dis8));
-			campusRepository.saveAll(List.of(campus1, campus2, campus3, campus4, campus5, campus6, campus7, campus8, campus9, campus10, campus11, campus12, campus13));
+			campusRepository.saveAll(List.of(campus1,campus2, campus3, campus4, campus5, campus6, campus7, campus8, campus9, campus10, campus11, campus12, campus13));
 		};
 	}
 }

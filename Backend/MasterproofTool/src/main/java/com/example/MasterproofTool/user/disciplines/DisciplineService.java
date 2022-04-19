@@ -2,8 +2,11 @@ package com.example.MasterproofTool.user.disciplines;
 
 
 
+import com.example.MasterproofTool.user.Discipline;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class DisciplineService {
@@ -15,4 +18,7 @@ public class DisciplineService {
         this.disciplineRepository = disciplineRepository;
     }
 
+    public List<Discipline> getDisciplines() {
+        return disciplineRepository.findAll();
+    }
 }

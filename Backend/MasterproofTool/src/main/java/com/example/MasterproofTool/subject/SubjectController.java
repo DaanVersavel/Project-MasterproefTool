@@ -24,25 +24,32 @@ public class SubjectController {
     }
     //Post method for subjects
     @PostMapping(path="/Post")
+    @CrossOrigin(origins = "*")
     public void registerNewSubject(@RequestBody Subject subject){
         subjectService.addNewSubject(subject);
     }
 
     //get method for not yet accepted methods
     @GetMapping(path = "/Review")
+    @CrossOrigin(origins = "https://localhost:3000")
     public List<Subject> getSubjectForReview(){
         return subjectService.getSubjectsForReview();
     }
 
     //update method to assign true to subject
-    @PutMapping(path="/Review/{id}")
-    public ResponseEntity<Subject> updateSubjectReviewedTrue(@PathVariable long id){
-        return ResponseEntity.ok(subjectService.updateSubjectReviewedTrue(id));
+    @PutMapping(path="/Review/Approved/{id}")
+    public ResponseEntity<Subject> updateSubjectReviewApprovedTrue(@PathVariable long id){
+        return ResponseEntity.ok(subjectService.updateSubjectReviewApprovedTrue(id));
+    }
+    @PutMapping(path="/Review/Denied/{id}")
+    public ResponseEntity<Subject> updateSubjectReviewDeniedTrue(@PathVariable long id){
+        return ResponseEntity.ok(subjectService.updateSubjectReviewDeniedTrue(id));
     }
 
     //TODO doesn't work yet
     //get method for getting your specific subjects
     @GetMapping(path = "/MySubjects")
+    @CrossOrigin(origins = "https://localhost:3000")
     public List<Subject> getSubjectForUser(@RequestBody long coordinator_id){
         return subjectService.getSubjectForUser(coordinator_id);
     }

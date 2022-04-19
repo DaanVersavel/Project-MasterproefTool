@@ -1,6 +1,7 @@
 package com.example.MasterproofTool.user;
 
 import com.example.MasterproofTool.subject.Subject;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,13 +24,15 @@ public class Discipline {
             joinColumns = {@JoinColumn(name="discipline_id")},
             inverseJoinColumns = {@JoinColumn(name="campus_id")}
     )
+    @JsonIgnore
     Set<Campus> campussen=new HashSet<>();
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinTable(
             name = "Discipline_subject",
             joinColumns = {@JoinColumn(name="discipline_id")},
             inverseJoinColumns = {@JoinColumn(name="subject_id")}
     )
+    //@JsonIgnore()
     Set<Subject> subjects= new HashSet<>();
 
     public Discipline(long discipline_id, String naam, Set<Campus> campussen, Set<Subject> subjects) {

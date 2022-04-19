@@ -23,40 +23,40 @@ public class Appuser {
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Long keyId;
-    private String GSM;
+    private String gsm;
     private String email;
     private String password;
     @ManyToMany(fetch =FetchType.EAGER)
     private Collection<Role> roles= new ArrayList<>();
 
-    public Appuser(String firstName, String surname, Long keyId, String GSM, String email) {
+    public Appuser(String firstName, String surname, Long keyId, String gsm, String email) {
         this.firstName = firstName;
         this.surname = surname;
         this.keyId = keyId;
-        this.GSM = GSM;
+        this.gsm = gsm;
         this.email = email;
     }
 
 
-    public Appuser(String firstName, String surname, Long keyId, String GSM, String email,String password) {
+    public Appuser(String firstName, String surname, Long keyId, String gsm, String email, String password) {
         this.firstName = firstName;
         this.surname = surname;
         this.keyId = keyId;
-        this.GSM = GSM;
+        this.gsm = gsm;
         this.email = email;
         this.password= password;
     }
-    public Appuser(String firstName, String surname, String GSM, String email,String password) {
+    public Appuser(String firstName, String surname, String gsm, String email, String password) {
         this.firstName = firstName;
         this.surname = surname;
-        this.GSM = GSM;
+        this.gsm = gsm;
         this.email = email;
         this.password= password;
     }
-    public Appuser(String firstName, String surname, String GSM, String email) {
+    public Appuser(String firstName, String surname, String gsm, String email) {
         this.firstName = firstName;
         this.surname = surname;
-        this.GSM = GSM;
+        this.gsm = gsm;
         this.email = email;
 
     }
@@ -74,7 +74,7 @@ public class Appuser {
                 "firstName='" + firstName + '\'' +
                 ", surname='" + surname + '\'' +
                 ", keyId=" + keyId +
-                ", GSM=" + GSM +
+                ", GSM=" + gsm +
                 ", email='" + email + '\'' +
                 '}';
     }
