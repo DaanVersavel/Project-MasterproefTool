@@ -17,17 +17,16 @@ public class SubjectController {
         this.subjectService = subjectService;
     }
 
-    //post methode for submitting a subject
+    //get method for list of subject
+    @GetMapping
+    public List<Subject> getSubjects(){
+        return subjectService.getSubjectsApproved();
+    }
+    //Post method for subjects
     @PostMapping(path="/Post")
     @CrossOrigin(origins = "*")
     public void registerNewSubject(@RequestBody Subject subject){
         subjectService.addNewSubject(subject);
-    }
-
-    //get method for list of subject that are approved
-    @GetMapping
-    @CrossOrigin(origins = "*")
-    public List<Subject> getSubjectsApproved(){ return subjectService.getSubjectsApproved();
     }
 
     //get method for not yet accepted methods

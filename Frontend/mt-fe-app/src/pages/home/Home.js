@@ -1,20 +1,28 @@
-import React from "react";
-import "./Home.css";
-function Home(){
-    return(
-        <div>
-            <div className="headerTitles">
-                <span className="headerTitleSm">KUL </span>
-                <span className="headerTitleLg">Master Thesis Tool</span>
-            </div>
-            <img
-                className="headerImg"
-                src={require('../../kaartCampussen.png')}
-                alt="Overview of location of campusses"
-            />
+import React, {useState} from "react";
+import Login from "../../components/formLogin/Login"
+import "./Home.css"
 
-            <button >Login</button>
+export default function Home(){
+    const [user, setUser] = useState("")
+
+    if(user) {
+        return (
+            <div className={"login-container"}>
+                <div className={"center login-content"}>
+                    <h1>Welcome</h1>
+                    <h4>{user.firstName} {user.lastName}</h4>
+                </div>
+            </div>
+        )
+    }
+
+    return(
+        <div className={"login-container"}>
+            <div className={"center login-content"}>
+                <h1>Welcome</h1>
+                <h4>Please sign in</h4>
+                <Login/>
+            </div>
         </div>
     );
 }
-export default Home;

@@ -1,7 +1,6 @@
 package com.example.MasterproofTool.subject;
 
-
-import com.example.MasterproofTool.user.*;
+import com.example.MasterproofTool.user.Coördinator;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
