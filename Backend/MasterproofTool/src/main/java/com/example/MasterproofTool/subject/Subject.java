@@ -18,6 +18,8 @@ public class Subject {
     private String description;
     private boolean approved;
 
+    private boolean denied;
+
     private String remark;
     @ManyToOne
     @JoinColumn(name = "company_id")
@@ -48,6 +50,7 @@ public class Subject {
         this.disciplines = disciplines;
         this.aStudents = aStudents;
         this.approved=false;
+        this.denied=false;
     }
 
     public Subject(String title, String description, String remark, Company company, Coördinator coordinator, Promotor promotor, Student boostedStudent, Set<Discipline> disciplines, int aStudents) {
@@ -61,6 +64,7 @@ public class Subject {
         this.disciplines = disciplines;
         this.aStudents = aStudents;
         this.approved=false;
+        this.denied=false;
     }
 
     public Subject() {}
@@ -72,6 +76,7 @@ public class Subject {
         this.remark = remark;
         this.aStudents = aStudents;
         this.approved=false;
+        this.denied=false;
     }
 
     public Subject(String title, String description, boolean approved, String remark,  int aStudents) {
@@ -91,6 +96,9 @@ public class Subject {
 
     public void setApprovedTrue() {
         this.approved=true;
+    }
+    public void setDeniedTrue() {
+        this.denied=true;
     }
 
 

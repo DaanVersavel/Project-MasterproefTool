@@ -24,4 +24,9 @@ public interface SubjectRepository extends JpaRepository<Subject,Long> {
     @Query(value = "SELECT s FROM Subject s WHERE s.coordinator =?1")
     List<Subject> findSubjectByCoordinator_Id(long coördinator_id);
 
+    @Query(value = "SELECT s FROM Subject s WHERE s.approved = false AND s.denied=false")
+    List<Subject> findSubjectByApprovedFalseAndDeniedFalse();
+
+    @Query(value = "SELECT s FROM Subject s WHERE s.approved = true AND s.denied=false")
+    List<Subject> findSubjectByApprovedTrueAndDeniedFalse();
 }

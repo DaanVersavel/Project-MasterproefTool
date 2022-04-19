@@ -31,6 +31,8 @@ import static org.springframework.http.HttpStatus.FORBIDDEN;
 @RestController
 @RequestMapping(path ="/User")
 public class UserController {
+
+    //niet gebruiken
     private final UserService userService;
 
     @Autowired

@@ -18,6 +18,7 @@ public class DisciplineController {
         this.disciplineService = disciplineService;
     }
 
+    //werkt nog niet deftig
     @GetMapping
     public List<Discipline> getDisciplines(){
         return disciplineService.getDisciplines();

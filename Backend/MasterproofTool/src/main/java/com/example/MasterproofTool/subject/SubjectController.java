@@ -38,9 +38,13 @@ public class SubjectController {
     }
 
     //update method to assign true to subject
-    @PutMapping(path="/Review/{id}")
-    public ResponseEntity<Subject> updateSubjectReviewedTrue(@PathVariable long id){
-        return ResponseEntity.ok(subjectService.updateSubjectReviewedTrue(id));
+    @PutMapping(path="/Review/Approved/{id}")
+    public ResponseEntity<Subject> updateSubjectReviewApprovedTrue(@PathVariable long id){
+        return ResponseEntity.ok(subjectService.updateSubjectReviewApprovedTrue(id));
+    }
+    @PutMapping(path="/Review/Denied/{id}")
+    public ResponseEntity<Subject> updateSubjectReviewDeniedTrue(@PathVariable long id){
+        return ResponseEntity.ok(subjectService.updateSubjectReviewDeniedTrue(id));
     }
 
     //TODO doesn't work yet

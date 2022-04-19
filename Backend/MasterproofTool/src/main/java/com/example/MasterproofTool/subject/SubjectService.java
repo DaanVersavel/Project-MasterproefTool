@@ -21,7 +21,7 @@ public class SubjectService {
         this.subjectRepository = subjectRepository;
     }
 
-    public List<Subject> getSubjectsApproved() { return subjectRepository.findSubjectByApprovedTrue(); }
+    public List<Subject> getSubjectsApproved() { return subjectRepository.findSubjectByApprovedTrueAndDeniedFalse(); }
 
 
 
@@ -36,10 +36,10 @@ public class SubjectService {
     }
 
     public List<Subject> getSubjectsForReview() {
-        return subjectRepository.findSubjectByApprovedFalse();
+        return subjectRepository.findSubjectByApprovedFalseAndDeniedFalse();
     }
 
-    public Subject updateSubjectReviewedTrue(@PathVariable long id){
+    public Subject updateSubjectReviewApprovedTrue(long id){
         Subject subject = subjectRepository.findSubjectById(id);
         subject.setApprovedTrue();
         return subjectRepository.save(subject);
@@ -47,5 +47,11 @@ public class SubjectService {
 
     public List<Subject> getSubjectForUser(long coordinator_id) {
         return subjectRepository.findSubjectByCoordinator_Id( coordinator_id);
+    }
+
+    public Subject updateSubjectReviewDeniedTrue(long id) {
+        Subject subject = subjectRepository.findSubjectById(id);
+        subject.setDeniedTrue();
+        return subjectRepository.save(subject);
     }
 }
