@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import axios from 'axios';
+import axios from '../../api/axios';
 import {Button, Container} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import SocialCard from "./SocialCard";
@@ -20,7 +20,7 @@ const FormSList = () => {
         const fetchSubjects = async () =>{
             setLoading(true);
             try {
-                const {data: response} = await axios.get('http://localhost:8080/Subjects');
+                const {data: response} = await axios.get('/Subjects');
                 setSubjects(response);
                 setAllSubjects(response);
             } catch (error) {
@@ -28,7 +28,6 @@ const FormSList = () => {
             }
             setLoading(false);
         }
-
         fetchSubjects()
     }, []);
 

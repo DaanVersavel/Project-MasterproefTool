@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
-import axios from 'axios';
+import React, {useEffect, useState} from 'react';
+import axios from '../../api/axios';
 import {Form, Button, Col, Row, ModalTitle, Container} from "react-bootstrap";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 
 const animatedComponents = makeAnimated();
-const disciplineOptions = []
 
 const FormS = () => {
     const [aStudents, setAStudents] = useState(0);
+    const [options, setOptions] = useState([])
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -16,6 +16,18 @@ const FormS = () => {
         disciplines: new Set(),
         aStudents: aStudents
     });
+
+    useEffect(() => {
+        const fetchSubjects = async () =>{
+            try {
+                const {data: response} = await axios.get('/Disciplines');
+                setOptions(response);
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
+        fetchSubjects()
+    }, []);
 
     const handleChange = (e) => {
         const{name, value} = e.target;
@@ -35,10 +47,7 @@ const FormS = () => {
         e.preventDefault();
         console.log(formData);
         axios
-            .post('http://localhost:8080/Subjects/Post', {formData},{
-                headers:{
-
-                }
+            .post('/Subjects/Post', {formData},{
             })
             .then(response => {
                 console.log(response)
@@ -97,7 +106,7 @@ const FormS = () => {
                         isMulti
                         isSearchable
                         components={animatedComponents}
-                        options={disciplineOptions}
+                        options={options}
                         onChange={handleSelect}
                     />
                 </Form.Group>

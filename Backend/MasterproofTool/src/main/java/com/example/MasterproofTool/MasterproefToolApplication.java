@@ -41,7 +41,7 @@ public class MasterproefToolApplication {
 		return new WebMvcConfigurer(){
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/Subjects").allowedOrigins("*");
+				registry.addMapping("/Subjects").allowedOrigins("http://localhost:3000/Subjects");
 				registry.addMapping("/Subjects/Post").allowedOrigins("*");
 				registry.addMapping("/Subjects/Review").allowedOrigins("*");
 				registry.addMapping("/Subjects/MySubjects").allowedOrigins("*");
