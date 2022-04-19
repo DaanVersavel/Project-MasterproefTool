@@ -1,37 +1,49 @@
 import { useState, useEffect } from 'react';
+import axios from "../../api/axios.js";
 
 const useForm = (callback, validate) => {
     const [values, setValues] = useState({
-        username: '',
+        firstName: '',
+        lastName: '',
         email: '',
         password: '',
         password2: ''
     });
+
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
 
+
     const handleChange = e => {
-        const { name, value } = e.target;
-        setValues({
-            ...values,
-            [name]: value
-        });
+        const { id, value } = e.target;
+        setValues({...values, [id]: value});
     };
 
     const handleSubmit = e => {
         e.preventDefault();
+        console.log(values)
 
         setErrors(validate(values));
         setIsSubmitting(true);
+
+        axios
+            .post("", {values})
+            .then((response) => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            });
     };
 
+    // only submit if zero errors
     useEffect(
         () => {
             if (Object.keys(errors).length === 0 && isSubmitting) {
                 callback();
             }
         },
-        [callback, errors, isSubmitting]
+        [errors]
     );
 
     return { handleChange, handleSubmit, values, errors };

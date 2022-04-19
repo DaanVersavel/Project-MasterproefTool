@@ -1,7 +1,7 @@
 import React from 'react';
 import FormSList from "../../components/formSubject/FormSList";
 
-export default function Subjects() {
+export default function ListOfSubjects() {
 
     return (
         <div>
