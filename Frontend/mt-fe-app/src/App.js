@@ -17,19 +17,23 @@ export default function App () {
 
     useEffect(() => {
         axios.get("").then(response => {
-                setUser(response.data)
+                configureUser(response.data)
             },
             err => {
                 console.log(err)
             })
     }, []);
 
+    function configureUser(userdata) {
+        setUser(userdata)
+    }
+
     return (
         <Router>
-            <BNavbar/>
+            <BNavbar user={user}/>
             <div className={"App"}>
                 <Routes>
-                    <Route path = '/' element = {<Home user={user}/>} />
+                    <Route path = '/' element = {<Home user={user} setUser={configureUser}/>} />
                     <Route path = '/SignUp' element = {<Register/>} />
                     <Route path = '/Subjects' element = {<ListSubjects/>} />
                     <Route path = '/Subjects/Post' element = {<AddSubjects/>} />
