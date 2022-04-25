@@ -32,7 +32,7 @@ public class Discipline {
             joinColumns = {@JoinColumn(name="discipline_id")},
             inverseJoinColumns = {@JoinColumn(name="subject_id")}
     )
-    //@JsonIgnore()
+    @JsonIgnore()
     Set<Subject> subjects= new HashSet<>();
 
     public Discipline(long discipline_id, String naam, Set<Campus> campussen, Set<Subject> subjects) {
