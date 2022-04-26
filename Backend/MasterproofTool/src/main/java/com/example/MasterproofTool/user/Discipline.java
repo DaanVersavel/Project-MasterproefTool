@@ -1,7 +1,10 @@
 package com.example.MasterproofTool.user;
 
 import com.example.MasterproofTool.subject.Subject;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,7 +35,8 @@ public class Discipline {
             joinColumns = {@JoinColumn(name="discipline_id")},
             inverseJoinColumns = {@JoinColumn(name="subject_id")}
     )
-    @JsonIgnore()
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     Set<Subject> subjects= new HashSet<>();
 
     public Discipline(long discipline_id, String naam, Set<Campus> campussen, Set<Subject> subjects) {
