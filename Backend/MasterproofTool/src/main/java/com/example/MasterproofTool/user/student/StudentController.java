@@ -75,10 +75,7 @@ public class StudentController {
 
     public String getAccesToken(HttpServletRequest request){
         String authorizationHeader = request.getHeader(AUTHORIZATION);
-        String access_token = authorizationHeader.substring("Bearer ".length());
-        return access_token;
-
-
+        return authorizationHeader.substring("Bearer ".length());
     }
 
 }

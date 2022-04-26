@@ -27,7 +27,8 @@ public class Discipline {
             joinColumns = {@JoinColumn(name="discipline_id")},
             inverseJoinColumns = {@JoinColumn(name="campus_id")}
     )
-    @JsonIgnore
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "campus_id")
+    @JsonIdentityReference(alwaysAsId = true)
     Set<Campus> campussen=new HashSet<>();
     @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinTable(
