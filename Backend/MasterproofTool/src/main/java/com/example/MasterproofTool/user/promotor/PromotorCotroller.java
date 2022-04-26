@@ -1,11 +1,11 @@
 package com.example.MasterproofTool.user.promotor;
 
-import com.example.MasterproofTool.user.Promotor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -24,5 +24,10 @@ public class PromotorCotroller {
         URI uri=  URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/Promotor/Save").toUriString());
         return ResponseEntity.created(uri).body(promotorService.saveNewPromotor(promotor));
+    }
+
+    @GetMapping()
+    public List<Promotor> getPromotors(){
+        return promotorService.getPromotors();
     }
 }

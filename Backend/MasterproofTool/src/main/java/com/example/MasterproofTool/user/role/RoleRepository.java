@@ -1,4 +1,4 @@
-package com.example.MasterproofTool.user;
+package com.example.MasterproofTool.user.role;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

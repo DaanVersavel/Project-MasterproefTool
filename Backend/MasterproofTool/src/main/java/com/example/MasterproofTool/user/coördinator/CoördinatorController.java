@@ -1,6 +1,5 @@
 package com.example.MasterproofTool.user.coördinator;
 
-import com.example.MasterproofTool.user.Coördinator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

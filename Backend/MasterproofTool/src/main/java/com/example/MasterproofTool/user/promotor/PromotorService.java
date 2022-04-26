@@ -1,12 +1,12 @@
 package com.example.MasterproofTool.user.promotor;
 
 import com.example.MasterproofTool.MasterproefToolApplication;
-import com.example.MasterproofTool.user.Promotor;
-import com.example.MasterproofTool.user.Role;
-import com.example.MasterproofTool.user.RoleRepository;
+import com.example.MasterproofTool.user.role.Role;
+import com.example.MasterproofTool.user.role.RoleRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,5 +46,9 @@ public class PromotorService {
         Promotor user = promotorRepository.findExistingPromotorByEmail(email);
         Role role = roleRepository.findByRoleName(rolename);
         user.getRoles().add(role);
+    }
+
+    public List<Promotor> getPromotors() {
+        return promotorRepository.findAll();
     }
 }

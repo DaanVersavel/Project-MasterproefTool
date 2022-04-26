@@ -1,6 +1,5 @@
 package com.example.MasterproofTool.user.promotor;
 
-import com.example.MasterproofTool.user.Promotor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

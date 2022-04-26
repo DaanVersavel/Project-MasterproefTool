@@ -1,6 +1,5 @@
 package com.example.MasterproofTool.user.appUser;
 
-import com.example.MasterproofTool.user.Appuser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;

@@ -2,10 +2,16 @@ package com.example.MasterproofTool;
 
 import com.example.MasterproofTool.subject.Subject;
 import com.example.MasterproofTool.subject.SubjectRepository;
-import com.example.MasterproofTool.user.*;
+import com.example.MasterproofTool.user.appUser.Appuser;
 import com.example.MasterproofTool.user.appUser.UserService;
+import com.example.MasterproofTool.user.campus.Campus;
 import com.example.MasterproofTool.user.campus.CampusRepository;
+import com.example.MasterproofTool.user.company.Company;
+import com.example.MasterproofTool.user.company.CompanyService;
+import com.example.MasterproofTool.user.disciplines.Discipline;
 import com.example.MasterproofTool.user.disciplines.DisciplineRepository;
+import com.example.MasterproofTool.user.role.Role;
+import com.example.MasterproofTool.user.student.Student;
 import com.example.MasterproofTool.user.student.StudentService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -58,7 +64,7 @@ public class MasterproefToolApplication {
 	}
 
 	@Bean
-	CommandLineRunner run1(UserService userService, StudentService studentService){
+	CommandLineRunner run1(UserService userService, StudentService studentService, CompanyService companyService){
 		return args -> {
 			//UserService
 			userService.saveRole(new Role(null,ROLE_ADMIN));
@@ -77,6 +83,10 @@ public class MasterproefToolApplication {
 			studentService.saveStudent(new Student("lotte", "Vanlanduyt", "084655465", "lotte@gmail.com","R045645" ,"lotte123"));
 
 			userService.addRoleToAppuser("lotte@gmail.com",ROLE_STUDENT);
+
+
+			//Company service
+			//ecompanyService.saveNewCompany(new Company("Filip", "Desmet", "0456454", "filip@gmail.com", "alfons", 545154.545,-4523.5151, "djsfhldsh ","filip123"));
 		};
 	}
 	@Bean

@@ -3,7 +3,6 @@ package com.example.MasterproofTool.user.student;
 
 import com.example.MasterproofTool.subject.Subject;
 import com.example.MasterproofTool.subject.SubjectService;
-import com.example.MasterproofTool.user.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

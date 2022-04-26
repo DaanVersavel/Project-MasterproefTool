@@ -1,5 +1,7 @@
-package com.example.MasterproofTool.user;
+package com.example.MasterproofTool.user.coördinator;
 
+import com.example.MasterproofTool.user.appUser.Appuser;
+import com.example.MasterproofTool.user.campus.Campus;
 import lombok.Getter;
 import lombok.Setter;
 

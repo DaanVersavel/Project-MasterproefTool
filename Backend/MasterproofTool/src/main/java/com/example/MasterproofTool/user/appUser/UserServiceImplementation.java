@@ -1,8 +1,7 @@
 package com.example.MasterproofTool.user.appUser;
 
-import com.example.MasterproofTool.user.Role;
-import com.example.MasterproofTool.user.RoleRepository;
-import com.example.MasterproofTool.user.Appuser;
+import com.example.MasterproofTool.user.role.Role;
+import com.example.MasterproofTool.user.role.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

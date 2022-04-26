@@ -1,9 +1,8 @@
 package com.example.MasterproofTool.user.coördinator;
 
 import com.example.MasterproofTool.MasterproefToolApplication;
-import com.example.MasterproofTool.user.Coördinator;
-import com.example.MasterproofTool.user.Role;
-import com.example.MasterproofTool.user.RoleRepository;
+import com.example.MasterproofTool.user.role.Role;
+import com.example.MasterproofTool.user.role.RoleRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

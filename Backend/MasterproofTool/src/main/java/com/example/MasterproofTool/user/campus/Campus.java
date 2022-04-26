@@ -1,5 +1,6 @@
-package com.example.MasterproofTool.user;
+package com.example.MasterproofTool.user.campus;
 
+import com.example.MasterproofTool.user.disciplines.Discipline;
 import lombok.Getter;
 import lombok.Setter;
 
