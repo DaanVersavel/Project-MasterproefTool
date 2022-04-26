@@ -46,12 +46,5 @@ public class SubjectController {
         return ResponseEntity.ok(subjectService.updateSubjectReviewDeniedTrue(id));
     }
 
-    //TODO doesn't work yet
-    //get method for getting your specific subjects
-    @GetMapping(path = "/MySubjects")
-    @CrossOrigin(origins = "https://localhost:3000")
-    public List<Subject> getSubjectForUser(@RequestBody long coordinator_id){
-        return subjectService.getSubjectForUser(coordinator_id);
-    }
 }
 
