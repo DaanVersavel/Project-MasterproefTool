@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Route, Routes, BrowserRouter as Router} from 'react-router-dom';
-import axios from "./api/axios";
+import axios from "./api/axiosAfterLogin";
 
 import BNavbar from "./components/navbar/BNavbar"
 

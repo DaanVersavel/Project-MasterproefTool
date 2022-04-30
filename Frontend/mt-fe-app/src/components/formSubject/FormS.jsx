@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import axios from '../../api/axios';
+import axios from '../../api/axiosAfterLogin';
 import {Form, Button, Col, Row, ModalTitle, Container} from "react-bootstrap";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';

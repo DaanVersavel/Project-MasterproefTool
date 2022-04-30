@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button} from "react-bootstrap";
 import "./Login.css"
-import axios from '../../api/axios'
+import axios from '../../api/axiosAfterLogin'
 
 const Login = ({setUser}) => {
     const [data, setData] = useState({

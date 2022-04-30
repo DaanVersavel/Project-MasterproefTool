@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import axios from '../../api/axios';
+import axios from '../../api/axiosAfterLogin';
 import {Button, Container} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import SocialCard from "./SocialCard";
