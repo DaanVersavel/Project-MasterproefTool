@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import axios from '../../api/axios'
 import {Button} from "react-bootstrap";
 import "./Login.css"
+import axios from '../../api/axios'
 
 const Login = ({setUser}) => {
     const [data, setData] = useState({
@@ -18,7 +18,7 @@ const Login = ({setUser}) => {
             .then((response) => {
                 console.log(response)
                 localStorage.setItem('token', response.data.token)
-
+                setUser(response.data.user)
             })
             .catch(error => {
                 console.log(error)

@@ -2,13 +2,13 @@ import React from 'react';
 import {Container, Nav, Navbar, NavDropdown} from 'react-bootstrap'
 import KULogo from '../../KU_Leuven_logo.svg'
 
-const BNavbar = ({user}) => {
-    let buttons;
-
+const BNavbar = ({user, setUser}) => {
     const handleLogout = () => {
         localStorage.clear()
-
+        setUser(null)
     }
+
+    let buttons;
 
     if(user) {
         buttons = (

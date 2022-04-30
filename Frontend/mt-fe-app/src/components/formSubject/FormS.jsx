@@ -20,7 +20,7 @@ const FormS = () => {
     useEffect(() => {
         const fetchSubjects = async () =>{
             try {
-                const {data: response} = await axios.get('/Disciplines');
+                const {data: response} = await axios.get('/Discipline');
                 setOptions(response);
             } catch (error) {
                 console.error(error.message);

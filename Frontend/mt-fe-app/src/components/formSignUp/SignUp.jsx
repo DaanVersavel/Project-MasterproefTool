@@ -4,14 +4,17 @@ import useForm from './useForm';
 import './SignUp.css';
 import KULBuilding from "../../KU-Leuven_branded.jpg"
 
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
+
 const SignUp = () => {
     const [success, setSuccess] = useState(false);
 
-    function succesfull() {
+    function successful() {
         setSuccess(true)
     }
 
-    const { handleChange, handleSubmit, values, errors } = useForm(succesfull, validate);
+    const { handleChange, handleSubmit, values, errors } = useForm(successful, validate);
 
     return (
         <>
@@ -82,6 +85,24 @@ const SignUp = () => {
                                     onChange={handleChange}
                                 />
                                 {errors.email && <p>{errors.email}</p>}
+                            </div>
+
+
+                            <div className='form-inputs'>
+                                <label className='form-label'>
+                                    Phone number:
+                                </label>
+                                <PhoneInput
+                                    className={"form-input"}
+                                    placeholder={"Enter your phone number"}
+                                    id={"phone"}
+                                    defaultCountry="BE"
+                                    autoComplete={"off"}
+                                    required
+                                    value={values.phone}
+                                    onChange={handleChange}
+                                />
+                                {errors.phone && <p>{errors.phone}</p>}
                             </div>
 
 
