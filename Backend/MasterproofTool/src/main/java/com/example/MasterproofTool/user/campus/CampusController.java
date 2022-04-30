@@ -18,9 +18,7 @@ public class CampusController {
     public CampusController(CampusService campusService) {
         this.campusService = campusService;
     }
-
-    //TODO unidirectional maken?????
-    //werkt nog niet deftig
+    
     //get method for list of campusses
     @GetMapping
     public List<Campus> getCampuses(){

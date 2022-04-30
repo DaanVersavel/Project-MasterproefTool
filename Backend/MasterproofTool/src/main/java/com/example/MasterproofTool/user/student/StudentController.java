@@ -9,9 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.util.Optional;
 import java.util.Set;
+
+import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 @RestController
 @RequestMapping(path = "/Student")
@@ -35,30 +38,40 @@ public class StudentController {
         return ResponseEntity.created(uri).body(studentService.saveNewStudent(student));
     }
 
-    //List of starred subjects
-    //keyId= id student
-    //werkt nog niet deftig
-    @GetMapping(path = "/Starred/{keyId}")
-    public Set<Subject> getSubjectsStarred(@PathVariable("keyId") long keyId){
-        return studentService.getStudentStarred(keyId);
-    }
-
     //method for setting the first choise
-    //keyid = id student, id =id subject
-    //werkt nog niet deftig
-    @PutMapping(path="/Starred/firstChoise/{keyId}/{id}")
-    public void setFirstChoiceSubject(@PathVariable("keyId") long keyId,@PathVariable("id") long id){
-        //id for subject
-        studentService.setFirstChoice(keyId,id);
+    //id of subject
+    @PutMapping(path="/Starred/firstChoise/{id}")
+    public void setFirstChoiceSubject(@PathVariable("id") long id,HttpServletRequest request){
+        String access_token =getAccesToken(request);
+        studentService.setFirstChoice(id,access_token);
     }
 
-    //get method for first choise
-    //keyId= id student
-    //werkt nog niet deftig
-    @GetMapping(path="/GetFirstChoise/{keyId}")
-    public Subject getFirstChoiceSubject(@PathVariable("keyId") long keyId){
-        return studentService.getFirstChoice(keyId);
+    //get method for first choise  uses authorization header
+    @GetMapping(path="/GetFirstChoise/")
+    public Subject getFirstChoiceSubject(HttpServletRequest request){
+        String access_token =getAccesToken(request);
+        return studentService.getFirstChoice(access_token);
     }
 
+    //return list of starred subject uses authorization header
+    @GetMapping(path="/Starred")
+    public Set<Subject> getMySubjects(HttpServletRequest request) {
+        String access_token =getAccesToken(request);
+        return studentService.getStarred(access_token);
+    }
+
+    //Save a new subject to starred list of student
+    //id= id of subject
+    @PostMapping(path = "/StarredSave/{id}")
+    public void addToStarred(@PathVariable("id") long id,HttpServletRequest request){
+        String access_token =getAccesToken(request);
+        studentService.addToStarred(id, access_token);
+    }
+
+
+    public String getAccesToken(HttpServletRequest request){
+        String authorizationHeader = request.getHeader(AUTHORIZATION);
+        return authorizationHeader.substring("Bearer ".length());
+    }
 
 }
