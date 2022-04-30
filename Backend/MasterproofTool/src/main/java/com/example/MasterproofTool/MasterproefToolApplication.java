@@ -11,12 +11,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
@@ -40,18 +40,6 @@ public class MasterproefToolApplication {
 		SpringApplication.run(MasterproefToolApplication.class, args);
 	}
 
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer(){
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/Subjects").allowedOrigins("http://localhost:3000/Subjects");
-				registry.addMapping("/Subjects/Post").allowedOrigins("*");
-				registry.addMapping("/Subjects/Review").allowedOrigins("*");
-				registry.addMapping("/Subjects/MySubjects").allowedOrigins("*");
-			}
-		};
-	}
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -139,6 +127,24 @@ public class MasterproefToolApplication {
 
 			disciplineRepository.saveAll(List.of(dis1, dis2, dis3, dis4, dis5, dis6, dis7, dis8));
 			campusRepository.saveAll(List.of(campus1,campus2, campus3, campus4, campus5, campus6, campus7, campus8, campus9, campus10, campus11, campus12, campus13));
+		};
+	}
+
+	private static final String GET = "GET";
+	private static final String POST = "POST";
+	private static final String PUT = "PUT";
+	private static final String DELETE = "DELETE";
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer(){
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**")
+						.allowedMethods(GET, POST, PUT, DELETE)
+						.allowedHeaders("*")
+						.allowedOriginPatterns("*")
+						.allowCredentials(true);
+			}
 		};
 	}
 }

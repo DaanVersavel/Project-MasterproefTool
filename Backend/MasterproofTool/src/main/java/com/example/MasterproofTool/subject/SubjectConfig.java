@@ -16,7 +16,6 @@ public class SubjectConfig {
             Subject onderwerp1= new Subject("Automated hacking", "Detecting vulnerabilities in IoT devices",  "opmerking",1);
             Subject onderwerp2= new Subject("Language Identification", " Word-level language identification for annotating street and place names",  "opmerking",1);
             Subject onderwerp3= new Subject("Cybersecurity", "a world in danger by cyberattacks",true,   "opmerking",1);
-            Coördinator coordinator1=new Coördinator("Annemie","Vorstermans");
             repository.saveAll(List.of(onderwerp1,onderwerp2,onderwerp3));
         };
     }
