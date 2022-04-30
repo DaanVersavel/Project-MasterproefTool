@@ -28,7 +28,6 @@ public class StudentController {
     }
 
     @PostMapping(path = "/Save")
-    @CrossOrigin(origins = "*")
     //werkt nog niet deftig
     public ResponseEntity<Optional<Student>> saveStudent(@RequestBody Student student){
         URI uri=  URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -40,7 +39,6 @@ public class StudentController {
     //keyId= id student
     //werkt nog niet deftig
     @GetMapping(path = "/Starred/{keyId}")
-    @CrossOrigin(origins = "*")
     public Set<Subject> getSubjectsStarred(@PathVariable("keyId") long keyId){
         return studentService.getStudentStarred(keyId);
     }
@@ -49,7 +47,6 @@ public class StudentController {
     //keyid = id student, id =id subject
     //werkt nog niet deftig
     @PutMapping(path="/Starred/firstChoise/{keyId}/{id}")
-    @CrossOrigin(origins = "*")
     public void setFirstChoiceSubject(@PathVariable("keyId") long keyId,@PathVariable("id") long id){
         //id for subject
         studentService.setFirstChoice(keyId,id);
@@ -59,7 +56,6 @@ public class StudentController {
     //keyId= id student
     //werkt nog niet deftig
     @GetMapping(path="/GetFirstChoise/{keyId}")
-    @CrossOrigin(origins = "*")
     public Subject getFirstChoiceSubject(@PathVariable("keyId") long keyId){
         return studentService.getFirstChoice(keyId);
     }
