@@ -6,6 +6,7 @@ const useForm = (callback, validate) => {
         firstName: '',
         lastName: '',
         email: '',
+        phone: '',
         password: '',
         password2: ''
     });
@@ -27,7 +28,7 @@ const useForm = (callback, validate) => {
         setIsSubmitting(true);
 
         axios
-            .post("", {values})
+            .post("/User/users/save", {values})
             .then((response) => {
                 console.log(response)
             })

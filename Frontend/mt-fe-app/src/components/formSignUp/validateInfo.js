@@ -13,6 +13,10 @@ export default function validateInfo(values) {
         errors.email = 'Email required';
     }
 
+    if (!values.phone) {
+        errors.phone = 'Phone number required';
+    }
+
     if (!values.password) {
         errors.password = 'Password is required';
     }

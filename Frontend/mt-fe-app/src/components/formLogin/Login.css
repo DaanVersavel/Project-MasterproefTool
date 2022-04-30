@@ -1,5 +1,6 @@
 .login-input {
     display: block;
+    padding-left: 10px;
     height: 40px;
     width: 100%;
 }
