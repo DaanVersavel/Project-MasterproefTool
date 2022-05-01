@@ -21,7 +21,6 @@ public class CoördinatorController {
 
 
     @PostMapping(path = "/Save")
-    @CrossOrigin(origins = "*")
     public ResponseEntity<Optional<Coördinator>> saveCoördinator(@RequestBody Coördinator coördinator){
         URI uri=  URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/Coordinator/Save").toUriString());

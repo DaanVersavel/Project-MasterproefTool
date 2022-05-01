@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import axios from "../../api/axios.js";
+import axios from "../../api/axiosAfterLogin.js";
 
 const useForm = (callback, validate) => {
     const [values, setValues] = useState({
         firstName: '',
         lastName: '',
         email: '',
+        phone: '',
         password: '',
         password2: ''
     });
@@ -27,7 +28,7 @@ const useForm = (callback, validate) => {
         setIsSubmitting(true);
 
         axios
-            .post("", {values})
+            .post("/User/users/save", {values})
             .then((response) => {
                 console.log(response)
             })

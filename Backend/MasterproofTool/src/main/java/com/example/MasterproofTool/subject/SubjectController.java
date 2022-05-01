@@ -24,14 +24,12 @@ public class SubjectController {
     }
     //Post method for subjects
     @PostMapping(path="/Post")
-    @CrossOrigin(origins = "*")
     public void registerNewSubject(@RequestBody Subject subject){
         subjectService.addNewSubject(subject);
     }
 
     //get method for not yet accepted methods
     @GetMapping(path = "/Review")
-    @CrossOrigin(origins = "https://localhost:3000")
     public List<Subject> getSubjectForReview(){
         return subjectService.getSubjectsForReview();
     }
@@ -45,6 +43,12 @@ public class SubjectController {
     public ResponseEntity<Subject> updateSubjectReviewDeniedTrue(@PathVariable long id){
         return ResponseEntity.ok(subjectService.updateSubjectReviewDeniedTrue(id));
     }
-
+  
+    //TODO doesn't work yet
+    //get method for getting your specific subjects
+    @GetMapping(path = "/MySubjects")
+    public List<Subject> getSubjectForUser(@RequestBody long coordinator_id){
+        return subjectService.getSubjectForUser(coordinator_id);
+    }
 }
 

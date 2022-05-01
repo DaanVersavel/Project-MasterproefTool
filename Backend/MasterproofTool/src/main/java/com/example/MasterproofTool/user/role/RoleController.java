@@ -17,7 +17,6 @@ public class RoleController {
 
     //returns list of roles
     @GetMapping()
-    @CrossOrigin(origins = "*")
     public List<Role> getRoles() {
         return roleRepository.findAll();
     }

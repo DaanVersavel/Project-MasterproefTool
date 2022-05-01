@@ -25,7 +25,6 @@ public class CompanyController {
     }
 
     @PostMapping(path = "/Save")
-    @CrossOrigin(origins = "*")
     public ResponseEntity<Optional<Company>> saveCompany(@RequestBody Company company){
         URI uri=  URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/Company/Save").toUriString());

@@ -41,14 +41,12 @@ public class UserController {
 
     //list of users
     @GetMapping(value = "/users")
-    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<List<Appuser>> getUsers(){
         return ResponseEntity.ok().body(userService.getAppusers());
     }
 
     //save user
     @PostMapping(value = "/users/save")
-    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<Appuser> saveAppuser(@RequestBody Appuser appuser){
         URI uri=  URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/User/users/save").toUriString());
@@ -57,7 +55,6 @@ public class UserController {
 
     //save role
     @PostMapping(value = "/role/save")
-    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<Role> saveRole(@RequestBody Role role){
         URI uri=  URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/User/role/save").toUriString());
@@ -66,7 +63,6 @@ public class UserController {
 
     //save role to user
     @PostMapping(value = "/role/addtouser")
-    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<Role> addRoleToAppuser(@RequestBody RoleToAppuserForm form){
         userService.addRoleToAppuser(form.getUsername(), form.getRolename());
         return ResponseEntity.ok().build();

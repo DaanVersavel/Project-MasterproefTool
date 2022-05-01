@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Route, Routes, BrowserRouter as Router} from 'react-router-dom';
-import axios from "./api/axios";
+import axios from "./api/axiosAfterLogin";
 
 import BNavbar from "./components/navbar/BNavbar"
 
@@ -15,14 +15,14 @@ import AddSubjects from "./pages/subjects/AddSubjects"
 export default function App () {
     const [user, setUser] = useState("");
 
-    useEffect(() => {
-        axios.get("").then(response => {
+    /*useEffect(() => {
+        axios.get("/User/users").then(response => {
                 configureUser(response.data)
             },
             err => {
                 console.log(err)
             })
-    }, []);
+    }, []);*/
 
     function configureUser(userdata) {
         setUser(userdata)
@@ -30,7 +30,7 @@ export default function App () {
 
     return (
         <Router>
-            <BNavbar user={user}/>
+            <BNavbar user={user} setUser={configureUser}/>
             <div className={"App"}>
                 <Routes>
                     <Route path = '/' element = {<Home user={user} setUser={configureUser}/>} />

@@ -30,7 +30,6 @@ public class StudentController {
     }
 
     @PostMapping(path = "/Save")
-    @CrossOrigin(origins = "*")
     //werkt nog niet deftig
     public ResponseEntity<Optional<Student>> saveStudent(@RequestBody Student student){
         URI uri=  URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -41,7 +40,6 @@ public class StudentController {
     //method for setting the first choise
     //id of subject
     @PutMapping(path="/Starred/firstChoise/{id}")
-    @CrossOrigin(origins = "*")
     public void setFirstChoiceSubject(@PathVariable("id") long id,HttpServletRequest request){
         String access_token =getAccesToken(request);
         studentService.setFirstChoice(id,access_token);
@@ -49,7 +47,6 @@ public class StudentController {
 
     //get method for first choise  uses authorization header
     @GetMapping(path="/GetFirstChoise/")
-    @CrossOrigin(origins = "*")
     public Subject getFirstChoiceSubject(HttpServletRequest request){
         String access_token =getAccesToken(request);
         return studentService.getFirstChoice(access_token);
@@ -65,7 +62,6 @@ public class StudentController {
     //Save a new subject to starred list of student
     //id= id of subject
     @PostMapping(path = "/StarredSave/{id}")
-    @CrossOrigin(origins = "*")
     public void addToStarred(@PathVariable("id") long id,HttpServletRequest request){
         String access_token =getAccesToken(request);
         studentService.addToStarred(id, access_token);

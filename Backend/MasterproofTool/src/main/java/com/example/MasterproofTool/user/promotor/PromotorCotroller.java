@@ -23,7 +23,6 @@ public class PromotorCotroller {
     }
 
     @PostMapping(path = "/Save")
-    @CrossOrigin(origins = "*")
     public ResponseEntity<Optional<Promotor>> saveCompany(@RequestBody Promotor promotor) {
         URI uri=  URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/Promotor/Save").toUriString());
