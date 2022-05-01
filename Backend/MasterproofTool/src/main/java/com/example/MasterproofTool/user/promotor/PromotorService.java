@@ -1,6 +1,12 @@
 package com.example.MasterproofTool.user.promotor;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.MasterproofTool.MasterproefToolApplication;
+import com.example.MasterproofTool.subject.Subject;
+import com.example.MasterproofTool.subject.SubjectRepository;
 import com.example.MasterproofTool.user.role.Role;
 import com.example.MasterproofTool.user.role.RoleRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,11 +21,13 @@ public class PromotorService {
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
     private final PromotorRepository promotorRepository;
+    private final SubjectRepository subjectRepository;
 
-    public PromotorService(PasswordEncoder passwordEncoder, RoleRepository roleRepository, PromotorRepository promotorRepository) {
+    public PromotorService(PasswordEncoder passwordEncoder, RoleRepository roleRepository, PromotorRepository promotorRepository, SubjectRepository subjectRepository) {
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
         this.promotorRepository = promotorRepository;
+        this.subjectRepository = subjectRepository;
     }
 
     public Optional<Promotor> saveNewPromotor(Promotor promotor) {
@@ -50,5 +58,18 @@ public class PromotorService {
 
     public List<Promotor> getPromotors() {
         return promotorRepository.findAll();
+    }
+
+    public List<Subject> getMySubjects(String accesToken) {
+        Promotor p=getUser(accesToken);
+        return subjectRepository.findSubjectByPromotor(p);
+    }
+
+    public Promotor getUser(String access_token) {
+        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+        JWTVerifier verifier = JWT.require(algorithm).build();
+        DecodedJWT decodedJWT = verifier.verify(access_token);
+        String email = decodedJWT.getSubject();
+        return promotorRepository.findExistingPromotorByEmail(email);
     }
 }

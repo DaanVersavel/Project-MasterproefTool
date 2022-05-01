@@ -1,6 +1,7 @@
 package com.example.MasterproofTool.subject;
 
 import com.example.MasterproofTool.user.company.Company;
+import com.example.MasterproofTool.user.promotor.Promotor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -33,4 +34,7 @@ public interface SubjectRepository extends JpaRepository<Subject,Long> {
 
     @Query(value = "SELECT s FROM Subject s WHERE s.company = ?1")
     List<Subject> findSubjectByCompany(Optional<Company> company);
+
+    @Query(value = "SELECT s FROM Subject s WHERE s.promotor = ?1")
+    List<Subject> findSubjectByPromotor(Promotor p);
 }

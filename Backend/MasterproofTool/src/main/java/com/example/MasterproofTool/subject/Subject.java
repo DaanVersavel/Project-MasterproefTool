@@ -97,6 +97,13 @@ public class Subject {
         this.remark = remark;
         this.aStudents = aStudents;
     }
+    public Subject(String title, String description, String remark,  int aStudents, Company company) {
+        this.title = title;
+        this.description = description;
+        this.company = company;
+        this.remark = remark;
+        this.aStudents = aStudents;
+    }
 
     public void setApprovedTrue() {
         this.approved=true;
