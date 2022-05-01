@@ -1,7 +1,9 @@
-package com.example.MasterproofTool.user;
+package com.example.MasterproofTool.user.student;
 
 
 import com.example.MasterproofTool.subject.Subject;
+import com.example.MasterproofTool.user.appUser.Appuser;
+import com.example.MasterproofTool.user.campus.Campus;
 import lombok.Getter;
 import lombok.Setter;
 

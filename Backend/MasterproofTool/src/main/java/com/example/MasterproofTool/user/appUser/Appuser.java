@@ -1,6 +1,7 @@
-package com.example.MasterproofTool.user;
+package com.example.MasterproofTool.user.appUser;
 
 
+import com.example.MasterproofTool.user.role.Role;
 import lombok.Getter;
 import lombok.Setter;
 

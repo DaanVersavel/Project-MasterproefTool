@@ -1,12 +1,16 @@
 package com.example.MasterproofTool.user.promotor;
 
-import com.example.MasterproofTool.user.Promotor;
+import com.example.MasterproofTool.subject.Subject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 @RestController
 @RequestMapping(path = "/Promotor")
@@ -23,5 +27,20 @@ public class PromotorCotroller {
         URI uri=  URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/Promotor/Save").toUriString());
         return ResponseEntity.created(uri).body(promotorService.saveNewPromotor(promotor));
+    }
+
+    @GetMapping()
+    public List<Promotor> getPromotors(){
+        return promotorService.getPromotors();
+    }
+
+    @GetMapping(path = "/MySubjects")
+    public List<Subject> getMySubjects(HttpServletRequest request){
+        return promotorService.getMySubjects(getAccesToken(request));
+    }
+
+    public String getAccesToken(HttpServletRequest request){
+        String authorizationHeader = request.getHeader(AUTHORIZATION);
+        return authorizationHeader.substring("Bearer ".length());
     }
 }

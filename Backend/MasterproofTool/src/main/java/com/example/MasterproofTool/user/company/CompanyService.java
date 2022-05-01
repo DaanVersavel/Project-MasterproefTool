@@ -1,12 +1,18 @@
 package com.example.MasterproofTool.user.company;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.MasterproofTool.MasterproefToolApplication;
-import com.example.MasterproofTool.user.Company;
-import com.example.MasterproofTool.user.Role;
-import com.example.MasterproofTool.user.RoleRepository;
+import com.example.MasterproofTool.subject.Subject;
+import com.example.MasterproofTool.subject.SubjectRepository;
+import com.example.MasterproofTool.user.role.Role;
+import com.example.MasterproofTool.user.role.RoleRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,11 +21,13 @@ public class CompanyService {
     private final CompanyRepository companyRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
+    private final SubjectRepository subjectRepository;
 
-    public CompanyService(CompanyRepository companyRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
+    public CompanyService(CompanyRepository companyRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository, SubjectRepository subjectRepository) {
         this.companyRepository = companyRepository;
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
+        this.subjectRepository = subjectRepository;
     }
 
 
@@ -50,4 +58,17 @@ public class CompanyService {
         user.getRoles().add(role);
     }
 
+    public List<Subject> getSubjects(String access_token) {
+        Optional<Company> company= getCompanyHeader(access_token);
+        return subjectRepository.findSubjectByCompany(company);
+
+    }
+
+    public Optional<Company> getCompanyHeader(String access_token) {
+        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+        JWTVerifier verifier = JWT.require(algorithm).build();
+        DecodedJWT decodedJWT = verifier.verify(access_token);
+        String email = decodedJWT.getSubject();
+        return companyRepository.findCompanyByEmail(email);
+    }
 }

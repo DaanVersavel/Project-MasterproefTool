@@ -1,6 +1,5 @@
 package com.example.MasterproofTool.user.appUser;
 
-import com.example.MasterproofTool.user.Appuser;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

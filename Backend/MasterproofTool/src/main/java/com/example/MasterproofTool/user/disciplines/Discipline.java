@@ -1,9 +1,9 @@
-package com.example.MasterproofTool.user;
+package com.example.MasterproofTool.user.disciplines;
 
 import com.example.MasterproofTool.subject.Subject;
+import com.example.MasterproofTool.user.campus.Campus;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.Setter;

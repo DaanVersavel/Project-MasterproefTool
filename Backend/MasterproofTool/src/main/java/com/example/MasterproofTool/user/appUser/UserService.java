@@ -1,6 +1,5 @@
 package com.example.MasterproofTool.user.appUser;
-import com.example.MasterproofTool.user.Role;
-import com.example.MasterproofTool.user.Appuser;
+import com.example.MasterproofTool.user.role.Role;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 

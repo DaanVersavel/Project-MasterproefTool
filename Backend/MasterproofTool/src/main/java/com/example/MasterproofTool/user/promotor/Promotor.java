@@ -1,5 +1,6 @@
-package com.example.MasterproofTool.user;
+package com.example.MasterproofTool.user.promotor;
 
+import com.example.MasterproofTool.user.appUser.Appuser;
 import lombok.Getter;
 import lombok.Setter;
 

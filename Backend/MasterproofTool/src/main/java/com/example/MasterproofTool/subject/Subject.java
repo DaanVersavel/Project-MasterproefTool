@@ -1,8 +1,12 @@
 package com.example.MasterproofTool.subject;
-import com.example.MasterproofTool.user.*;
+import com.example.MasterproofTool.user.company.Company;
+import com.example.MasterproofTool.user.coördinator.Coördinator;
+import com.example.MasterproofTool.user.disciplines.Discipline;
+import com.example.MasterproofTool.user.promotor.Promotor;
+import com.example.MasterproofTool.user.student.Student;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -90,6 +94,13 @@ public class Subject {
         this.title = title;
         this.description = description;
         this.coordinator = coordinator;
+        this.remark = remark;
+        this.aStudents = aStudents;
+    }
+    public Subject(String title, String description, String remark,  int aStudents, Company company) {
+        this.title = title;
+        this.description = description;
+        this.company = company;
         this.remark = remark;
         this.aStudents = aStudents;
     }
