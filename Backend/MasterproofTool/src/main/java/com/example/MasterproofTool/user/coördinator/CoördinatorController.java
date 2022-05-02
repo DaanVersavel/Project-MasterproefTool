@@ -19,7 +19,7 @@ public class CoördinatorController {
         this.coordinatorService = coordinatorService;
     }
 
-
+    //saves a Coordinator
     @PostMapping(path = "/Save")
     public ResponseEntity<Optional<Coördinator>> saveCoördinator(@RequestBody Coördinator coördinator){
         URI uri=  URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()

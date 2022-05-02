@@ -22,6 +22,7 @@ public class PromotorCotroller {
         this.promotorService = promotorService;
     }
 
+    //saves a Promotor
     @PostMapping(path = "/Save")
     public ResponseEntity<Optional<Promotor>> saveCompany(@RequestBody Promotor promotor) {
         URI uri=  URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -29,11 +30,13 @@ public class PromotorCotroller {
         return ResponseEntity.created(uri).body(promotorService.saveNewPromotor(promotor));
     }
 
+    //return list of Promotors
     @GetMapping()
     public List<Promotor> getPromotors(){
         return promotorService.getPromotors();
     }
 
+    //return list of the subjects of a promotor
     @GetMapping(path = "/MySubjects")
     public List<Subject> getMySubjects(HttpServletRequest request){
         return promotorService.getMySubjects(getAccesToken(request));

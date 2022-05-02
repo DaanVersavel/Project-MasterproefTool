@@ -29,8 +29,8 @@ public class StudentController {
         this.subjectService = subjectService;
     }
 
+    //saves a student
     @PostMapping(path = "/Save")
-    //werkt nog niet deftig
     public ResponseEntity<Optional<Student>> saveStudent(@RequestBody Student student){
         URI uri=  URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/Student/Save").toUriString());

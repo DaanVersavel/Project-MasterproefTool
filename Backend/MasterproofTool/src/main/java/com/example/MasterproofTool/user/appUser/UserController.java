@@ -46,6 +46,7 @@ public class UserController {
     }
 
     //save user
+    //us the more specific
     @PostMapping(value = "/users/save")
     public ResponseEntity<Appuser> saveAppuser(@RequestBody Appuser appuser){
         URI uri=  URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()

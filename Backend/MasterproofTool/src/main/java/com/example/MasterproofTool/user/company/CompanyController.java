@@ -24,6 +24,7 @@ public class CompanyController {
         this.companyService = companyService;
     }
 
+    //Saves a new company
     @PostMapping(path = "/Save")
     public ResponseEntity<Optional<Company>> saveCompany(@RequestBody Company company){
         URI uri=  URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -31,6 +32,7 @@ public class CompanyController {
         return ResponseEntity.created(uri).body(companyService.saveNewCompany(company));
     }
 
+    //gives a list of company's
     @GetMapping
     public List<Subject> getSubjects(HttpServletRequest request){
         String email=getAccesToken(request);
