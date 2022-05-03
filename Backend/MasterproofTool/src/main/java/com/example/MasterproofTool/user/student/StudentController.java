@@ -67,7 +67,6 @@ public class StudentController {
         studentService.addToStarred(id, access_token);
     }
 
-
     public String getAccesToken(HttpServletRequest request){
         String authorizationHeader = request.getHeader(AUTHORIZATION);
         return authorizationHeader.substring("Bearer ".length());
