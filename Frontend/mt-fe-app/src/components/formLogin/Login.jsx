@@ -18,7 +18,7 @@ const Login = () => {
         e.preventDefault()
         console.log(data)
 
-        axios
+        /*axios
             .get('/User/users')
             .then(response => {
                 setUsersInBackend(response.data);
@@ -27,7 +27,7 @@ const Login = () => {
                 console.log(error)
             })
 
-        if(usersInBackend.find(user => (user.email===data.email)&&(user.password===data.password))) {
+        if (usersInBackend.find(user => (user.email === data.email) && (user.password === data.password))) {
             axios
                 .get("/login")
                 .then((response) => {
@@ -39,54 +39,53 @@ const Login = () => {
                     console.log(error)
                 });
             navigate('/');
-        }
+        }*/
+        axios.post("")
     }
 
     const handleChange = e => {
-        const [id, value] = e.target.value;
+        const {id, value} = e.target;
         setData({...data, [id]: value});
     }
 
-    return(
-        <>
-            <form className={"logForm"} onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="email">
-                        Email:
-                    </label>
-                    <br/>
-                    <input
-                        className={"login-input"}
-                        placeholder={"Enter your email"}
-                        type={"email"}
-                        id={"email"}
-                        onChange={handleChange}
-                        value={data.email}
-                        required
-                    />
-                </div>
-
-                <div>
-                    <label htmlFor="pwd">
-                        Password:
-                    </label>
-                    <br/>
-                    <input
-                        className={"login-input"}
-                        placeholder={"Enter your password"}
-                        type={"password"}
-                        id={"pwd"}
-                        onChange={handleChange}
-                        value={data.password}
-                        required
-                    />
-                </div>
-
-                <Button className={"login-btn btn-block"} disabled={!(data.email || data.password)}>Log in</Button>
+    return (
+        <form className="logForm" onSubmit={handleSubmit}>
+            <div>
+                <label htmlFor="email">
+                    Email:
+                </label>
                 <br/>
-                <span>Don't have an account yet? <a href='/SignUp'>Sign up!</a></span>
-            </form>
-        </>
+                <input
+                    className={"login-input"}
+                    placeholder={"Enter your email"}
+                    type={"email"}
+                    id={"email"}
+                    required
+                    value={data.email}
+                    onChange={handleChange}
+                />
+            </div>
+
+            <div>
+                <label htmlFor="password">
+                    Password:
+                </label>
+                <br/>
+                <input
+                    className={"login-input"}
+                    placeholder={"Enter your password"}
+                    type={"password"}
+                    id={"password"}
+                    required
+                    value={data.password}
+                    onChange={handleChange}
+                />
+            </div>
+
+            <Button className={"login-btn btn-block"} disabled={!(data.email || data.password)}>Log in</Button>
+            <br/>
+            <span>Don't have an account yet? <a href='/SignUp'>Sign up!</a></span>
+        </form>
     )
 };
 

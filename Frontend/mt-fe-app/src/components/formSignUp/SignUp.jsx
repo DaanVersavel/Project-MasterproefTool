@@ -12,12 +12,6 @@ import KULBuilding from "../../KU-Leuven_branded.jpg"
 
 const SignUp = () => {
     const [success, setSuccess] = useState(false);
-    /*const optionsRole = [
-        {value: 'student', label: 'Student'},
-        {value: 'coordinator', label: 'Coordinator'},
-        {value: 'promotor', label: 'promotor'},
-        {value: 'company', label: 'Company'}
-    ]*/
 
     const [optionsRole, setOptionsRole] = useState([]);
     useEffect(() => {
@@ -25,6 +19,7 @@ const SignUp = () => {
             .get('/Role')
             .then((response)=> {
                 setOptionsRole(response.data);
+                optionsRole.forEach(convertObjects(...optionsRole))
                 console.log(response.data);
             })
             .catch(error => {
@@ -62,6 +57,17 @@ const SignUp = () => {
         setSuccess(true)
     }
 
+    const [readyRoleOptions, setReadyRoleOPtions] = useState([]);
+
+    function convertObjects(student, coordinator, promotor, company){
+        setReadyRoleOPtions([
+            {value: student, label: 'Student'},
+            {value: coordinator, label: 'Coordinator'},
+            {value: promotor, label: 'Promotor'},
+            {value: company, label: 'Company'}
+        ])
+    }
+
     const {
         handleChange, handleChangeStudent,
         handleChangeCoordinator, handleChangePromotor,
@@ -73,7 +79,7 @@ const SignUp = () => {
 
     let roleSignUp, roleSpecificSignUp;
 
-    if (values.role === 'student') {
+    if (values.role === 'ROLE_STUDENT') {
         roleSpecificSignUp = (
             <>
                 <div className='form-inputs'>
@@ -127,7 +133,7 @@ const SignUp = () => {
             </>
         )
     }
-    else if (values.role === 'coordinator') {
+    else if (values.role === 'ROLE_COÖRDINATOR') {
         roleSpecificSignUp = (
             <>
                 <div className='form-inputs'>
@@ -164,7 +170,7 @@ const SignUp = () => {
             </>
         )
     }
-    else if (values.role === 'promotor') {
+    else if (values.role === 'ROLE_PROMOTOR') {
         roleSpecificSignUp = (
             <>
                 <div className='form-inputs'>
@@ -201,7 +207,7 @@ const SignUp = () => {
             </>
         )
     }
-    else if (values.role === 'company') {
+    else if (values.role === 'ROLE_COMPANY') {
         roleSpecificSignUp = (
             <>
                 <div className='form-inputs'>
@@ -382,7 +388,7 @@ const SignUp = () => {
                                     placeholder={"Select what role you want to represent"}
                                     id={"role"}
                                     required
-                                    options={optionsRole}
+                                    options={readyRoleOptions}
                                     value={values.role}
                                     onChange={handleChange}
                                 />
