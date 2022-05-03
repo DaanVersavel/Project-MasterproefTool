@@ -2,6 +2,7 @@ package com.example.MasterproofTool.user.coördinator;
 
 import com.example.MasterproofTool.user.appUser.Appuser;
 import com.example.MasterproofTool.user.campus.Campus;
+import com.example.MasterproofTool.user.disciplines.Discipline;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,23 +13,25 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class Coördinator extends Appuser {
-    private String discipline;
+    @ManyToOne()
+    @JoinColumn(name="discipline_id")
+    private Discipline discipline;
     @ManyToOne
     @JoinColumn(name="campus_id")
     private Campus campus;
 
-    public Coördinator(String firstName, String surname, Long keyId, String gsm, String email, String discipline, Campus campus) {
+    public Coördinator(String firstName, String surname, Long keyId, String gsm, String email, Discipline discipline, Campus campus) {
         super(firstName, surname, keyId, gsm, email);
         this.discipline = discipline;
         this.campus = campus;
     }
 
-    public Coördinator(String firstName, String surname, String gsm, String email, String discipline, Campus campus) {
+    public Coördinator(String firstName, String surname, String gsm, String email, Discipline discipline, Campus campus) {
         super(firstName, surname, gsm, email);
         this.discipline = discipline;
         this.campus = campus;
     }
-    public Coördinator(String firstName, String surname, String gsm, String email, String discipline,String password) {
+    public Coördinator(String firstName, String surname, String gsm, String email, Discipline discipline,String password) {
         super(firstName, surname, gsm, email,password);
         this.discipline = discipline;
 

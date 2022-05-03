@@ -4,6 +4,7 @@ package com.example.MasterproofTool.user.student;
 import com.example.MasterproofTool.subject.Subject;
 import com.example.MasterproofTool.user.appUser.Appuser;
 import com.example.MasterproofTool.user.campus.Campus;
+import com.example.MasterproofTool.user.disciplines.Discipline;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,7 +29,10 @@ public class Student extends Appuser {
     @ManyToOne
     @JoinColumn(name = "third_choice_id")
     private Subject thirdChoice;
-    private String discipline;
+    @ManyToOne()
+    @JoinColumn(name="discipline_id")
+    private Discipline discipline;
+
     @ManyToOne
     @JoinColumn(name="campus_id")
     private Campus campus;
@@ -42,7 +46,7 @@ public class Student extends Appuser {
     Set<Subject> starredSubjects = new HashSet<>();
 
 
-    public Student(String firstName, String surname, Long keyId, String gsm, String email, String studentNumber, Subject firstChoice, Subject secondChoice, Subject thirdChoice, String discipline, Subject assignedSubject, Subject boostedSubject) {
+    public Student(String firstName, String surname, Long keyId, String gsm, String email, String studentNumber, Subject firstChoice, Subject secondChoice, Subject thirdChoice, Discipline discipline, Subject assignedSubject, Subject boostedSubject) {
         super(firstName, surname, keyId, gsm, email);
         this.studentNumber = studentNumber;
         this.firstChoice = firstChoice;
@@ -61,7 +65,7 @@ public class Student extends Appuser {
         this.studentNumber = studentNumber;
     }
 
-    public Student(String firstName, String surname, String gsm, String email, String studentNumber, Subject firstChoice, Subject secondChoice, Subject thirdChoice, String discipline, Subject assignedSubject, Subject boostedSubject) {
+    public Student(String firstName, String surname, String gsm, String email, String studentNumber, Subject firstChoice, Subject secondChoice, Subject thirdChoice, Discipline discipline, Subject assignedSubject, Subject boostedSubject) {
         super(firstName, surname, gsm, email);
         this.studentNumber = studentNumber;
         this.firstChoice = firstChoice;
