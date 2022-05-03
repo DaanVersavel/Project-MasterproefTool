@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Route, Routes, BrowserRouter as Router} from 'react-router-dom';
-import axios from "./api/axiosAfterLogin";
-
 import BNavbar from "./components/navbar/BNavbar"
 
 import Home from "./pages/home/Home";
@@ -15,17 +13,6 @@ import AddSubjects from "./pages/subjects/AddSubjects"
 export default function App () {
     const [user, setUser] = useState("");
 
-    /*if(localStorage.getItem('token')){
-        useEffect(() => {
-            axios.get("/User/users").then(response => {
-                    configureUser(response.data)
-                },
-                err => {
-                    console.log(err)
-                })
-        }, []);
-    }*/
-
     function configureUser(userdata) {
         setUser(userdata)
     }
@@ -35,7 +22,7 @@ export default function App () {
             <BNavbar user={user} setUser={configureUser}/>
             <div className={"App"}>
                 <Routes>
-                    <Route path = '/' element = {<Home user={user} setUser={configureUser}/>} />
+                    <Route path = '/Home' element = {<Home user={user} setUser={configureUser}/>} />
                     <Route path = '/SignUp' element = {<Register/>} />
                     <Route path = '/Subjects' element = {<ListSubjects/>} />
                     <Route path = '/Subjects/Post' element = {<AddSubjects/>} />

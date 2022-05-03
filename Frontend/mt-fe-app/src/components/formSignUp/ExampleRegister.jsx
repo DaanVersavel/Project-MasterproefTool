@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import axios from "../../api/axiosAfterLogin";
+import axios from "../../api/axiosAccessToken";
 import './SignUp.css';
 
 // Moet starten met upper of lowercase, gevolgd door 3-23 letters/getallen/koppeltekens/underscores

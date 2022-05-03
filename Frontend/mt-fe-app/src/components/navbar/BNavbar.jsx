@@ -9,7 +9,7 @@ const BNavbar = ({user, setUser}) => {
     const handleLogout = () => {
         localStorage.clear()
         setUser(null)
-        navigate('/');
+        navigate('/Home');
     }
 
     let buttons;
@@ -27,7 +27,7 @@ const BNavbar = ({user, setUser}) => {
                     </NavDropdown>
                 </Nav>
                 <Nav>
-                    <Nav.Link href="/" onClick={handleLogout}>Log out</Nav.Link>
+                    <Nav.Link href="Home/" onClick={handleLogout}>Log out</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         )
@@ -45,7 +45,7 @@ const BNavbar = ({user, setUser}) => {
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
             <Container>
-                <Navbar.Brand href="/">
+                <Navbar.Brand href="/Home">
                     <img
                         src={KULogo}
                         width="150"
