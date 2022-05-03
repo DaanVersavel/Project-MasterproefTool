@@ -15,14 +15,16 @@ import AddSubjects from "./pages/subjects/AddSubjects"
 export default function App () {
     const [user, setUser] = useState("");
 
-    /*useEffect(() => {
-        axios.get("/User/users").then(response => {
-                configureUser(response.data)
-            },
-            err => {
-                console.log(err)
-            })
-    }, []);*/
+    /*if(localStorage.getItem('token')){
+        useEffect(() => {
+            axios.get("/User/users").then(response => {
+                    configureUser(response.data)
+                },
+                err => {
+                    console.log(err)
+                })
+        }, []);
+    }*/
 
     function configureUser(userdata) {
         setUser(userdata)
