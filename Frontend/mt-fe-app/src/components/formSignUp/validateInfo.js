@@ -1,11 +1,39 @@
-export default function validateInfo(values) {
+export default function validateInfo(values, studentValues, coordinatorValues, promoterValues, companyValues) {
     let errors = {};
 
-    if (!values.firstName.trim()) {
+    if (!values.role) {
+        errors.role = 'Role required';
+    }
+
+    if (!studentValues.studentNumber) {
+        errors.studentNumber = 'Role required';
+    }
+
+    if ((!studentValues.campus && values.role==='student')
+        || (!coordinatorValues.campus && values.role==='coordinator')
+        || (!promoterValues.campus && values.role==='promoter')) {
+        errors.campus = 'Campus required';
+    }
+
+    if ((!studentValues.campus && values.role==='student')
+        || (!coordinatorValues.campus && values.role==='coordinator')
+        || (!promoterValues.campus && values.role==='promoter')) {
+        errors.disciplineS = 'Discipline required';
+    }
+
+    if (!companyValues.companyName) {
+        errors.companyName = 'Company name required';
+    }
+
+    if (!companyValues.vat) {
+        errors.vat = 'VAT number required';
+    }
+
+    if (!values.firstName) {
         errors.firstName = 'First name required';
     }
 
-    if (!values.lastName.trim()) {
+    if (!values.lastName) {
         errors.lastName = 'Last name required';
     }
 

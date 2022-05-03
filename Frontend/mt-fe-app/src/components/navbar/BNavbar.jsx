@@ -1,11 +1,15 @@
 import React from 'react';
 import {Container, Nav, Navbar, NavDropdown} from 'react-bootstrap'
 import KULogo from '../../KU_Leuven_logo.svg'
+import {useNavigate} from "react-router-dom";
 
 const BNavbar = ({user, setUser}) => {
+    const navigate = useNavigate();
+
     const handleLogout = () => {
         localStorage.clear()
         setUser(null)
+        navigate('/');
     }
 
     let buttons;

@@ -3,6 +3,8 @@ import Login from "../../components/formLogin/Login"
 import "./Home.css"
 
 export default function Home({user, setUser}){
+
+
     if(user) {
         return (
             <div className={"login-container"}>
