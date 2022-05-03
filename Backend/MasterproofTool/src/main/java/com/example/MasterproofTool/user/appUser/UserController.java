@@ -7,6 +7,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.MasterproofTool.user.role.Role;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -104,6 +105,11 @@ public class UserController {
         } else {
             throw new RuntimeException("Refresh token is missing");
         }
+    }
+
+    @DeleteMapping(path ="/delete/{id}")
+    public void deleteUser(@PathVariable("id") long id){
+        userService.deleteUser(id);
     }
 }
 
