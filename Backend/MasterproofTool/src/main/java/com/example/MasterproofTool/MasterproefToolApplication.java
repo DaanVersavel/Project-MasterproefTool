@@ -8,8 +8,12 @@ import com.example.MasterproofTool.user.campus.Campus;
 import com.example.MasterproofTool.user.campus.CampusRepository;
 import com.example.MasterproofTool.user.company.Company;
 import com.example.MasterproofTool.user.company.CompanyService;
+import com.example.MasterproofTool.user.coördinator.Coördinator;
+import com.example.MasterproofTool.user.coördinator.CoördinatorRepository;
 import com.example.MasterproofTool.user.disciplines.Discipline;
 import com.example.MasterproofTool.user.disciplines.DisciplineRepository;
+import com.example.MasterproofTool.user.promotor.Promotor;
+import com.example.MasterproofTool.user.promotor.PromotorRepository;
 import com.example.MasterproofTool.user.role.Role;
 import com.example.MasterproofTool.user.student.Student;
 import com.example.MasterproofTool.user.student.StudentService;
@@ -137,6 +141,22 @@ public class MasterproefToolApplication {
 
 			disciplineRepository.saveAll(List.of(dis1, dis2, dis3, dis4, dis5, dis6, dis7, dis8));
 			campusRepository.saveAll(List.of(campus1,campus2, campus3, campus4, campus5, campus6, campus7, campus8, campus9, campus10, campus11, campus12, campus13));
+		};
+	}
+
+	@Bean
+	CommandLineRunner run3(CoördinatorRepository coordinatorRepository, DisciplineRepository disciplineRepository,
+						   CampusRepository campusRepository, PromotorRepository promotorRepository){
+
+		return args -> {
+
+			Discipline elict= disciplineRepository.findByNaam("Master in de industriële wetenschappen: elektronica-ICT");
+			Campus gent= campusRepository.findByName("Technologiecampus Gent");
+			coordinatorRepository.save(new Coördinator( "Dirk", "Allo", "0484135424", "dirk@gmail.com", elict,  gent,"dirk123"));
+			promotorRepository.save( new Promotor("James", "Cooke", "4054654","james@gmail.com", gent, elict,"james123"));
+
+
+
 		};
 	}
 

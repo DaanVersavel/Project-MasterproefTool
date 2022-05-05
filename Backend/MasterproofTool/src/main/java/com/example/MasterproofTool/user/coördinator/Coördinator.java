@@ -36,6 +36,11 @@ public class Coördinator extends Appuser {
         this.discipline = discipline;
 
     }
+    public Coördinator(String firstName, String surname, String gsm, String email, Discipline discipline, Campus campus,String password) {
+        super(firstName, surname, gsm, email,password);
+        this.discipline = discipline;
+
+    }
 
     public Coördinator() {
     }
