@@ -14,6 +14,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
@@ -30,6 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService).passwordEncoder(BCryptPasswordEncoder);
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors();
@@ -41,6 +43,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/").permitAll();
         http.authorizeRequests().antMatchers("/**").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers("/**").permitAll();
+        http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/logout.done").deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true);
         //http.authorizeRequests().antMatchers(GET,"/login").permitAll();
         //http.authorizeRequests().antMatchers(POST,"/login").permitAll();
         http.authorizeRequests().antMatchers("/login/**","/User/token/refresh/**").permitAll();
