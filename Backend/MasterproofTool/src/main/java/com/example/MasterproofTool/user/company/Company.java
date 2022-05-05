@@ -12,38 +12,38 @@ import javax.persistence.*;
 @Getter
 
 public class Company extends Appuser {
-    private String name;
+    private String companyName;
     private double longitude;
     private double latitude;
     private String btwnummer;
 
     public Company(){}
 
-    public Company(String firstName, String surname, Long keyId, String gsm, String email, String name, double longitude, double latitude, String btwnummer) {
+    public Company(String firstName, String surname, Long keyId, String gsm, String email, String companyName, double longitude, double latitude, String btwnummer) {
         super(firstName, surname, keyId, gsm, email);
-        this.name = name;
+        this.companyName = companyName;
         this.longitude = longitude;
         this.latitude = latitude;
         this.btwnummer = btwnummer;
     }
 
-    public Company(String firstName, String surname, String gsm, String email, String name, double longitude, double latitude, String btwnummer) {
+    public Company(String firstName, String surname, String gsm, String email, String companyName, double longitude, double latitude, String btwnummer) {
         super(firstName, surname, gsm, email);
-        this.name = name;
+        this.companyName = companyName;
         this.longitude = longitude;
         this.latitude = latitude;
         this.btwnummer = btwnummer;
     }
-    public Company(String firstName, String surname, String gsm, String email, String name, double longitude, double latitude, String btwnummer,String password) {
+    public Company(String firstName, String surname, String gsm, String email, String companyName, double longitude, double latitude, String btwnummer,String password) {
         super(firstName, surname, gsm, email,password);
-        this.name = name;
+        this.companyName = companyName;
         this.longitude = longitude;
         this.latitude = latitude;
         this.btwnummer = btwnummer;
     }
-    public Company(String firstName, String surname, String gsm, String email, String name, String btwnummer, String password) {
+    public Company(String firstName, String surname, String gsm, String email, String companyName, String btwnummer, String password) {
         super(firstName, surname, gsm, email, password);
-        this.name = name;
+        this.companyName = companyName;
         this.btwnummer = btwnummer;
     }
 
@@ -52,7 +52,7 @@ public class Company extends Appuser {
     @Override
     public String toString() {
         return "Company{" +
-                ", name='" + name + '\'' +
+                ", name='" + companyName + '\'' +
                 ", longitude=" + longitude +
                 ", latitude=" + latitude +
                 ", btwnummer=" + btwnummer +

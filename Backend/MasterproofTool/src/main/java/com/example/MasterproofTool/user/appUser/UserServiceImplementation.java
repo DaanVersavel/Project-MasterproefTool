@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Component
@@ -71,5 +73,14 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
         return userRepository.findAll();
     }
 
-
+    @Override
+    public void deleteUser(long id) {
+        Optional<Appuser> appuserOptional=userRepository.findById(id);
+        //if present delete user
+        if(appuserOptional.isPresent()){
+            userRepository.delete(appuserOptional.get());
+        }else{
+            throw  new IllegalStateException("User does not exist");
+        }
+    }
 }
