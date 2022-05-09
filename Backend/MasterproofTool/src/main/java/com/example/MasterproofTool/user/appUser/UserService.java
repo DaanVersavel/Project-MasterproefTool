@@ -16,4 +16,6 @@ public interface UserService {
     List<Appuser>getAppusers();
 
     void deleteUser(long id);
+
+    Appuser getAppuserAccessToken(String access_token);
 }

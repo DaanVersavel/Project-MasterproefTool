@@ -111,6 +111,18 @@ public class UserController {
     public void deleteUser(@PathVariable("id") long id){
         userService.deleteUser(id);
     }
+
+    @GetMapping(path="/whoami")
+    public Appuser getAppuser(HttpServletRequest request){
+        String access_token =getAccesToken(request);
+        return userService.getAppuserAccessToken(access_token);
+    }
+
+
+    public String getAccesToken(HttpServletRequest request){
+        String authorizationHeader = request.getHeader(AUTHORIZATION);
+        return authorizationHeader.substring("Bearer ".length());
+    }
 }
 
 @Data
