@@ -20,11 +20,15 @@ public class SubjectConfig {
 
             Company company= companyRepository.findExistingCompanyByEmail("filip@gmail.com");
             Subject onderwerp1= new Subject("Automated hacking", "Detecting vulnerabilities in IoT devices",  "opmerking",1);
-            Subject onderwerp4= new Subject("hacking", "Detecting vulnerabilities in IoT devices",  "opmerking",1,company);
-            Subject onderwerp2= new Subject("Language Identification", " Word-level language identification for annotating street and place names",  "opmerking",1);
-            Subject onderwerp3= new Subject("Cybersecurity", "a world in danger by cyberattacks",true,   "opmerking",1);
-            Coördinator coordinator1=new Coördinator("Annemie","Vorstermans");
-            repository.saveAll(List.of(onderwerp1,onderwerp2,onderwerp3,onderwerp4));
+            Subject onderwerp2= new Subject("hacking", "Detecting vulnerabilities in IoT devices",  "opmerking",1,company);
+            Subject onderwerp3= new Subject("Language Identification", " Word-level language identification for annotating street and place names",  "opmerking",1);
+            Subject onderwerp4= new Subject("Cybersecurity", "a world in danger by cyberattacks",true,   "opmerking",1);
+            Subject onderwerp5= new Subject("Acro Planning", "Planning gymnastic competiton",true,   "opmerking",1);
+            Subject onderwerp6= new Subject("Hacking tool ", "Tool for hacking",true,   "opmerking",1);
+            Subject onderwerp7= new Subject("nvidia GPU", "light calculation in nvidia GPU",true,   "opmerking",1);
+
+//            Coördinator coordinator1=new Coördinator("Annemie","Vorstermans");
+            repository.saveAll(List.of(onderwerp1,onderwerp2,onderwerp3,onderwerp4,onderwerp5, onderwerp6,onderwerp7));
         };
     }
 }
