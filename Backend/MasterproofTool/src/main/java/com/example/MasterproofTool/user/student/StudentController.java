@@ -67,6 +67,12 @@ public class StudentController {
         studentService.addToStarred(id, access_token);
     }
 
+    @PutMapping(path = "/StarredRemove/{id}")
+    public void removeFromStarred(@PathVariable("id") long id,HttpServletRequest request){
+        String access_token =getAccesToken(request);
+        studentService.removeFromStarred(id, access_token);
+    }
+
     public String getAccesToken(HttpServletRequest request){
         String authorizationHeader = request.getHeader(AUTHORIZATION);
         return authorizationHeader.substring("Bearer ".length());

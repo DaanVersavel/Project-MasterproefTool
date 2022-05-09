@@ -49,14 +49,14 @@ public class StudentService {
 
     public void setFirstChoice(long subjectid, String access_token) {
         //looking for student and set first choice
-        Student student=getStudentHeader(access_token);
+        Student student=getStudent(access_token);
         Subject subject=subjectRepository.findSubjectById(subjectid);
         student.setFirstChoice(subject);
         studentRepository.save(student);
     }
 
     public Subject getFirstChoice(String access_token) {
-        Student s=getStudentHeader(access_token);
+        Student s=getStudent(access_token);
         return s.getFirstChoice();
     }
 
@@ -72,7 +72,6 @@ public class StudentService {
             encodePassword(student);
             studentRepository.save(student);
             addRoleToStudent(student.getEmail(), MasterproefToolApplication.ROLE_STUDENT);
-
         }
         return studentRepository.findStudentByEmail(student.getEmail());
     }
@@ -84,22 +83,31 @@ public class StudentService {
     }
 
     public Set<Subject> getStarred(String access_token) {
-        Student student=getStudentHeader(access_token);
+        Student student=getStudent(access_token);
         return student.getStarredSubjects();
     }
 
     public void addToStarred(long id, String access_token) {
-        Student student = getStudentHeader(access_token);
+        Student student = getStudent(access_token);
         Subject subject = subjectRepository.findSubjectById(id);
         student.getStarredSubjects().add(subject);
         studentRepository.save(student);
     }
 
-    public Student getStudentHeader(String access_token) {
+    public Student getStudent(String access_token) {
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
         JWTVerifier verifier = JWT.require(algorithm).build();
         DecodedJWT decodedJWT = verifier.verify(access_token);
         String email = decodedJWT.getSubject();
         return studentRepository.findExistingStudentByEmail(email);
+    }
+
+    public void removeFromStarred(long subjectid, String access_token) {
+        Student student = getStudent(access_token);
+        Subject subject = subjectRepository.findSubjectById(subjectid);
+        if(!student.removeSubjectFromStarred(subject)){
+            throw  new IllegalStateException("Subject not present");
+        }
+
     }
 }

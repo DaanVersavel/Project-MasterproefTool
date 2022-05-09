@@ -92,4 +92,8 @@ public class Student extends Appuser {
                 ", boostedSubject=" + boostedSubject +
                 '}';
     }
+
+    public boolean removeSubjectFromStarred(Subject s) {
+        return starredSubjects.remove(s);
+    }
 }
