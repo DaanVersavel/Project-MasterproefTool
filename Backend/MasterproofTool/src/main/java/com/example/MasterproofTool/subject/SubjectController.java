@@ -43,7 +43,13 @@ public class SubjectController {
     public ResponseEntity<Subject> updateSubjectReviewDeniedTrue(@PathVariable long id){
         return ResponseEntity.ok(subjectService.updateSubjectReviewDeniedTrue(id));
     }
-  
+
+    //method to get specific subject
+    @GetMapping(path="/{id}")
+    public Subject getSpecificSubject(@PathVariable long id){
+        return subjectService.getSpecificSubject(id);
+    }
+
     //TODO doesn't work yet
     //get method for getting your specific subjects
     @GetMapping(path = "/MySubjects")

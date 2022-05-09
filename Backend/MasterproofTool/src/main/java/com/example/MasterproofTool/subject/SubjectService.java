@@ -45,4 +45,8 @@ public class SubjectService {
         subject.setDeniedTrue();
         return subjectRepository.save(subject);
     }
+
+    public Subject getSpecificSubject(long id) {
+        return subjectRepository.findSubjectById(id);
+    }
 }
