@@ -55,7 +55,8 @@ public class CompanyService {
     public void addRoleToCompany(String email, String rolename){
         Company user = companyRepository.findExistingCompanyByEmail(email);
         Role role = roleRepository.findByRoleName(rolename);
-        user.getRoles().add(role);
+        user.setRole(role);
+        companyRepository.save(user);
     }
 
     public List<Subject> getSubjects(String access_token) {
@@ -65,10 +66,14 @@ public class CompanyService {
     }
 
     public Optional<Company> getCompanyHeader(String access_token) {
-        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+        Algorithm algorithm = Algorithm.HMAC256("secretthatnobodycanacces".getBytes());
         JWTVerifier verifier = JWT.require(algorithm).build();
         DecodedJWT decodedJWT = verifier.verify(access_token);
         String email = decodedJWT.getSubject();
         return companyRepository.findCompanyByEmail(email);
+    }
+
+    public List<Company> getAllCompanys() {
+        return companyRepository.findAll();
     }
 }

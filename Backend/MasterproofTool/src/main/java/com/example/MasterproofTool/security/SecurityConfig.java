@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import static com.example.MasterproofTool.MasterproefToolApplication.*;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 
@@ -41,18 +42,70 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/").permitAll();
-        http.authorizeRequests().antMatchers("/**").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers("/**").permitAll();
+//        http.authorizeRequests().antMatchers("/**").hasAnyAuthority("ROLE_ADMIN");
+//        http.authorizeRequests().antMatchers("/**").permitAll();
+        //Subjects Contoller
+        http.authorizeRequests().antMatchers("/Subjects/Review/Approved/{id}").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
+        http.authorizeRequests().antMatchers("/Subjects/Review/Denied/{id}").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
+
+        http.authorizeRequests().antMatchers("/Subjects/Denied").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
+        http.authorizeRequests().antMatchers("/Subjects/Review").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
+
+
+        http.authorizeRequests().antMatchers("/Subjects/{id}").hasAnyAuthority(ROLE_ADMIN,ROLE_STUDENT,ROLE_PROMOTOR,ROLE_COÖRDINATOR,ROLE_COMPANY);
+        http.authorizeRequests().antMatchers("/Subjects/Post").hasAnyAuthority(ROLE_ADMIN,ROLE_STUDENT,ROLE_PROMOTOR,ROLE_COÖRDINATOR,ROLE_COMPANY);
+
+        http.authorizeRequests().antMatchers("/Subjects").hasAnyAuthority(ROLE_ADMIN,ROLE_STUDENT,ROLE_PROMOTOR,ROLE_COÖRDINATOR);
+
+
+        //User Controller
+        http.authorizeRequests().antMatchers("/User/users/save").hasAnyAuthority(ROLE_ADMIN,ROLE_PROMOTOR,ROLE_COÖRDINATOR);
+        http.authorizeRequests().antMatchers("/User/users").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
+        http.authorizeRequests().antMatchers("/User/role/addtouser").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
+        http.authorizeRequests().antMatchers("/User/role/save").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
+//      http.authorizeRequests().antMatchers("/User/users").hasAnyAuthority(ROLE_ADMIN,ROLE_PROMOTOR,ROLE_COÖRDINATOR);
+//      http.authorizeRequests().antMatchers("/User/token/refresh").hasAnyAuthority(ROLE_ADMIN,ROLE_STUDENT,ROLE_PROMOTOR,ROLE_COÖRDINATOR);
+        http.authorizeRequests().antMatchers("/User/delete/{id}").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
+        http.authorizeRequests().antMatchers("/User/whoami").hasAnyAuthority(ROLE_ADMIN,ROLE_STUDENT,ROLE_PROMOTOR,ROLE_COÖRDINATOR,ROLE_COMPANY);
+
+        //Campus controller
+//        http.authorizeRequests().antMatchers("/Campus").hasAnyAuthority();
+        //CompanyController
+        http.authorizeRequests().antMatchers("/Company/list").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
+        http.authorizeRequests().antMatchers("/Company").hasAnyAuthority(ROLE_COMPANY);
+
+        //Discipline
+        http.authorizeRequests().antMatchers("/Discipline").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
+
+        //Promotor
+        http.authorizeRequests().antMatchers("/Promotor/MySubjects").hasAnyAuthority(ROLE_PROMOTOR);
+
+
+        //Student
+        http.authorizeRequests().antMatchers("/Student/Starred/firstChoise/{id}").hasAnyAuthority(ROLE_STUDENT);
+        http.authorizeRequests().antMatchers("/Student/Starred/SecondChoise/{id}").hasAnyAuthority(ROLE_STUDENT);
+        http.authorizeRequests().antMatchers("/Student/Starred/ThirdChoise/{id}").hasAnyAuthority(ROLE_STUDENT);
+
+        http.authorizeRequests().antMatchers("/Student/GetFirstChoise").hasAnyAuthority(ROLE_STUDENT);
+        http.authorizeRequests().antMatchers("/Student/GetSecondChoice").hasAnyAuthority(ROLE_STUDENT);
+        http.authorizeRequests().antMatchers("/Student/GetThirdChoice").hasAnyAuthority(ROLE_STUDENT);
+
+        http.authorizeRequests().antMatchers("/Student/Starred").hasAnyAuthority(ROLE_STUDENT);
+        http.authorizeRequests().antMatchers("/Student/StarredSave/{id}").hasAnyAuthority(ROLE_STUDENT);
+        http.authorizeRequests().antMatchers("/Student/StarredRemove/{id}").hasAnyAuthority(ROLE_STUDENT);
+
+
+
         http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/logout.done").deleteCookies("JSESSIONID")
+                .deleteCookies("JSESSIONID")
                 .invalidateHttpSession(true);
         //http.authorizeRequests().antMatchers(GET,"/login").permitAll();
         //http.authorizeRequests().antMatchers(POST,"/login").permitAll();
-        http.authorizeRequests().antMatchers("/login/**","/User/token/refresh/**").permitAll();
-        http.authorizeRequests().antMatchers(GET,"/Subjects").hasAnyAuthority("ROLE_STUDENT");
-        http.authorizeRequests().antMatchers("/User/**").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(GET,"/Subjects/Review").permitAll();
-        http.authorizeRequests().antMatchers(POST,"/Subjects/Post").hasAnyAuthority("ROLE_STUDENT");
+//        http.authorizeRequests().antMatchers("/login/**","/User/token/refresh/**").permitAll();
+//        http.authorizeRequests().antMatchers(GET,"/Subjects").hasAnyAuthority("ROLE_STUDENT");
+//        http.authorizeRequests().antMatchers("/User/**").hasAnyAuthority("ROLE_ADMIN");
+//        http.authorizeRequests().antMatchers(GET,"/Subjects/Review").permitAll();
+//        http.authorizeRequests().antMatchers(POST,"/Subjects/Post").hasAnyAuthority("ROLE_STUDENT");
         http.authorizeRequests().anyRequest().authenticated();
 
         http.authorizeRequests().and().formLogin().loginPage("/login")/*.defaultSuccessUrl("/Subject/",true)*/;

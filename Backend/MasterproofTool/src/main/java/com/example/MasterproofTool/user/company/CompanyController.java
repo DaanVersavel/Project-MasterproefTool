@@ -32,13 +32,18 @@ public class CompanyController {
         return ResponseEntity.created(uri).body(companyService.saveNewCompany(company));
     }
 
-    //gives a list of company's
+    //gives a list of Subjects for a company's
     @GetMapping
     public List<Subject> getSubjects(HttpServletRequest request){
         String email=getAccesToken(request);
         return companyService.getSubjects(email);
     }
 
+    //list of Company's
+    @GetMapping(path ="/List")
+    public List<Company> getSubjectsList(){
+        return companyService.getAllCompanys();
+    }
 
     public String getAccesToken(HttpServletRequest request){
         String authorizationHeader = request.getHeader(AUTHORIZATION);

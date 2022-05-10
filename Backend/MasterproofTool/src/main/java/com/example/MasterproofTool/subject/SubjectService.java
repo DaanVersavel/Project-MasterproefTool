@@ -49,4 +49,8 @@ public class SubjectService {
     public Subject getSpecificSubject(long id) {
         return subjectRepository.findSubjectById(id);
     }
+
+    public List<Subject> getSubjectsDenied() {
+        return subjectRepository.findSubjectByApprovedFalseAndDeniedTrue();
+    }
 }

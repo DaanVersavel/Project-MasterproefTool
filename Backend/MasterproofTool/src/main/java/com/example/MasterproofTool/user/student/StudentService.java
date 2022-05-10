@@ -33,39 +33,45 @@ public class StudentService {
         this.roleRepository = roleRepository;
     }
 
-    public Student saveStudent(Student student){
+    public Student saveStudent(Student student) {
         encodePassword(student);
         return studentRepository.save(student);
     }
 
-    public void encodePassword(Student student){
+    public void encodePassword(Student student) {
         student.setPassword(passwordEncoder.encode(student.getPassword()));
     }
 
     public Set<Subject> getStudentStarred(long keyId) {
-        Student s=studentRepository.findByKeyId(keyId);
+        Student s = studentRepository.findByKeyId(keyId);
         return s.getStarredSubjects();
     }
 
     public void setFirstChoice(long subjectid, String access_token) {
         //looking for student and set first choice
-        Student student=getStudent(access_token);
-        Subject subject=subjectRepository.findSubjectById(subjectid);
-        student.setFirstChoice(subject);
-        studentRepository.save(student);
+        Student student = getStudent(access_token);
+        Subject subject = subjectRepository.findSubjectById(subjectid);
+        if(student.getThirdChoice()!=subject&&student.getSecondChoice()!=subject){
+            // if subject in not yet assigned
+            student.setFirstChoice(subject);
+            studentRepository.save(student);
+        }
+        else{
+            throw new IllegalArgumentException("Subject already assigned");
+        }
     }
 
     public Subject getFirstChoice(String access_token) {
-        Student s=getStudent(access_token);
+        Student s = getStudent(access_token);
         return s.getFirstChoice();
     }
 
-    public Optional<Student>  saveNewStudent(Student student) {
+    public Optional<Student> saveNewStudent(Student student) {
         //check if student already exist
         Optional<Student> studentByOptional =
                 studentRepository.findStudentByEmail(student.getEmail());
-        if(studentByOptional.isPresent()){
-            throw  new IllegalStateException("Email already taken");
+        if (studentByOptional.isPresent()) {
+            throw new IllegalStateException("Email already taken");
         }
         //if student doesn't exist
         else {
@@ -76,14 +82,15 @@ public class StudentService {
         return studentRepository.findStudentByEmail(student.getEmail());
     }
 
-    public void addRoleToStudent(String email, String rolename){
+    public void addRoleToStudent(String email, String rolename) {
         Student user = studentRepository.findExistingStudentByEmail(email);
         Role role = roleRepository.findByRoleName(rolename);
-        user.getRoles().add(role);
+        user.setRole(role);
+        studentRepository.save(user);
     }
 
     public Set<Subject> getStarred(String access_token) {
-        Student student=getStudent(access_token);
+        Student student = getStudent(access_token);
         return student.getStarredSubjects();
     }
 
@@ -95,7 +102,7 @@ public class StudentService {
     }
 
     public Student getStudent(String access_token) {
-        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+        Algorithm algorithm = Algorithm.HMAC256("secretthatnobodycanacces".getBytes());
         JWTVerifier verifier = JWT.require(algorithm).build();
         DecodedJWT decodedJWT = verifier.verify(access_token);
         String email = decodedJWT.getSubject();
@@ -105,8 +112,55 @@ public class StudentService {
     public void removeFromStarred(long subjectid, String access_token) {
         Student student = getStudent(access_token);
         Subject subject = subjectRepository.findSubjectById(subjectid);
-        if(!student.removeSubjectFromStarred(subject)){
-            throw  new IllegalStateException("Subject not present");
+        if (student.getStarredSubjects().contains(subject)) {
+            student.removeSubjectFromStarred(subject);
+            studentRepository.save(student);
+        }else {
+            throw new IllegalStateException("Subject not present");
+        }
+
+
+    }
+
+    public Subject getSecondChoice(String access_token) {
+        Student s = getStudent(access_token);
+        return s.getSecondChoice();
+    }
+
+    public Subject getThirdChoice(String access_token) {
+        Student s = getStudent(access_token);
+        if(s.getThirdChoice()==null){
+            throw new IllegalStateException("No third choise added");
+        } else {
+            return s.getThirdChoice();
+        }
+    }
+
+    public void setThirdChoice(long subjectid, String access_token) {
+        //looking for student and set first choice
+        Student student = getStudent(access_token);
+        Subject subject = subjectRepository.findSubjectById(subjectid);
+        if(student.getSecondChoice()!=subject&&student.getFirstChoice()!=subject){
+           // if subject in not yet assigned
+            student.setThirdChoice(subject);
+            studentRepository.save(student);
+        }
+        else{
+            throw new IllegalArgumentException("Subject already assigned");
+        }
+    }
+
+    public void setSecondChoice(long subjectid, String access_token) {
+        //looking for student and set first choice
+        Student student = getStudent(access_token);
+        Subject subject = subjectRepository.findSubjectById(subjectid);
+        if(student.getThirdChoice()!=subject&&student.getFirstChoice()!=subject){
+            // if subject in not yet assigned
+            student.setSecondChoice(subject);
+            studentRepository.save(student);
+        }
+        else{
+            throw new IllegalArgumentException("Subject already assigned");
         }
 
     }

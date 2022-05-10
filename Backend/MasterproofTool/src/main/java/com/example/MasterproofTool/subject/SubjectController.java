@@ -43,6 +43,10 @@ public class SubjectController {
     public ResponseEntity<Subject> updateSubjectReviewDeniedTrue(@PathVariable long id){
         return ResponseEntity.ok(subjectService.updateSubjectReviewDeniedTrue(id));
     }
+    @GetMapping(path = "/Denied")
+    public List<Subject> getSubjectsDenied(){
+        return subjectService.getSubjectsDenied();
+    }
 
     //method to get specific subject
     @GetMapping(path="/{id}")

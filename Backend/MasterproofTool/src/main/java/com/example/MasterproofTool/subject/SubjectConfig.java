@@ -19,7 +19,7 @@ public class SubjectConfig {
             companyService.saveNewCompany(new Company("Filip", "Desmet", "0456454", "filip@gmail.com", "alfons", 545154.545,-4523.5151, "djsfhldsh ","filip123"));
 
             Company company= companyRepository.findExistingCompanyByEmail("filip@gmail.com");
-            Subject onderwerp1= new Subject("Automated hacking", "Detecting vulnerabilities in IoT devices",  "opmerking",1);
+            Subject onderwerp1= new Subject("Automated hacking", "Detecting vulnerabilities in IoT devices",false,true , "opmerking",1);
             Subject onderwerp2= new Subject("hacking", "Detecting vulnerabilities in IoT devices",  "opmerking",1,company);
             Subject onderwerp3= new Subject("Language Identification", " Word-level language identification for annotating street and place names",  "opmerking",1);
             Subject onderwerp4= new Subject("Cybersecurity", "a world in danger by cyberattacks",true,   "opmerking",1);

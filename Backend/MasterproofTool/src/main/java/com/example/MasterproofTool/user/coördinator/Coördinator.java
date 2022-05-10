@@ -38,6 +38,7 @@ public class Coördinator extends Appuser {
     }
     public Coördinator(String firstName, String surname, String gsm, String email, Discipline discipline, Campus campus,String password) {
         super(firstName, surname, gsm, email,password);
+        this.campus = campus;
         this.discipline = discipline;
 
     }
@@ -47,6 +48,10 @@ public class Coördinator extends Appuser {
 
     public Coördinator(String firstname, String surname) {
         super(firstname,surname);
+    }
+
+    public Coördinator(String firstName, String surname, String gsm, String email, String password) {
+        super(firstName,surname,gsm,email,password);
     }
 
 

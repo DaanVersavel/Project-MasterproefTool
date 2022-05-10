@@ -24,6 +24,6 @@ public class CoördinatorController {
     public ResponseEntity<Optional<Coördinator>> saveCoördinator(@RequestBody Coördinator coördinator){
         URI uri=  URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/Coordinator/Save").toUriString());
-        return ResponseEntity.created(uri).body(coordinatorService.saveNewCoördinator(coördinator));
+        return ResponseEntity.created(uri).body(coordinatorService.saveNewCoordinator(coördinator));
     }
 }

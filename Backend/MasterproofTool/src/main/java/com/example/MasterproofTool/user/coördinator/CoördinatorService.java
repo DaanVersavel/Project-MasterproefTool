@@ -21,17 +21,18 @@ public class CoördinatorService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void addRoleToStudent(String email, String rolename){
+    public void addRoleToCoordinator(String email, String rolename){
         Coördinator user = coordinatorRepository.findExistingCoordinatorByEmail(email);
         Role role = roleRepository.findByRoleName(rolename);
-        user.getRoles().add(role);
+        user.setRole(role);
+        coordinatorRepository.save(user);
     }
     public void encodePassword(Coördinator coördinator){
         coördinator.setPassword(passwordEncoder.encode(coördinator.getPassword()));
     }
 
 
-    public Optional<Coördinator>  saveNewCoördinator(Coördinator coördinator) {
+    public Optional<Coördinator>  saveNewCoordinator(Coördinator coördinator) {
         //check if coordinator already exist
         Optional<Coördinator> coordinatorByOptional =
                 coordinatorRepository.findCoordinatorByEmail(coördinator.getEmail());
@@ -42,8 +43,7 @@ public class CoördinatorService {
         else {
             encodePassword(coördinator);
             coordinatorRepository.save(coördinator);
-            addRoleToStudent(coördinator.getEmail(), MasterproefToolApplication.ROLE_COÖRDINATOR);
-
+            addRoleToCoordinator(coördinator.getEmail(), MasterproefToolApplication.ROLE_COÖRDINATOR);
         }
         return coordinatorRepository.findCoordinatorByEmail(coördinator.getEmail());
     }

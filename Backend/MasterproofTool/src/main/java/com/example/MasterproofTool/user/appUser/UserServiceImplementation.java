@@ -45,7 +45,8 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
         else {
             log.info("User found in the database: {}", email);
             Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-            appUser.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getRoleName())));
+            Role role =appUser.getRole();
+            authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
             return new org.springframework.security.core.userdetails.User(appUser.getEmail(), appUser.getPassword(), authorities);
         }
 
@@ -66,7 +67,7 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
     public void addRoleToAppuser(String email, String rolename){
         Appuser user = userRepository.findByEmail(email);
         Role role = roleRepository.findByRoleName(rolename);
-        user.getRoles().add(role);
+        user.setRole(role);
     }
 
     @Override
@@ -93,7 +94,7 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
 
     @Override
     public Appuser getAppuserAccessToken(String access_token) {
-        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+        Algorithm algorithm = Algorithm.HMAC256("secretthatnobodycanacces".getBytes());
         JWTVerifier verifier = JWT.require(algorithm).build();
         DecodedJWT decodedJWT = verifier.verify(access_token);
         String email = decodedJWT.getSubject();

@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
 
 
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -27,8 +25,9 @@ public class Appuser {
     private String gsm;
     private String email;
     private String password;
-    @ManyToMany(fetch =FetchType.EAGER)
-    private Collection<Role> roles= new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Role role;
 
     public Appuser(String firstName, String surname, Long keyId, String gsm, String email) {
         this.firstName = firstName;

@@ -39,19 +39,47 @@ public class StudentController {
 
     //method for setting the first choise
     //id of subject
-    @PutMapping(path="/Starred/firstChoise/{id}")
+    @PutMapping(path="/Starred/FirstChoise/{id}")
     public void setFirstChoiceSubject(@PathVariable("id") long id,HttpServletRequest request){
         String access_token =getAccesToken(request);
         studentService.setFirstChoice(id,access_token);
     }
+    //method for setting the second choise
+    //id of subject
+    @PutMapping(path="/Starred/SecondChoise/{id}")
+    public void setSecondChoiceSubject(@PathVariable("id") long id,HttpServletRequest request){
+        String access_token =getAccesToken(request);
+        studentService.setSecondChoice(id,access_token);
+    }
+    //method for setting the third choise
+    //id of subject
+    @PutMapping(path="/Starred/ThirdChoise/{id}")
+    public void setThirdChoiceSubject(@PathVariable("id") long id,HttpServletRequest request){
+        String access_token =getAccesToken(request);
+        studentService.setThirdChoice(id,access_token);
+    }
 
     //get method for first choise  uses authorization header
-    @GetMapping(path="/GetFirstChoise/")
+    @GetMapping(path="/GetFirstChoise")
     public Subject getFirstChoiceSubject(HttpServletRequest request){
         String access_token =getAccesToken(request);
         return studentService.getFirstChoice(access_token);
     }
 
+    //get method for second choise  uses authorization header
+
+    @GetMapping(path="/GetSecondChoice")
+    public Subject getSecondChoiceSubject(HttpServletRequest request){
+        String access_token =getAccesToken(request);
+        return studentService.getSecondChoice(access_token);
+    }
+
+    //get method for third choise  uses authorization header
+    @GetMapping(path="/GetThirdChoice")
+    public Subject getThirdChoiceSubject(HttpServletRequest request){
+        String access_token =getAccesToken(request);
+        return studentService.getThirdChoice(access_token);
+    }
     //return list of starred subject uses authorization header
     @GetMapping(path="/Starred")
     public Set<Subject> getMySubjects(HttpServletRequest request) {
@@ -61,7 +89,7 @@ public class StudentController {
 
     //Save a new subject to starred list of student
     //id= id of subject
-    @PostMapping(path = "/StarredSave/{id}")
+    @PutMapping(path = "/StarredSave/{id}")
     public void addToStarred(@PathVariable("id") long id,HttpServletRequest request){
         String access_token =getAccesToken(request);
         studentService.addToStarred(id, access_token);

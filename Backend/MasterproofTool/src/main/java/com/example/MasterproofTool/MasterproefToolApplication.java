@@ -10,10 +10,12 @@ import com.example.MasterproofTool.user.company.Company;
 import com.example.MasterproofTool.user.company.CompanyService;
 import com.example.MasterproofTool.user.coördinator.Coördinator;
 import com.example.MasterproofTool.user.coördinator.CoördinatorRepository;
+import com.example.MasterproofTool.user.coördinator.CoördinatorService;
 import com.example.MasterproofTool.user.disciplines.Discipline;
 import com.example.MasterproofTool.user.disciplines.DisciplineRepository;
 import com.example.MasterproofTool.user.promotor.Promotor;
 import com.example.MasterproofTool.user.promotor.PromotorRepository;
+import com.example.MasterproofTool.user.promotor.PromotorService;
 import com.example.MasterproofTool.user.role.Role;
 import com.example.MasterproofTool.user.student.Student;
 import com.example.MasterproofTool.user.student.StudentService;
@@ -56,7 +58,7 @@ public class MasterproefToolApplication {
 	}
 
 	@Bean
-	CommandLineRunner run1(UserService userService, StudentService studentService, CompanyService companyService){
+	CommandLineRunner run1(UserService userService, StudentService studentService, CompanyService companyService, CoördinatorRepository coordinatorRepository){
 		return args -> {
 			//UserService
 			userService.saveRole(new Role(null,ROLE_ADMIN));
@@ -78,7 +80,9 @@ public class MasterproefToolApplication {
 
 
 			//Company service
-			//ecompanyService.saveNewCompany(new Company("Filip", "Desmet", "0456454", "filip@gmail.com", "alfons", 545154.545,-4523.5151, "djsfhldsh ","filip123"));
+
+//			companyService.saveNewCompany(new Company("Filip", "Desmet", "0456454", "filip@gmail.com", "alfons", 545154.545,-4523.5151, "djsfhldsh ","filip123"));
+			companyService.saveNewCompany(new Company("Tibo", "Desmet", "0456454", "tibo@gmail.com", "alfons", 545154.545,-4523.5151, "djsfhldsh ","tibo123"));
 		};
 	}
 	@Bean
@@ -145,15 +149,16 @@ public class MasterproefToolApplication {
 	}
 
 	@Bean
-	CommandLineRunner run3(CoördinatorRepository coordinatorRepository, DisciplineRepository disciplineRepository,
-						   CampusRepository campusRepository, PromotorRepository promotorRepository){
+	CommandLineRunner run3(DisciplineRepository disciplineRepository, PromotorService  promotorService,
+						   CampusRepository campusRepository, PromotorRepository promotorRepository, CoördinatorService coordinatorService){
 
 		return args -> {
 
 			Discipline elict= disciplineRepository.findByNaam("Master in de industriële wetenschappen: elektronica-ICT");
 			Campus gent= campusRepository.findByName("Technologiecampus Gent");
-			coordinatorRepository.save(new Coördinator( "Dirk", "Allo", "0484135424", "dirk@gmail.com", elict,  gent,"dirk123"));
-			promotorRepository.save( new Promotor("James", "Cooke", "4054654","james@gmail.com", gent, elict,"james123"));
+//			coordinatorRepository.save(new Coördinator( "Dirk", "Allo", "0484135424", "dirk@gmail.com", elict,  gent,"dirk123"));
+			coordinatorService.saveNewCoordinator(new Coördinator( "elian", "tomtom", "0484135424", "elian@gmail.com", elict,  gent,"elian123"));
+			promotorService.saveNewPromotor( new Promotor("James", "Cooke", "4054654","james@gmail.com", gent, elict,"james123"));
 
 
 

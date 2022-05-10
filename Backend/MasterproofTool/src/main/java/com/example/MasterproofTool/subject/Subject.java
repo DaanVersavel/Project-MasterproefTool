@@ -37,6 +37,9 @@ public class Subject {
     @OneToOne
     @JoinColumn(name="boostedStudent_id")
     private Student boostedStudent;
+
+    @ManyToMany
+    private Set<Student> assignedStudents= new HashSet<>();
     @ManyToMany(mappedBy = "subjects")
     private Set<Discipline>disciplines=new HashSet<>();
 
@@ -57,7 +60,7 @@ public class Subject {
         this.denied=false;
     }
 
-    public Subject(String title, String description, String remark, Company company, Coördinator coordinator, Promotor promotor, Student boostedStudent, Set<Discipline> disciplines, int aStudents) {
+    public Subject(String title, String description, String remark, Company company, Coördinator coordinator, Promotor promotor, Student boostedStudent,Set<Student> assignedStudents, Set<Discipline> disciplines, int aStudents) {
         this.title = title;
         this.description = description;
         this.remark = remark;
@@ -67,6 +70,7 @@ public class Subject {
         this.boostedStudent = boostedStudent;
         this.disciplines = disciplines;
         this.aStudents = aStudents;
+        this.assignedStudents=assignedStudents;
         this.approved=false;
         this.denied=false;
     }
@@ -101,6 +105,15 @@ public class Subject {
         this.title = title;
         this.description = description;
         this.company = company;
+        this.remark = remark;
+        this.aStudents = aStudents;
+    }
+
+    public Subject(String title, String description, boolean approved, boolean denied, String remark, int aStudents) {
+        this.title = title;
+        this.description = description;
+        this.approved = approved;
+        this.denied=denied;
         this.remark = remark;
         this.aStudents = aStudents;
     }

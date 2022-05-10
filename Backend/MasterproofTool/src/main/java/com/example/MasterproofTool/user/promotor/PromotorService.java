@@ -53,7 +53,8 @@ public class PromotorService {
     public void addRoleToCompany(String email, String rolename){
         Promotor user = promotorRepository.findExistingPromotorByEmail(email);
         Role role = roleRepository.findByRoleName(rolename);
-        user.getRoles().add(role);
+        user.setRole(role);
+        promotorRepository.save(user);
     }
 
     public List<Promotor> getPromotors() {
@@ -66,7 +67,7 @@ public class PromotorService {
     }
 
     public Promotor getUser(String access_token) {
-        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+        Algorithm algorithm = Algorithm.HMAC256("secretthatnobodycanacces".getBytes());
         JWTVerifier verifier = JWT.require(algorithm).build();
         DecodedJWT decodedJWT = verifier.verify(access_token);
         String email = decodedJWT.getSubject();

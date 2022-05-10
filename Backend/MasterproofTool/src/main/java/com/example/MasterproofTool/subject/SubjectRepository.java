@@ -37,4 +37,7 @@ public interface SubjectRepository extends JpaRepository<Subject,Long> {
 
     @Query(value = "SELECT s FROM Subject s WHERE s.promotor = ?1")
     List<Subject> findSubjectByPromotor(Promotor p);
+
+    @Query(value = "SELECT s FROM Subject s WHERE s.denied=true AND s.approved=False")
+    List<Subject> findSubjectByApprovedFalseAndDeniedTrue();
 }
