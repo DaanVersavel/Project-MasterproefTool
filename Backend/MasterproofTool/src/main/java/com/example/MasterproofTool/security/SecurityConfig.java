@@ -41,21 +41,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/").permitAll();
-        http.authorizeRequests().antMatchers("/**").hasAnyAuthority("ROLE_ADMIN");
+        //http.authorizeRequests().antMatchers("/**").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers("/**").permitAll();
         http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/logout.done").deleteCookies("JSESSIONID")
                 .invalidateHttpSession(true);
         //http.authorizeRequests().antMatchers(GET,"/login").permitAll();
         //http.authorizeRequests().antMatchers(POST,"/login").permitAll();
-        http.authorizeRequests().antMatchers("/login/**","/User/token/refresh/**").permitAll();
-        http.authorizeRequests().antMatchers(GET,"/Subjects").hasAnyAuthority("ROLE_STUDENT");
-        http.authorizeRequests().antMatchers("/User/**").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(GET,"/Subjects/Review").permitAll();
-        http.authorizeRequests().antMatchers(POST,"/Subjects/Post").hasAnyAuthority("ROLE_STUDENT");
-        http.authorizeRequests().anyRequest().authenticated();
+        //http.authorizeRequests().antMatchers("/login/**","/User/token/refresh/**").permitAll();
+        //http.authorizeRequests().antMatchers(GET,"/Subjects").hasAnyAuthority("ROLE_STUDENT");
+        //http.authorizeRequests().antMatchers("/User/**").hasAnyAuthority("ROLE_ADMIN");
+        //http.authorizeRequests().antMatchers(GET,"/Subjects/Review").permitAll();
+        //http.authorizeRequests().antMatchers(POST,"/Subjects/Post").hasAnyAuthority("ROLE_STUDENT");
+        //http.authorizeRequests().anyRequest().authenticated();
 
-        http.authorizeRequests().and().formLogin().loginPage("/login")/*.defaultSuccessUrl("/Subject/",true)*/;
+        //http.authorizeRequests().and().formLogin().loginPage("/login")/*.defaultSuccessUrl("/Subject/",true)*/;
 
         //http.addFilter(custumAuthenticationFilter);
         http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
