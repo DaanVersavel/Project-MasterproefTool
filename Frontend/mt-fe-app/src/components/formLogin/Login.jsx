@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import {Button} from "react-bootstrap";
-import axios from '../../api/axiosBeforeLogin'
+import axios from '../../api/axiosLogin'
 import qs from 'qs'
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import "./Login.css"
+import {useAuth} from "../Auth";
 
 const Login = () => {
     const [data, setData] = useState({
@@ -11,7 +12,12 @@ const Login = () => {
         password: ''
     })
 
-    const navigate = useNavigate();
+    const [user, setUser] = useState('')
+    const navigate = useNavigate()
+    const location = useLocation()
+    const auth = useAuth()
+
+    const redirectPath = location.state?.path || '/Home'
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -24,18 +30,21 @@ const Login = () => {
             }))
             .then((response) => {
                 console.log(response)
-                localStorage.setItem('access_token', response.data.get("access_token"))
-                localStorage.setItem('refresh_token', response.data.get("refresh_token"))
+                localStorage.setItem('access_token', response.data['access_token'])
+                localStorage.setItem('refresh_token', response.data['refresh_token'])
             })
             .catch(error => {
                 console.log(error)
             })
-        navigate('/Home')
+
+        auth.login(user)
+        navigate(redirectPath, { replace: true })
     }
 
     const handleChange = e => {
         const {id, value} = e.target;
         setData({...data, [id]: value});
+        if(id==='email') setUser(value);
     }
 
     return (

@@ -160,6 +160,7 @@ public class MasterproefToolApplication {
 		};
 	}
 
+	//CORS global
 	private static final String GET = "GET";
 	private static final String POST = "POST";
 	private static final String PUT = "PUT";

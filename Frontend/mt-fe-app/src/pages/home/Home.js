@@ -1,29 +1,20 @@
 import React from "react";
-import Login from "../../components/formLogin/Login"
-import "./Home.css"
+import axios from "../../api/axiosAccessToken";
+import {useAuth} from "../../components/Auth";
 
-export default function Home({user, setUser}){
+export default function Home(){
+    const auth = useAuth()
 
+    /*axios
+        .get('/whoami')
+        .then((response)=> {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error)
+        })*/
 
-    if(user) {
-        return (
-            <div className={"login-container"}>
-                <div className={"center login-content"}>
-                    <h1>Welcome</h1>
-                    <h4>{user.firstName} {user.lastName}</h4>
-                </div>
-            </div>
-        )
-    }
-    else{
-        return(
-            <div className={"login-container"}>
-                <div className={"center login-content"}>
-                    <h1>Welcome</h1>
-                    <h4>Please sign in</h4>
-                    <Login setUser={setUser}/>
-                </div>
-            </div>
-        );
-    }
+    return(
+        <h1>Welcome {auth.user}</h1>
+    );
 }
