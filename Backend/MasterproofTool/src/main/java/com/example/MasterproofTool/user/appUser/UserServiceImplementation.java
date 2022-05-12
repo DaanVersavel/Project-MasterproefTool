@@ -90,7 +90,11 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
         }
     }
 
-
+    @Override
+    public String getRoleAppuser(String access_token) {
+        Appuser user = getAppuserAccessToken(access_token);
+        return user.getRole().getRoleName();
+    }
 
     @Override
     public Appuser getAppuserAccessToken(String access_token) {

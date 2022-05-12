@@ -109,11 +109,17 @@ public class UserController {
     public void deleteUser(@PathVariable("id") long id){
         userService.deleteUser(id);
     }
-
+    //returns user
     @GetMapping(path="/whoami")
     public Appuser getAppuser(HttpServletRequest request){
         String access_token =getAccesToken(request);
         return userService.getAppuserAccessToken(access_token);
+    }
+    //returns Role
+    @GetMapping(path="/whoami")
+    public String getRoleAppuser(HttpServletRequest request){
+        String access_token =getAccesToken(request);
+        return userService.getRoleAppuser(access_token);
     }
 
     public String getAccesToken(HttpServletRequest request){

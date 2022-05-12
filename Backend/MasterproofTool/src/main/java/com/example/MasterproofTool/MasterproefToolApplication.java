@@ -18,6 +18,7 @@ import com.example.MasterproofTool.user.promotor.PromotorRepository;
 import com.example.MasterproofTool.user.promotor.PromotorService;
 import com.example.MasterproofTool.user.role.Role;
 import com.example.MasterproofTool.user.student.Student;
+import com.example.MasterproofTool.user.student.StudentRepository;
 import com.example.MasterproofTool.user.student.StudentService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -30,7 +31,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @SpringBootApplication
@@ -86,7 +89,10 @@ public class MasterproefToolApplication {
 		};
 	}
 	@Bean
-	CommandLineRunner run2(DisciplineRepository disciplineRepository, CampusRepository campusRepository, SubjectRepository subjectRepository){
+	CommandLineRunner run2(DisciplineRepository disciplineRepository,PromotorRepository promotorRepository ,
+						   PromotorService  promotorService,CampusRepository campusRepository,
+						   SubjectRepository subjectRepository, CoördinatorService coordinatorService,
+						   StudentRepository studentRepository){
 		return args -> {
 			//Disciplines
 			//gent
@@ -140,30 +146,41 @@ public class MasterproefToolApplication {
 			dis7.addCampus(c);
 			dis8.addCampus(c);
 
-			Subject sub= subjectRepository.findSubjectById(5);
+			Subject sub= subjectRepository.findSubjectByExistingTitle("Hacking tool");
 			dis5.getSubjects().add(sub);
 
-			disciplineRepository.saveAll(List.of(dis1, dis2, dis3, dis4, dis5, dis6, dis7, dis8));
-			campusRepository.saveAll(List.of(campus1,campus2, campus3, campus4, campus5, campus6, campus7, campus8, campus9, campus10, campus11, campus12, campus13));
-		};
-	}
+			Set<Campus> campussenSubject = new HashSet<>();
+			campussenSubject.add(campus9);
 
-	@Bean
-	CommandLineRunner run3(DisciplineRepository disciplineRepository, PromotorService  promotorService,
-						   CampusRepository campusRepository, PromotorRepository promotorRepository, CoördinatorService coordinatorService){
-
-		return args -> {
+			Set<Discipline> disciplineSubject = new HashSet<>();
+			disciplineSubject.add(dis5);
 
 			Discipline elict= disciplineRepository.findByNaam("Master in de industriële wetenschappen: elektronica-ICT");
 			Campus gent= campusRepository.findByName("Technologiecampus Gent");
 //			coordinatorRepository.save(new Coördinator( "Dirk", "Allo", "0484135424", "dirk@gmail.com", elict,  gent,"dirk123"));
 			coordinatorService.saveNewCoordinator(new Coördinator( "elian", "tomtom", "0484135424", "elian@gmail.com", elict,  gent,"elian123"));
 			promotorService.saveNewPromotor( new Promotor("James", "Cooke", "4054654","james@gmail.com", gent, elict,"james123"));
+			Promotor james = promotorRepository.findExistingPromotorByEmail("james@gmail.com");
+
+			Student lotte = studentRepository.findExistingStudentByEmail("lotte@gmail.com");
+			lotte.setDiscipline(elict);
+			studentRepository.save(lotte);
 
 
 
+			disciplineRepository.saveAll(List.of(dis1, dis2, dis3, dis4, dis5, dis6, dis7, dis8));
+			campusRepository.saveAll(List.of(campus1,campus2, campus3, campus4, campus5, campus6, campus7, campus8, campus9, campus10, campus11, campus12, campus13));
+			subjectRepository.save( new Subject("title",  "description",  "remark", james, disciplineSubject, campussenSubject,1, true));
+
+			Promotor p= new Promotor( "Daan", "v", "151", "daan@gmail.com", gent, elict, "daan123");
+			promotorService.saveNewPromotor(p);
+
+			//goed subject
+			subjectRepository.save(new Subject("goed subejct","prachtige bescrhijving","goede opmerking",p,disciplineSubject,campussenSubject,1,true));
 		};
 	}
+
+
 
 	//CORS global
 	private static final String GET = "GET";
