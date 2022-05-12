@@ -116,7 +116,7 @@ public class UserController {
         return userService.getAppuserAccessToken(access_token);
     }
     //returns Role
-    @GetMapping(path="/whoami")
+    @GetMapping(path="/getRole")
     public String getRoleAppuser(HttpServletRequest request){
         String access_token =getAccesToken(request);
         return userService.getRoleAppuser(access_token);
