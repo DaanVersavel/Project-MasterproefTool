@@ -51,14 +51,8 @@ public class StudentService {
         //looking for student and set first choice
         Student student = getStudent(access_token);
         Subject subject = subjectRepository.findSubjectById(subjectid);
-        if(student.getThirdChoice()!=subject&&student.getSecondChoice()!=subject){
-            // if subject in not yet assigned
-            student.setFirstChoice(subject);
-            studentRepository.save(student);
-        }
-        else{
-            throw new IllegalArgumentException("Subject already assigned");
-        }
+        student.setFirstChoice(subject);
+        studentRepository.save(student);
     }
 
     public Subject getFirstChoice(String access_token) {
@@ -112,14 +106,8 @@ public class StudentService {
     public void removeFromStarred(long subjectid, String access_token) {
         Student student = getStudent(access_token);
         Subject subject = subjectRepository.findSubjectById(subjectid);
-        if (student.getStarredSubjects().contains(subject)) {
-            student.removeSubjectFromStarred(subject);
-            studentRepository.save(student);
-        }else {
-            throw new IllegalStateException("Subject not present");
-        }
-
-
+        student.removeSubjectFromStarred(subject);
+        studentRepository.save(student);
     }
 
     public Subject getSecondChoice(String access_token) {
@@ -140,14 +128,14 @@ public class StudentService {
         //looking for student and set first choice
         Student student = getStudent(access_token);
         Subject subject = subjectRepository.findSubjectById(subjectid);
-        if(student.getSecondChoice()!=subject&&student.getFirstChoice()!=subject){
+        //if(student.getSecondChoice()!=subject&&student.getFirstChoice()!=subject){
            // if subject in not yet assigned
             student.setThirdChoice(subject);
             studentRepository.save(student);
-        }
-        else{
-            throw new IllegalArgumentException("Subject already assigned");
-        }
+        //}
+        //else{
+          //  throw new IllegalArgumentException("Subject already assigned");
+        //}
     }
 
     public void setSecondChoice(long subjectid, String access_token) {

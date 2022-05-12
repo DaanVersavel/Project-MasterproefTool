@@ -5,6 +5,9 @@ import com.example.MasterproofTool.subject.Subject;
 import com.example.MasterproofTool.user.appUser.Appuser;
 import com.example.MasterproofTool.user.campus.Campus;
 import com.example.MasterproofTool.user.disciplines.Discipline;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -38,8 +41,12 @@ public class Student extends Appuser {
     private Campus campus;
     @ManyToOne
     @JoinColumn(name="assignedSubject_id")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     private Subject assignedSubject;
     @OneToOne(mappedBy = "boostedStudent")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     private Subject boostedSubject;
 
     @ManyToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)

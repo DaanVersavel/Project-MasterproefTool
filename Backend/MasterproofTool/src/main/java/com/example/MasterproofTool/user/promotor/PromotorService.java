@@ -9,6 +9,8 @@ import com.example.MasterproofTool.subject.Subject;
 import com.example.MasterproofTool.subject.SubjectRepository;
 import com.example.MasterproofTool.user.role.Role;
 import com.example.MasterproofTool.user.role.RoleRepository;
+import com.example.MasterproofTool.user.student.Student;
+import com.example.MasterproofTool.user.student.StudentRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,12 +24,14 @@ public class PromotorService {
     private final RoleRepository roleRepository;
     private final PromotorRepository promotorRepository;
     private final SubjectRepository subjectRepository;
+    private final StudentRepository studentRepository;
 
-    public PromotorService(PasswordEncoder passwordEncoder, RoleRepository roleRepository, PromotorRepository promotorRepository, SubjectRepository subjectRepository) {
+    public PromotorService(PasswordEncoder passwordEncoder, RoleRepository roleRepository, PromotorRepository promotorRepository, SubjectRepository subjectRepository, StudentRepository studentRepository) {
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
         this.promotorRepository = promotorRepository;
         this.subjectRepository = subjectRepository;
+        this.studentRepository = studentRepository;
     }
 
     public Optional<Promotor> saveNewPromotor(Promotor promotor) {
@@ -72,5 +76,15 @@ public class PromotorService {
         DecodedJWT decodedJWT = verifier.verify(access_token);
         String email = decodedJWT.getSubject();
         return promotorRepository.findExistingPromotorByEmail(email);
+    }
+
+    public void boostStudent(long subjectid, long studentid) {
+        Subject subject = subjectRepository.findSubjectById(subjectid);
+        Student student = studentRepository.findByKeyId(studentid);
+        student.setBoostedSubject(subject);
+        subject.setBoostedStudent(student);
+        studentRepository.save(student);
+        subjectRepository.save(subject);
+
     }
 }

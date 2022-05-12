@@ -1,6 +1,9 @@
 package com.example.MasterproofTool.user.campus;
 
 import com.example.MasterproofTool.user.disciplines.Discipline;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +20,8 @@ public class Campus {
     private Long campus_id;
     private String name;
     @ManyToMany(mappedBy = "campussen")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "discipline_id")
+    @JsonIdentityReference(alwaysAsId = true)
     private Set<Discipline> disciplines=new HashSet<>();
     private double longitude;
     private double latitude;

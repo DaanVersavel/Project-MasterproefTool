@@ -10,5 +10,9 @@ public interface CoördinatorRepository  extends JpaRepository<Coördinator,Long
     Coördinator findExistingCoordinatorByEmail(String email);
 
     @Query(value = "select c from Coördinator c where c.email=?1")
-    Optional<Coördinator> findCoordinatorByEmail(String email);
+    Optional<Coördinator> findOptinalCoordinatorByEmail(String email);
+
+    @Query(value = "select c from Coördinator c where c.email=?1")
+
+    Coördinator findCoordinatorByEmail(String email);
 }

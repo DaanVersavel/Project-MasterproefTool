@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+
+import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 @RestController
 @RequestMapping(path = "/Subjects")
@@ -19,19 +22,14 @@ public class SubjectController {
 
     //get method for list of subject
     @GetMapping
-    public List<Subject> getSubjects(){
-        return subjectService.getSubjectsApproved();
+    public List<Subject> getSubjects(HttpServletRequest request){
+        String access_token =getAccesToken(request);
+        return subjectService.getSubjectsApproved(access_token);
     }
     //Post method for subjects
     @PostMapping(path="/Post")
     public void registerNewSubject(@RequestBody Subject subject){
         subjectService.addNewSubject(subject);
-    }
-
-    //get method for not yet accepted methods
-    @GetMapping(path = "/Review")
-    public List<Subject> getSubjectForReview(){
-        return subjectService.getSubjectsForReview();
     }
 
     //update method to assign true to subject
@@ -54,11 +52,11 @@ public class SubjectController {
         return subjectService.getSpecificSubject(id);
     }
 
-    //TODO doesn't work yet
-    //get method for getting your specific subjects
-    @GetMapping(path = "/MySubjects")
-    public List<Subject> getSubjectForUser(@RequestBody long coordinator_id){
-        return subjectService.getSubjectForUser(coordinator_id);
+
+    public String getAccesToken(HttpServletRequest request){
+        String authorizationHeader = request.getHeader(AUTHORIZATION);
+        return authorizationHeader.substring("Bearer ".length());
     }
+
 }
 

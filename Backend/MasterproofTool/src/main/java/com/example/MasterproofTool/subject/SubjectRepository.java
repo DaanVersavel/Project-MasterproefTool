@@ -1,7 +1,10 @@
 package com.example.MasterproofTool.subject;
 
+import com.example.MasterproofTool.user.campus.Campus;
 import com.example.MasterproofTool.user.company.Company;
+import com.example.MasterproofTool.user.disciplines.Discipline;
 import com.example.MasterproofTool.user.promotor.Promotor;
+import com.example.MasterproofTool.user.student.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -40,4 +43,16 @@ public interface SubjectRepository extends JpaRepository<Subject,Long> {
 
     @Query(value = "SELECT s FROM Subject s WHERE s.denied=true AND s.approved=False")
     List<Subject> findSubjectByApprovedFalseAndDeniedTrue();
+
+    @Query("SELECT s from Subject s where ?1 member of s.disciplines AND ?2 member of s.campussen")
+    List<Subject> findSubjectForReview(Campus campus, Discipline discipline);
+
+    @Query("SELECT s from Subject s where ?1 member of s.disciplines AND s.approved=false ")
+    List<Subject> findSubjectByDisciplineApprovedFalse(Discipline discipline);
+
+    @Query("SELECT s from Subject s where ?1 member of s.disciplines AND s.approved=true ")
+    List<Subject> findSubjectByDisciplineApprovedTrue(Discipline discipline);
+
+    @Query("SELECT s from Subject s where s.title=?1")
+    Subject findSubjectByExistingTitle(String title);
 }

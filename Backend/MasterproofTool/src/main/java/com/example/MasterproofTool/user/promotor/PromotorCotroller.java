@@ -42,6 +42,11 @@ public class PromotorCotroller {
         return promotorService.getMySubjects(getAccesToken(request));
     }
 
+    @PutMapping(path= "/MySubjects/Boost/{subjectid}/{studentid}")
+    public void boostStudent(@PathVariable("subjectid") long subjectid,@PathVariable("studentid") long studentid){
+        promotorService.boostStudent(subjectid,studentid);
+    }
+
     public String getAccesToken(HttpServletRequest request){
         String authorizationHeader = request.getHeader(AUTHORIZATION);
         return authorizationHeader.substring("Bearer ".length());

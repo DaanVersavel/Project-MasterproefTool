@@ -7,7 +7,6 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.MasterproofTool.user.role.Role;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +22,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
@@ -117,7 +115,6 @@ public class UserController {
         String access_token =getAccesToken(request);
         return userService.getAppuserAccessToken(access_token);
     }
-
 
     public String getAccesToken(HttpServletRequest request){
         String authorizationHeader = request.getHeader(AUTHORIZATION);
