@@ -76,7 +76,7 @@ const Login = () => {
             </div>
 
             <Button className={"login-btn btn-block"} disabled={!(data.email && data.password)} variant="primary"
-                    onClick={handleSubmit}>Log in</Button>
+                    type="submit">Log in</Button>
             <br/>
             <span>Don't have an account yet? <a href='/SignUp'>Sign up!</a></span>
         </form>

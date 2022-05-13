@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import axios from "../../api/axiosNoToken.js";
+import axiosNoToken from "../../api/axiosNoToken.js";
 
 const useForm = (successful, validate) => {
     const [errors, setErrors] = useState({});
@@ -69,7 +69,7 @@ const useForm = (successful, validate) => {
         setIsSubmitting(true);
 
         if(values.role === 'student') {
-            axios
+            axiosNoToken
                 .post("/Student/Save", {values, studentValues})
                 .then((response) => {
                     console.log(response)
@@ -79,7 +79,7 @@ const useForm = (successful, validate) => {
                 });
         }
         if(values.role === 'coordinator') {
-            axios
+            axiosNoToken
                 .post("/Coordinator/Save", {values, coordinatorValues})
                 .then((response) => {
                     console.log(response)
@@ -89,7 +89,7 @@ const useForm = (successful, validate) => {
                 });
         }
         if(values.role === 'promotor') {
-            axios
+            axiosNoToken
                 .post("/Promotor/Save", {values, promotorValues})
                 .then((response) => {
                     console.log(response)
@@ -99,7 +99,7 @@ const useForm = (successful, validate) => {
                 });
         }
         if(values.role === 'company') {
-            axios
+            axiosNoToken
                 .post("/Company/Save", {values, companyValues})
                 .then((response) => {
                     console.log(response)

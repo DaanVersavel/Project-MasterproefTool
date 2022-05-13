@@ -396,7 +396,10 @@ const SignUp = () => {
 
                             {roleSignUp}
 
-                            <button className='form-input-btn' type='submit'>Sign up</button>
+                            <button className='form-input-btn' type='submit'
+                                    disabled={!(values.role && values.firstName && values.lastName && values.email && values.phone && values.password && values.password2)}>
+                                Sign up
+                            </button>
 
                             <span className='form-input-login'>
                                 Already have an account? Login <a href='/'>here</a>!
