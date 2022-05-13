@@ -2,20 +2,19 @@ import React, {useEffect, useState} from 'react';
 import validate from './validateInfo';
 import useForm from './useForm';
 import Select from "react-select";
-import axios from "../../api/axiosBeforeLogin.js"
+import axiosNoToken from "../../api/axiosNoToken.js"
 import PhoneInput from 'react-phone-number-input'
 
 import './SignUp.css';
 import 'react-phone-number-input/style.css'
 import KULBuilding from "../../KU-Leuven_branded.jpg"
 
-
 const SignUp = () => {
     const [success, setSuccess] = useState(false);
 
     const [optionsRole, setOptionsRole] = useState([]);
     useEffect(() => {
-        axios
+        axiosNoToken
             .get('/Role')
             .then((response)=> {
                 setOptionsRole(response.data);
@@ -29,7 +28,7 @@ const SignUp = () => {
 
     const [optionsDiscipline, setOptionsDiscipline] = useState([]);
     useEffect(() => {
-        axios
+        axiosNoToken
             .get('/Discipline')
             .then((response)=> {
                 setOptionsDiscipline(response.data);
@@ -42,7 +41,7 @@ const SignUp = () => {
 
     const [optionsCampus, setOptionsCampus] = useState([]);
     useEffect(() => {
-        axios
+        axiosNoToken
             .get('/Campus')
             .then(response => {
                 setOptionsCampus(response.data);

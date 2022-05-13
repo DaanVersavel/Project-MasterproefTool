@@ -77,7 +77,7 @@ public class MasterproefToolApplication {
 			userService.addRoleToAppuser("bart.smith@gmail.com",ROLE_STUDENT);
 
 			//student service
-			studentService.saveStudent(new Student("lotte", "Vanlanduyt", "084655465", "lotte@gmail.com","R045645" ,"lotte123"));
+			studentService.saveStudent(new Student("Lotte", "Vanlanduyt", "084655465", "lotte@gmail.com","R045645" ,"lotte123"));
 
 			userService.addRoleToAppuser("lotte@gmail.com",ROLE_STUDENT);
 
