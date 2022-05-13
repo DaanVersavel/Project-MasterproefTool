@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from '../../api/axiosAccessToken';
+import axiosNoToken from '../../api/axiosNoToken'
 import {Form, Button, Col, Row, ModalTitle, Container} from "react-bootstrap";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
@@ -18,15 +19,15 @@ const FormS = () => {
     });
 
     useEffect(() => {
-        const fetchSubjects = async () =>{
-            try {
-                const {data: response} = await axios.get('/Discipline');
+        axiosNoToken
+            .get('/Discipline')
+            .then((response) => {
+                console.log(response);
                 setOptions(response);
-            } catch (error) {
-                console.error(error.message);
-            }
-        }
-        fetchSubjects()
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }, []);
 
     const handleChange = (e) => {

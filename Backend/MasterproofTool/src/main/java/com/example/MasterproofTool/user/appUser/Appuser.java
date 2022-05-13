@@ -76,6 +76,7 @@ public class Appuser {
                 ", keyId=" + keyId +
                 ", GSM=" + gsm +
                 ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }
