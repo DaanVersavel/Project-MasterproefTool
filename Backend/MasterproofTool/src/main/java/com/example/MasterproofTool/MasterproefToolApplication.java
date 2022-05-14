@@ -69,12 +69,15 @@ public class MasterproefToolApplication {
 			userService.saveRole(new Role(null,ROLE_PROMOTOR));
 			userService.saveRole(new Role(null,ROLE_STUDENT));
 			userService.saveRole(new Role(null,ROLE_COMPANY));
+			userService.saveRole(new Role(null,"ROLE_LOGIN"));
 
 			userService.saveAppuser(new Appuser("Bob", "Smith", "0489005054","bob.smith@gmail.com","bob123"));
 			userService.saveAppuser(new Appuser("Bart", "Smith", "0489005054","bart.smith@gmail.com","bart123"));
-
+			userService.saveAppuser(new Appuser("login","login","111","login@gmail.com","login123"));
 			userService.addRoleToAppuser("bob.smith@gmail.com",ROLE_ADMIN);
 			userService.addRoleToAppuser("bart.smith@gmail.com",ROLE_STUDENT);
+			userService.addRoleToAppuser("login@gmail.com","ROLE_LOGIN");
+
 
 			//student service
 			studentService.saveStudent(new Student("lotte", "Vanlanduyt", "084655465", "lotte@gmail.com","R045645" ,"lotte123"));

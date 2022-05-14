@@ -21,12 +21,10 @@ public class StudentController {
 
 
     private final StudentService studentService;
-    private final SubjectService subjectService;
 
     @Autowired
-    public StudentController(StudentService studentService, SubjectService subjectService) {
+    public StudentController(StudentService studentService) {
         this.studentService = studentService;
-        this.subjectService = subjectService;
     }
 
     //saves a student
@@ -94,6 +92,7 @@ public class StudentController {
         String access_token =getAccesToken(request);
         studentService.addToStarred(id, access_token);
     }
+    //removes starred subject
 
     @PutMapping(path = "/StarredRemove/{id}")
     public void removeFromStarred(@PathVariable("id") long id,HttpServletRequest request){

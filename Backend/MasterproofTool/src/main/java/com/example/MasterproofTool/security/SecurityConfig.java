@@ -75,7 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/Company").hasAnyAuthority(ROLE_COMPANY);
 
         //Discipline
-        http.authorizeRequests().antMatchers("/Discipline").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
+//        http.authorizeRequests().antMatchers("/Discipline").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
 
         //Promotor
         http.authorizeRequests().antMatchers("/Promotor/MySubjects").hasAnyAuthority(ROLE_PROMOTOR);

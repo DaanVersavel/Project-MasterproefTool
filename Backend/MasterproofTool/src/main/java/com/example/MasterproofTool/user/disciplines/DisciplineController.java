@@ -20,8 +20,6 @@ public class DisciplineController {
 
     //List of Disciplines
     @GetMapping
-    @CrossOrigin(origins = "*")
-
     public List<Discipline> getDisciplines(){
         return disciplineService.getDisciplines();
     }

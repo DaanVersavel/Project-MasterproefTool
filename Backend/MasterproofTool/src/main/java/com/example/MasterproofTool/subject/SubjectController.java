@@ -37,10 +37,12 @@ public class SubjectController {
     public ResponseEntity<Subject> updateSubjectReviewApprovedTrue(@PathVariable long id){
         return ResponseEntity.ok(subjectService.updateSubjectReviewApprovedTrue(id));
     }
+    //updates subject to denied
     @PutMapping(path="/Review/Denied/{id}")
     public ResponseEntity<Subject> updateSubjectReviewDeniedTrue(@PathVariable long id){
         return ResponseEntity.ok(subjectService.updateSubjectReviewDeniedTrue(id));
     }
+    //get list of denied
     @GetMapping(path = "/Denied")
     public List<Subject> getSubjectsDenied(){
         return subjectService.getSubjectsDenied();

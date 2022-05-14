@@ -104,11 +104,13 @@ public class UserController {
             throw new IllegalArgumentException("Refresh token is missing");
         }
     }
-
+    //delete user
+    //id user
     @DeleteMapping(path ="/delete/{id}")
     public void deleteUser(@PathVariable("id") long id){
         userService.deleteUser(id);
     }
+
     //returns user
     @GetMapping(path="/whoami")
     public Appuser getAppuser(HttpServletRequest request){

@@ -41,7 +41,7 @@ public class PromotorCotroller {
     public List<Subject> getMySubjects(HttpServletRequest request){
         return promotorService.getMySubjects(getAccesToken(request));
     }
-
+    //to boost a student
     @PutMapping(path= "/MySubjects/Boost/{subjectid}/{studentid}")
     public void boostStudent(@PathVariable("subjectid") long subjectid,@PathVariable("studentid") long studentid){
         promotorService.boostStudent(subjectid,studentid);

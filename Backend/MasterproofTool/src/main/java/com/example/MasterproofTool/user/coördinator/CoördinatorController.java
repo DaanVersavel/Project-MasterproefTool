@@ -30,7 +30,7 @@ public class CoördinatorController {
                 .path("/Coordinator/Save").toUriString());
         return ResponseEntity.created(uri).body(coordinatorService.saveNewCoordinator(coördinator));
     }
-
+    //list of subjects to review
     @GetMapping(path = "/Review")
     public List<Subject> getSubjectForReview(HttpServletRequest request){
         String access_token =getAccesToken(request);
@@ -42,6 +42,7 @@ public class CoördinatorController {
         String access_token =getAccesToken(request);
         return coordinatorService.getAssignedSubjects(access_token);
     }
+    //list of not assigned subjects
     @GetMapping(path = "/NotAssignedSubjects")
     public List<Subject> getNotAssignedSubjects(HttpServletRequest request){
         String access_token =getAccesToken(request);
@@ -54,6 +55,7 @@ public class CoördinatorController {
         coordinatorService.autoAssignBoostedStudents(access_token);
     }
 
+    //auto assign firstchoise algoritm
     @GetMapping(path = "/AutoAssignFirstChoise")
     public void autoAssignFirstChoise(HttpServletRequest request){
         String access_token =getAccesToken(request);
