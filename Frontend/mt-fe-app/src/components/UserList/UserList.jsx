@@ -13,7 +13,7 @@ const UserList = () => {
         const fetchUsers = async () => {
             setLoading(true);
             try {
-                const {data: response} = await axios.get('http://localhost:8080/User/users');
+                const {data: response} = await axios.get('/User/users');
                 setUsers(response);
                 setAllUsers(response);
             } catch (error) {

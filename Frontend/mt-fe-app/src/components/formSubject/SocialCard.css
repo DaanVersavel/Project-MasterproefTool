@@ -24,5 +24,20 @@
     border-radius: 50%;
 }
 .save-button {
+    background-color:#008CBA;
 
+}
+
+.star-button{
+    background-color:Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+}
+.side-icon{
+
+}
+.star-button2{
+    fill: #fae03b;
 }
