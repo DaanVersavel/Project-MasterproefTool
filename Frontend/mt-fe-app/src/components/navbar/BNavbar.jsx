@@ -11,7 +11,7 @@ const BNavbar = () => {
                     <NavDropdown title="Subjects" id="collasible-nav-dropdown">
                         <NavDropdown.Item href="/Subjects">Subject List</NavDropdown.Item>
                         <NavDropdown.Item href="/Subjects/Post">Add Subject</NavDropdown.Item>
-                        <NavDropdown.Item href="/Preferences">Enlist for Subject</NavDropdown.Item>
+                        <NavDropdown.Item href="/Student/Starred">Starred Subjects</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="/Subjects/Review">Approve Subject</NavDropdown.Item>
                     </NavDropdown>

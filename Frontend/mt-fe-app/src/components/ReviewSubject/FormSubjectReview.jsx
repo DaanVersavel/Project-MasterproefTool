@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from '../../../../mt-fe-app/src/api/axiosAccessToken';
 import {Button, Container} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
-import SocialCard from "./SocialCard";
+import SocialCardReview from "./SocialCardReview";
 import "./Review.css";
 
 const FormSubjectReview = () => {
@@ -20,7 +20,7 @@ const FormSubjectReview = () => {
         const fetchSubjects = async () =>{
             setLoading(true);
             try {
-                const {data: response} = await axios.get('/Subjects/Review');
+                const {data: response} = await axios.get('/Coordinator/Review');
                 setSubjects(response);
                 setAllSubjects(response);
             } catch (error) {
@@ -43,11 +43,11 @@ const FormSubjectReview = () => {
             {loading && <div>Loading</div>}
             {!loading && (
                 <div>
-                    <h1>List of All Subjects</h1>
+                    <h1>List of to be Reviewed Subjects</h1>
                     <input className="search-box" placeholder={"Search..."} onInput={filterCards}/>
                     <div className="cards-container">
                         {subjects.map((subject,index)=>(
-                            <SocialCard subjectData={subject} key={index}/>
+                            <SocialCardReview subjectData={subject} key={index}/>
 
                         ))}
 
