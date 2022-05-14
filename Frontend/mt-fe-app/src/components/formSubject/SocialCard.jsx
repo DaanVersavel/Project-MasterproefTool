@@ -1,57 +1,69 @@
 import "./FormSList"
 import "./SocialCard.css"
-import React from "react";
+import React, {useState} from "react";
 import {motion} from "framer-motion";
 import Pdf from "react-to-pdf"
-import {useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import axios from "../../api/axiosAccessToken";
-
+import {AiOutlineFileText, AiOutlineStar, AiOutlineTeam, AiTwotoneBank} from "react-icons/ai";
 
 const ref = React.createRef();
 
+
+
 const SocialCard=({subjectData})=>{
 
-    const navigate = useNavigate();
-    const handleClick = () => {
-        navigate("/Subjects/Details",{id:subjectData.id});
+    const [style, setStyle] = useState("star-button");
+    const listDisciplines= subjectData.disciplines.map((d)=>
+        <div key={d.naam}><AiTwotoneBank className="side-icon"/>{d.naam}</div>
+    );
+
+
+    function handleStarClick() {
+        changeStyle()
+        moveToStar()
     }
 
     const moveToStar=() =>{
         axios
-            .post('/Student/StarredSave/'+subjectData.id,{subjectData},{
-                headers:{
-                    'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb3R0ZUBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX1NUVURFTlQiXSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2xvZ2luIiwiZXhwIjoxNjUyMTc3NjgxfQ.3l45RoUlVkr9o6uxKYjRp-7vGMnRUj5XLijVn5HgTws'
-
-                }
+            .put('/Student/StarredSave/'+subjectData.id,{subjectData},{
             }).then(response => {
                 console.log(response);
             })
 
-    }
+    };
 
+    const changeStyle=()=>{
+        setStyle("star-button2")
+
+    };
+    const id=subjectData.id;
     return(
+
       <div className="card">
         <div className="card__title">{subjectData.title}
-            <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className={"save-button"} onClick={moveToStar}>
-                Star
-            </motion.button>
+            <button
+                className={style}
+                onClick={handleStarClick}>
+                <AiOutlineStar/>
+            </button>
+
         </div>
+
         <div className="card-body">
-            <div>{subjectData.description}</div>
-            <div>{subjectData.disciplines}</div>
-            <div>Amount of students: {subjectData.aStudents}</div>
+            <div><AiOutlineFileText className={"side-icon"}/>{subjectData.description}</div>
+            <div>{listDisciplines}</div>
+            <div><AiOutlineTeam className="side-icon"/>Amount of students: {subjectData.aStudents}</div>
         </div>
         <div>
-          <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="save-button"
-          onClick={handleClick}>
-              Details
-          </motion.button>
+            <Link to={'/Subjects/Details/?id='+id} >
+              <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="save-button">
+                  Details
+              </motion.button>
+            </Link>
           <Pdf targetRef={ref} filename= {subjectData.title}>
               {({ toPdf }) => <button onClick={toPdf}>Pdf</button>}
           </Pdf>

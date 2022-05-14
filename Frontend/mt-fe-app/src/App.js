@@ -5,7 +5,7 @@ import BNavbar from "./components/navbar/BNavbar"
 import {AuthProvider} from "./pages/protectedRoutes/Auth";
 import {RequireAuth} from "./pages/protectedRoutes/RequireAuth";
 import UserList from "./components/UserList/UserList";
-
+import Details from "./pages/details/Details"
 import Home from "./pages/home/Home";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
@@ -36,7 +36,7 @@ export default function App () {
                         <Route path = '/*' element = {<NoMatch/>} />
                         <Route path = '/SignUp' element = {<Register/>} />
                         <Route path = '/Login' element = {<Login />} />
-                        <Route path = '/Subjects/Details' />
+                        <Route path = '/Subjects/Details/*' element={<RequireAuth><Details/></RequireAuth>} />
                     </Routes>
                 </div>
             </Router>
