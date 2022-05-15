@@ -44,7 +44,7 @@ public class PromotorCotroller {
     }
     //return list of the subjects of a promotor
     @GetMapping(path = "/MySubjects/Students/{id}")
-    public List<Student> getMySubjectsStudentList(@PathVariable("subjectid") long subjectid,HttpServletRequest request){
+    public List<Student> getMySubjectsStudentList(@PathVariable("id") long subjectid,HttpServletRequest request){
         return promotorService.getStudentListPerSubject(getAccesToken(request),subjectid);
     }
     //to boost a student
