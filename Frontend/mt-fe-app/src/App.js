@@ -37,6 +37,8 @@ export default function App () {
                         <Route path = '/SignUp' element = {<Register/>} />
                         <Route path = '/Login' element = {<Login />} />
                         <Route path = '/Subjects/Details/*' element={<RequireAuth><Details/></RequireAuth>} />
+                        <Route path = '/Subjects/Details/?=id' element={<RequireAuth><Details/></RequireAuth>} />
+
                     </Routes>
                 </div>
             </Router>

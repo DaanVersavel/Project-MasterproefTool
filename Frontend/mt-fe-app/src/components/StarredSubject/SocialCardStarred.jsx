@@ -5,6 +5,7 @@ import {Button} from "react-bootstrap";
 import React from "react";
 import {Link} from "react-router-dom";
 import {AiOutlineFileText, AiOutlineTeam, AiTwotoneBank} from "react-icons/ai";
+import axios from "../../api/axiosAccessToken";
 
 
 
@@ -13,6 +14,13 @@ const SocialCard=({subjectData})=>{
     const listDisciplines= subjectData.disciplines.map((d)=>
             <div key={d.naam}><AiTwotoneBank className="side-icon"/>{d.naam}</div>
     );
+
+    const handleUnStar=()=> {
+        axios.put(`/Student/StarredRemove/${subjectData.id}`,{
+            }).then(response => {
+                console.log(response);
+        })
+    };
 
     return(
         <div className="card">
@@ -31,6 +39,13 @@ const SocialCard=({subjectData})=>{
                         Details
                     </motion.button>
                 </Link>
+                <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="save-button"
+                    onClick={handleUnStar}>
+                    UnStar
+                </motion.button>
             </div>
 
 

@@ -36,17 +36,18 @@ const SocialCard=({subjectData})=>{
     const changeStyle=()=>{
         setStyle("star-button2")
 
+
     };
     const id=subjectData.id;
     return(
 
       <div className="card">
         <div className="card__title">{subjectData.title}
-            <button
+            <div
                 className={style}
                 onClick={handleStarClick}>
                 <AiOutlineStar/>
-            </button>
+            </div>
 
         </div>
 
@@ -64,9 +65,9 @@ const SocialCard=({subjectData})=>{
                   Details
               </motion.button>
             </Link>
-          <Pdf targetRef={ref} filename= {subjectData.title}>
+            {/*<Pdf targetRef={ref} filename= {subjectData.title}>
               {({ toPdf }) => <button onClick={toPdf}>Pdf</button>}
-          </Pdf>
+          </Pdf>*/}
         </div>
       </div>
 
