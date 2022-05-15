@@ -17,3 +17,8 @@ You may also see any errors in the console.
 To run the backend, you simply need to open the project in an IDE and run the file `MasterproefToolApplication`.\
 This will open the project in development mode.\
 The back-end will run on [http://localhost:8080](http://localhost:8080)
+
+# Contributors
+- Lucas Van Der Stuyft
+- Siemen Van der Hoeven
+- Daan Versavel
