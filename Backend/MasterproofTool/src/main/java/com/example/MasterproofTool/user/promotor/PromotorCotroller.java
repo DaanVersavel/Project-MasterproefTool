@@ -42,7 +42,8 @@ public class PromotorCotroller {
     public List<Subject> getMySubjects(HttpServletRequest request){
         return promotorService.getMySubjects(getAccesToken(request));
     }
-    //return list of the subjects of a promotor
+    //return list of the students with first choise a specific subject
+    //id = id of subject
     @GetMapping(path = "/MySubjects/Students/{id}")
     public List<Student> getMySubjectsStudentList(@PathVariable("id") long subjectid,HttpServletRequest request){
         return promotorService.getStudentListPerSubject(getAccesToken(request),subjectid);
