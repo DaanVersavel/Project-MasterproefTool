@@ -55,4 +55,7 @@ public interface SubjectRepository extends JpaRepository<Subject,Long> {
 
     @Query("SELECT s from Subject s where s.title=?1")
     Subject findSubjectByExistingTitle(String title);
+
+    @Query("SELECT s from Subject s where s.promotor=?1 AND s.approved=true")
+    List<Subject> findSubjectByPromotorApprovedTrue(Promotor promotor);
 }

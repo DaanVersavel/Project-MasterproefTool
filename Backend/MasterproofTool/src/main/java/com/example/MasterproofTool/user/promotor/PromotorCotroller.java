@@ -1,6 +1,7 @@
 package com.example.MasterproofTool.user.promotor;
 
 import com.example.MasterproofTool.subject.Subject;
+import com.example.MasterproofTool.user.student.Student;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -40,6 +41,11 @@ public class PromotorCotroller {
     @GetMapping(path = "/MySubjects")
     public List<Subject> getMySubjects(HttpServletRequest request){
         return promotorService.getMySubjects(getAccesToken(request));
+    }
+    //return list of the subjects of a promotor
+    @GetMapping(path = "/MySubjects/Students/{id}")
+    public List<Student> getMySubjectsStudentList(@PathVariable("subjectid") long subjectid,HttpServletRequest request){
+        return promotorService.getStudentListPerSubject(getAccesToken(request),subjectid);
     }
     //to boost a student
     @PutMapping(path= "/MySubjects/Boost/{subjectid}/{studentid}")

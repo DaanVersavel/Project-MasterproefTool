@@ -14,6 +14,7 @@ import com.example.MasterproofTool.user.student.StudentRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -86,5 +87,10 @@ public class PromotorService {
         studentRepository.save(student);
         subjectRepository.save(subject);
 
+    }
+
+    public List<Student> getStudentListPerSubject(String accesToken, long subjectId) {
+        Subject subject = subjectRepository.findSubjectById(subjectId);
+        return studentRepository.findStudentBySubjectFirstchoise(subject);
     }
 }
