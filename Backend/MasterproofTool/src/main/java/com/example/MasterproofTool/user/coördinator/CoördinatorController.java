@@ -42,6 +42,7 @@ public class CoördinatorController {
         String access_token =getAccesToken(request);
         return coordinatorService.getAssignedSubjects(access_token);
     }
+
     //list of not assigned subjects
     @GetMapping(path = "/NotAssignedSubjects")
     public List<Subject> getNotAssignedSubjects(HttpServletRequest request){

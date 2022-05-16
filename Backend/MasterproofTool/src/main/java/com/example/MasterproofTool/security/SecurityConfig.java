@@ -49,7 +49,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/Subjects/Review/Denied/{id}").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
 
         http.authorizeRequests().antMatchers("/Subjects/Denied").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
-        http.authorizeRequests().antMatchers("/Subjects/Review").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
 
 
         http.authorizeRequests().antMatchers("/Subjects/{id}").hasAnyAuthority(ROLE_ADMIN,ROLE_STUDENT,ROLE_PROMOTOR,ROLE_COÖRDINATOR,ROLE_COMPANY);
@@ -59,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         //User Controller
-        http.authorizeRequests().antMatchers("/User/users/save").hasAnyAuthority(ROLE_ADMIN,ROLE_PROMOTOR,ROLE_COÖRDINATOR);
+        http.authorizeRequests().antMatchers("/User/users/save").hasAnyAuthority(ROLE_ADMIN,ROLE_PROMOTOR,ROLE_COÖRDINATOR,"ROLE_LOGIN");
         http.authorizeRequests().antMatchers("/User/users").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
         http.authorizeRequests().antMatchers("/User/role/addtouser").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
         http.authorizeRequests().antMatchers("/User/role/save").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
@@ -69,16 +68,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/User/whoami").hasAnyAuthority(ROLE_ADMIN,ROLE_STUDENT,ROLE_PROMOTOR,ROLE_COÖRDINATOR,ROLE_COMPANY);
 
         //Campus controller
-//        http.authorizeRequests().antMatchers("/Campus").hasAnyAuthority();
+        http.authorizeRequests().antMatchers("/Campus").hasAnyAuthority("ROLE_ADMIN","ROLE_COÖRDINATOR", "ROLE_LOGIN");
         //CompanyController
         http.authorizeRequests().antMatchers("/Company/list").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
-        http.authorizeRequests().antMatchers("/Company").hasAnyAuthority(ROLE_COMPANY);
+//        http.authorizeRequests().antMatchers("/Company").hasAnyAuthority(ROLE_COMPANY);
 
+
+        http.authorizeRequests().antMatchers("/Company/Save").hasAnyAuthority("ROLE_LOGIN","ROLE_ADMIN");
         //Discipline
-//        http.authorizeRequests().antMatchers("/Discipline").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
+        http.authorizeRequests().antMatchers("/Discipline").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR,"ROLE_LOGIN");
 
         //Promotor
+        http.authorizeRequests().antMatchers("/Promotor/MySubjects/Students/{id}").hasAnyAuthority(ROLE_PROMOTOR);
+        http.authorizeRequests().antMatchers("/Promotor/MySubjects/Boost/{subjectid}/{studentid}").hasAnyAuthority(ROLE_PROMOTOR);
         http.authorizeRequests().antMatchers("/Promotor/MySubjects").hasAnyAuthority(ROLE_PROMOTOR);
+        http.authorizeRequests().antMatchers("/Promotor/Save").hasAnyAuthority(ROLE_PROMOTOR,"ROLE_LOGIN");
+
+        //coordinator
+        http.authorizeRequests().antMatchers("/Coordinator/Review").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
+        http.authorizeRequests().antMatchers("/Coordinator/Save").hasAnyAuthority("ROLE_ADMIN","ROLE_LOGIN");
+        http.authorizeRequests().antMatchers("/Coordinator/AssignedSubjects").hasAnyAuthority("ROLE_ADMIN","ROLE_COÖRDINATOR");
+        http.authorizeRequests().antMatchers("/Coordinator/NotAssignedSubjects").hasAnyAuthority("ROLE_ADMIN","ROLE_COÖRDINATOR");
+        http.authorizeRequests().antMatchers("/Coordinator/AutoAssignBoosted").hasAnyAuthority("ROLE_ADMIN","ROLE_COÖRDINATOR");
+        http.authorizeRequests().antMatchers("/Coordinator/AutoAssignFirstChoise").hasAnyAuthority("ROLE_ADMIN","ROLE_COÖRDINATOR");
 
 
         //Student
