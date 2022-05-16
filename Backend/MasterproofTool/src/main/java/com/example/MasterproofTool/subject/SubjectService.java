@@ -6,6 +6,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.MasterproofTool.user.appUser.Appuser;
 import com.example.MasterproofTool.user.appUser.UserRepository;
+import com.example.MasterproofTool.user.campus.Campus;
+import com.example.MasterproofTool.user.campus.CampusRepository;
 import com.example.MasterproofTool.user.coördinator.Coördinator;
 import com.example.MasterproofTool.user.coördinator.CoördinatorRepository;
 import com.example.MasterproofTool.user.promotor.Promotor;
@@ -27,14 +29,16 @@ public class SubjectService {
     private final StudentRepository studentRepository;
     private final CoördinatorRepository coordinatorRepository;
     private final PromotorRepository promotorRepository;;
+    private final CampusRepository campusRepository;
 
     @Autowired
-    public SubjectService(SubjectRepository subjectRepository, UserRepository userRepository, StudentRepository studentRepository, CoördinatorRepository coordinatorRepository, PromotorRepository promotorRepository) {
+    public SubjectService(SubjectRepository subjectRepository, UserRepository userRepository, StudentRepository studentRepository, CoördinatorRepository coordinatorRepository, PromotorRepository promotorRepository, CampusRepository campusRepository) {
         this.subjectRepository = subjectRepository;
         this.userRepository = userRepository;
         this.studentRepository = studentRepository;
         this.coordinatorRepository = coordinatorRepository;
         this.promotorRepository = promotorRepository;
+        this.campusRepository = campusRepository;
     }
 
     public List<Subject> getSubjectsApproved(String access_token) {

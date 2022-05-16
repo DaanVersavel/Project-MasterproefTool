@@ -8,6 +8,10 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.MasterproofTool.MasterproefToolApplication;
 import com.example.MasterproofTool.subject.Subject;
 import com.example.MasterproofTool.subject.SubjectRepository;
+import com.example.MasterproofTool.user.campus.Campus;
+import com.example.MasterproofTool.user.campus.CampusRepository;
+import com.example.MasterproofTool.user.disciplines.Discipline;
+import com.example.MasterproofTool.user.disciplines.DisciplineRepository;
 import com.example.MasterproofTool.user.role.Role;
 import com.example.MasterproofTool.user.role.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +28,17 @@ public class StudentService {
     private final SubjectRepository subjectRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
+    private final CampusRepository campusRepository;
+    private final DisciplineRepository disciplineRepository;
 
     @Autowired
-    public StudentService(StudentRepository studentRepository, SubjectRepository subjectRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
+    public StudentService(StudentRepository studentRepository, SubjectRepository subjectRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository, CampusRepository campusRepository, DisciplineRepository disciplineRepository) {
         this.studentRepository = studentRepository;
         this.subjectRepository = subjectRepository;
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
+        this.campusRepository = campusRepository;
+        this.disciplineRepository = disciplineRepository;
     }
 
     public Student saveStudent(Student student) {
@@ -69,6 +77,10 @@ public class StudentService {
         }
         //if student doesn't exist
         else {
+            Campus campus = campusRepository.findByName(student.getCampus().getName());
+            student.setCampus(campus);
+            Discipline discipline = disciplineRepository.findByNaam(student.getDiscipline().getNaam());
+            student.setDiscipline(discipline);
             encodePassword(student);
             studentRepository.save(student);
             addRoleToStudent(student.getEmail(), MasterproefToolApplication.ROLE_STUDENT);

@@ -71,6 +71,11 @@ public class Student extends Appuser {
         super(firstName, surname, gsm, email,password);
         this.studentNumber = studentNumber;
     }
+    public Student(String firstName, String surname, String gsm, String email, String studentNumber, Campus campus, String password){
+        super(firstName, surname, gsm, email,password);
+        this.campus = campus;
+        this.studentNumber = studentNumber;
+    }
 
     public Student(String firstName, String surname, String gsm, String email, String studentNumber, Subject firstChoice, Subject secondChoice, Subject thirdChoice, Discipline discipline, Subject assignedSubject, Subject boostedSubject) {
         super(firstName, surname, gsm, email);
