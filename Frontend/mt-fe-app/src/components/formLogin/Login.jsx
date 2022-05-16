@@ -4,6 +4,8 @@ import axios from '../../api/axiosLogin'
 import {useLocation, useNavigate} from "react-router-dom";
 import qs from "qs";
 import "./Login.css";
+import { BsPersonCircle} from "react-icons/bs";
+import { RiLockPasswordLine  } from "react-icons/ri";
 
 const Login = () => {
     const [data, setData] = useState({
@@ -45,7 +47,7 @@ const Login = () => {
         <form className="logForm" onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="email">
-                    Email:
+                    <BsPersonCircle/>
                 </label>
                 <br/>
                 <input
@@ -61,7 +63,7 @@ const Login = () => {
 
             <div>
                 <label htmlFor="password">
-                    Password:
+                    <RiLockPasswordLine/>
                 </label>
                 <br/>
                 <input

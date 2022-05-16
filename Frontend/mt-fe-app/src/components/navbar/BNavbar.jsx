@@ -39,6 +39,73 @@ const BNavbar = () => {
                 </Navbar.Collapse>
             )
         }
+        if(role==="ROLE_COÖRDINATOR"){
+            buttons = (
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav>
+                        <NavDropdown title="Subjects" id="collasible-nav-dropdown">
+                            <NavDropdown.Item href="/Subjects">Subject List</NavDropdown.Item>
+                            <NavDropdown.Item href="/Subjects/Post">Add Subject</NavDropdown.Item>
+                            <NavDropdown.Item href="/Student/Starred">Enlist for Subject</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="/Subjects/Review">Approve Subject</NavDropdown.Item>
+                        </NavDropdown>
+                        <Nav.Link href="/Account">Account</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            )
+        }
+
+        if(role==="ROLE_PROMOTOR"){
+            buttons = (
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav>
+                        <NavDropdown title="Subjects" id="collasible-nav-dropdown">
+                            <NavDropdown.Item href="/Subjects">Subject List</NavDropdown.Item>
+                            <NavDropdown.Item href="/Subjects/Post">Add Subject</NavDropdown.Item>
+                            <NavDropdown.Item href="/Student/Starred">Enlist for Subject</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="/Subjects/Review">Approve Subject</NavDropdown.Item>
+                        </NavDropdown>
+                        <Nav.Link href="/Account">Account</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            )
+        }
+
+        if(role==="ROLE_COMPANY"){
+            buttons = (
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav>
+                        <NavDropdown title="Subjects" id="collasible-nav-dropdown">
+                            <NavDropdown.Item href="/Subjects">Subject List</NavDropdown.Item>
+                            <NavDropdown.Item href="/Subjects/Post">Add Subject</NavDropdown.Item>
+                            <NavDropdown.Item href="/Student/Starred">Enlist for Subject</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="/Subjects/Review">Approve Subject</NavDropdown.Item>
+                        </NavDropdown>
+                        <Nav.Link href="/Account">Account</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            )
+        }
+
+        if(role==="ROLE_ADMIN"){
+            buttons = (
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav>
+                        <NavDropdown title="Subjects" id="collasible-nav-dropdown">
+                            <NavDropdown.Item href="/Subjects">Subject List</NavDropdown.Item>
+                            <NavDropdown.Item href="/Subjects/Post">Add Subject</NavDropdown.Item>
+                            <NavDropdown.Item href="/Student/Starred">Enlist for Subject</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="/Subjects/Review">Approve Subject</NavDropdown.Item>
+                        </NavDropdown>
+                        <Nav.Link href="/Account">Account</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            )
+        }
     }
     else {
         buttons = (
