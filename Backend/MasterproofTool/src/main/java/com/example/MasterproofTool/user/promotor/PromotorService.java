@@ -7,6 +7,10 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.MasterproofTool.MasterproefToolApplication;
 import com.example.MasterproofTool.subject.Subject;
 import com.example.MasterproofTool.subject.SubjectRepository;
+import com.example.MasterproofTool.user.campus.Campus;
+import com.example.MasterproofTool.user.campus.CampusRepository;
+import com.example.MasterproofTool.user.disciplines.Discipline;
+import com.example.MasterproofTool.user.disciplines.DisciplineRepository;
 import com.example.MasterproofTool.user.role.Role;
 import com.example.MasterproofTool.user.role.RoleRepository;
 import com.example.MasterproofTool.user.student.Student;
@@ -14,7 +18,6 @@ import com.example.MasterproofTool.user.student.StudentRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,13 +29,18 @@ public class PromotorService {
     private final PromotorRepository promotorRepository;
     private final SubjectRepository subjectRepository;
     private final StudentRepository studentRepository;
+    private final CampusRepository campusRepository;
+    private final DisciplineRepository disciplineRepository;
 
-    public PromotorService(PasswordEncoder passwordEncoder, RoleRepository roleRepository, PromotorRepository promotorRepository, SubjectRepository subjectRepository, StudentRepository studentRepository) {
+
+    public PromotorService(PasswordEncoder passwordEncoder, RoleRepository roleRepository, PromotorRepository promotorRepository, SubjectRepository subjectRepository, StudentRepository studentRepository, CampusRepository campusRepository, DisciplineRepository disciplineRepository) {
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
         this.promotorRepository = promotorRepository;
         this.subjectRepository = subjectRepository;
         this.studentRepository = studentRepository;
+        this.campusRepository = campusRepository;
+        this.disciplineRepository = disciplineRepository;
     }
 
     public Optional<Promotor> saveNewPromotor(Promotor promotor) {
@@ -44,6 +52,10 @@ public class PromotorService {
         }
         //if student doesn't exist
         else {
+            Campus campus = campusRepository.findByName(promotor.getCampus().getName());
+            promotor.setCampus(campus);
+            Discipline discipline = disciplineRepository.findByNaam(promotor.getDiscipline().getNaam());
+            promotor.setDiscipline(discipline);
             encodePassword(promotor);
             promotorRepository.save(promotor);
             addRoleToCompany(promotor.getEmail(), MasterproefToolApplication.ROLE_PROMOTOR);

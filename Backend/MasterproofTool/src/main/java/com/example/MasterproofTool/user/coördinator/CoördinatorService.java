@@ -63,6 +63,10 @@ public class CoördinatorService {
         }
         //if student doesn't exist
         else {
+            Campus campus = campusRepository.findByName(coördinator.getCampus().getName());
+            coördinator.setCampus(campus);
+            Discipline discipline = disciplineRepository.findByNaam(coördinator.getDiscipline().getNaam());
+            coördinator.setDiscipline(discipline);
             encodePassword(coördinator);
             coordinatorRepository.save(coördinator);
             addRoleToCoordinator(coördinator.getEmail(), MasterproefToolApplication.ROLE_COÖRDINATOR);

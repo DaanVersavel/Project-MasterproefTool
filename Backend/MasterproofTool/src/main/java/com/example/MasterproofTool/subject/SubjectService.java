@@ -8,19 +8,21 @@ import com.example.MasterproofTool.user.appUser.Appuser;
 import com.example.MasterproofTool.user.appUser.UserRepository;
 import com.example.MasterproofTool.user.campus.Campus;
 import com.example.MasterproofTool.user.campus.CampusRepository;
+import com.example.MasterproofTool.user.company.Company;
+import com.example.MasterproofTool.user.company.CompanyRepository;
 import com.example.MasterproofTool.user.coördinator.Coördinator;
 import com.example.MasterproofTool.user.coördinator.CoördinatorRepository;
+import com.example.MasterproofTool.user.disciplines.Discipline;
+import com.example.MasterproofTool.user.disciplines.DisciplineRepository;
 import com.example.MasterproofTool.user.promotor.Promotor;
 import com.example.MasterproofTool.user.promotor.PromotorRepository;
 import com.example.MasterproofTool.user.student.Student;
 import com.example.MasterproofTool.user.student.StudentRepository;
-import java.util.Collections;
+
+import java.util.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class SubjectService {
@@ -30,15 +32,19 @@ public class SubjectService {
     private final CoördinatorRepository coordinatorRepository;
     private final PromotorRepository promotorRepository;;
     private final CampusRepository campusRepository;
+    private final CompanyRepository companyRepository;
+    private final DisciplineRepository disciplineRepository;
 
     @Autowired
-    public SubjectService(SubjectRepository subjectRepository, UserRepository userRepository, StudentRepository studentRepository, CoördinatorRepository coordinatorRepository, PromotorRepository promotorRepository, CampusRepository campusRepository) {
+    public SubjectService(SubjectRepository subjectRepository, UserRepository userRepository, StudentRepository studentRepository, CoördinatorRepository coordinatorRepository, PromotorRepository promotorRepository, CampusRepository campusRepository, CompanyRepository companyRepository, DisciplineRepository disciplineRepository) {
         this.subjectRepository = subjectRepository;
         this.userRepository = userRepository;
         this.studentRepository = studentRepository;
         this.coordinatorRepository = coordinatorRepository;
         this.promotorRepository = promotorRepository;
         this.campusRepository = campusRepository;
+        this.companyRepository = companyRepository;
+        this.disciplineRepository = disciplineRepository;
     }
 
     public List<Subject> getSubjectsApproved(String access_token) {
@@ -63,8 +69,41 @@ public class SubjectService {
         Optional<Subject> subjectByOptional = subjectRepository.findSubjectByTitle(subject.getTitle());
         if(subjectByOptional.isPresent()){
             throw  new IllegalStateException("Subject title already taken");
+        }else{
+            if(subject.getCompany()!=null){
+                Company company= companyRepository.findExistingCompanyByEmail(subject.getCompany().getEmail());
+                subject.setCompany(company);
+            }
+            if(subject.getCoordinator()!=null){
+                Coördinator coord= coordinatorRepository.findExistingCoordinatorByEmail(subject.getCoordinator().getEmail());
+                subject.setCoordinator(coord);
+            }
+            if(subject.getPromotor()!=null){
+                Promotor promotor= promotorRepository.findExistingPromotorByEmail(subject.getPromotor().getEmail());
+                subject.setPromotor(promotor);
+            }
+            //get all Disciplines
+            Set<Discipline> disciplines= new HashSet(subject.getDisciplines()) ;
+            //remove the list in subjects
+            subject.setDisciplines(new HashSet<>());
+            //add the discplines to subject
+            for(Discipline d : disciplines){
+                Discipline discipline=disciplineRepository.findByNaam(d.getNaam());
+                subject.getDisciplines().add(discipline);
+            }
+
+            //get all Disciplines
+            Set<Campus> campussen= new HashSet(subject.getCampussen());
+            //remove the list in subjects
+            subject.setCampussen(new HashSet<>());
+            //add the discplines to subject
+            for(Campus c : campussen){
+                Campus campus=campusRepository.findByName(c.getName());
+                subject.getCampussen().add(campus);
+            }
+            subjectRepository.save(subject);
         }
-        subjectRepository.save(subject);
+
     }
 
     public Subject updateSubjectReviewApprovedTrue(long id){
