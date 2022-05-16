@@ -2,75 +2,80 @@ import React, {useEffect, useState} from 'react';
 import validate from './validateInfo';
 import useForm from './useForm';
 import Select from "react-select";
-import axiosNoToken from "../../api/axiosNoToken.js"
+import axios from "../../api/axiosSignUp.js"
+import axiosLogin from "../../api/axiosLogin";
+import qs from "qs";
 import PhoneInput from 'react-phone-number-input'
 
 import './SignUp.css';
 import 'react-phone-number-input/style.css'
 import KULBuilding from "../../KU-Leuven_branded.jpg"
+import {Button} from "react-bootstrap";
 
 const SignUp = () => {
     const [success, setSuccess] = useState(false);
-
-    const [optionsRole, setOptionsRole] = useState([]);
-    useEffect(() => {
-        axiosNoToken
-            .get('/Role')
-            .then((response)=> {
-                setOptionsRole(response.data);
-                optionsRole.forEach(convertObjects(...optionsRole))
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }, []);
-
+    const optionsRole = [
+        {value: 'ROLE_STUDENT', label: 'Student'},
+        {value: 'ROLE_COÖRDINATOR', label: 'Coordinator'},
+        {value: 'ROLE_PROMOTOR', label: 'Promotor'},
+        {value: 'ROLE_COMPANY', label: 'Company'}
+    ]
     const [optionsDiscipline, setOptionsDiscipline] = useState([]);
+    const [optionsCampus, setOptionsCampus] = useState([]);
+
     useEffect(() => {
-        axiosNoToken
-            .get('/Discipline')
-            .then((response)=> {
-                setOptionsDiscipline(response.data);
-                console.log(response.data);
+        axiosLogin
+            .post("/login", qs.stringify({
+                email: 'login@gmail.com',
+                password: 'login123'
+            }))
+            .then((response) => {
+                console.log(response)
+                sessionStorage.setItem('access_signup', response.data['access_token'])
             })
             .catch(error => {
                 console.log(error)
             })
     }, []);
 
-    const [optionsCampus, setOptionsCampus] = useState([]);
     useEffect(() => {
-        axiosNoToken
+        axios
+            .get('/Discipline')
+            .then((response) => {
+                console.log(response.data);
+                setOptionsDiscipline(response.data.map(( discipline ) => ({ value: discipline.naam, label: discipline.naam})))
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }, []);
+
+
+    useEffect(() => {
+        axios
             .get('/Campus')
             .then(response => {
-                setOptionsCampus(response.data);
                 console.log(response.data);
+                setOptionsCampus(response.data.map(( campus ) => ({ value: campus.name, label: campus.name})))
             })
             .catch(error => {
                 console.log(error)
             })
     }, []);
+
 
     function successful() {
         setSuccess(true)
     }
 
-    const [readyRoleOptions, setReadyRoleOPtions] = useState([]);
-
-    function convertObjects(student, coordinator, promotor, company){
-        setReadyRoleOPtions([
-            {value: student, label: 'Student'},
-            {value: coordinator, label: 'Coordinator'},
-            {value: promotor, label: 'Promotor'},
-            {value: company, label: 'Company'}
-        ])
-    }
-
     const {
-        handleChange, handleChangeStudent,
-        handleChangeCoordinator, handleChangePromotor,
-        handleChangeCompany, handleSubmit,
+        handleChange,
+        handleRole,
+        handleChangeStudent,
+        handleChangeCoordinator,
+        handleChangePromotor,
+        handleChangeCompany,
+        handleSubmit,
         values, studentValues,
         coordinatorValues, promotorValues,
         companyValues, errors
@@ -250,8 +255,6 @@ const SignUp = () => {
     if (values.role) {
         roleSignUp = (
             <>
-                {roleSpecificSignUp}
-
                 <div className='form-inputs'>
                     <label className='form-label'>
                         First name:
@@ -269,6 +272,7 @@ const SignUp = () => {
                     {errors.firstName && <p>{errors.firstName}</p>}
                 </div>
 
+                {roleSpecificSignUp}
 
                 <div className='form-inputs'>
                     <label className='form-label'>
@@ -387,19 +391,19 @@ const SignUp = () => {
                                     placeholder={"Select what role you want to represent"}
                                     id={"role"}
                                     required
-                                    options={readyRoleOptions}
+                                    options={optionsRole}
                                     value={values.role}
-                                    onChange={handleChange}
+                                    onChange={handleRole}
                                 />
                                 {errors.role && <p>{errors.role}</p>}
                             </div>
 
                             {roleSignUp}
 
-                            <button className='form-input-btn' type='submit'
+                            <Button className='form-input-btn' type='submit'
                                     disabled={!(values.role && values.firstName && values.lastName && values.email && values.phone && values.password && values.password2)}>
                                 Sign up
-                            </button>
+                            </Button>
 
                             <span className='form-input-login'>
                                 Already have an account? Login <a href='/'>here</a>!
