@@ -8,7 +8,6 @@ import {AiOutlineFileText, AiOutlineTeam, AiTwotoneBank} from "react-icons/ai";
 import axios from "../../api/axiosAccessToken";
 
 
-
 const SocialCard=({subjectData})=>{
     const id=subjectData.id;
     const listDisciplines= subjectData.disciplines.map((d)=>
