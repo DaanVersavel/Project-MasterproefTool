@@ -1,0 +1,14 @@
+.detailheader{
+    text-align:center;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+
+}
+.detailcontent{
+    max-width: 70%;
+    text-align:center;
+    margin: auto;
+    width: 50%;
+    background-color: #7a7979;
+    padding: 10px;
+}

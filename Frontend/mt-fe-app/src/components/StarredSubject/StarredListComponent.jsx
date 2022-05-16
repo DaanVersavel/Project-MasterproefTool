@@ -22,20 +22,18 @@ const StarredListComponent = () => {
 
 
     useEffect(() => {
-        const fetchSubjects = async () =>{
-            setLoading(true);
-            try {
-                const {data: response} = await axios.get('/Student/Starred',{
-
-                });
-                setSubjects(response);
-                setCopySubjects(response);
-            } catch (error) {
+        setLoading(true);
+        axios
+            .get('/Student/Starred')
+            .then((response)=>{
+                console.log(response)
+                setSubjects(response.data)
+                setCopySubjects(response.data.map((subject) => ({value: subject.title, label: subject.title,id: subject.id})));
+            })
+            .catch(error=>{
                 console.error(error.message);
-            }
-            setLoading(false);
-        }
-        fetchSubjects()
+            })
+        setLoading(false);
     }, []);
 
     const handleSubmit=(e) =>{
@@ -47,6 +45,7 @@ const StarredListComponent = () => {
             let firstChoiceId=choiceSubjects.firstChoice.id;
             let secondChoiceId=choiceSubjects.secondChoice.id;
             let thirdChoiceId=choiceSubjects.thirdChoice.id;
+            console.log(firstChoiceId)
 
             axios.put(`/Student/Starred/FirstChoise/${firstChoiceId}`,{firstChoiceId},{
             })
@@ -78,16 +77,16 @@ const StarredListComponent = () => {
         }
     }
 
-    const handleFirstSelect = firstChoice => {
-        setChoiceSubjects({...choiceSubjects,firstChoice})
+    const handleFirstSelect = choice => {
+        setChoiceSubjects({...choiceSubjects,firstChoice:choice})
     }
 
-    const handleSecondSelect = secondChoice => {
-        setChoiceSubjects({...choiceSubjects,secondChoice})
+    const handleSecondSelect = choice => {
+        setChoiceSubjects({...choiceSubjects,secondChoice:choice})
     }
 
-    const handleThirdSelect = thirdChoice => {
-        setChoiceSubjects({...choiceSubjects,thirdChoice})
+    const handleThirdSelect = choice => {
+        setChoiceSubjects({...choiceSubjects,thirdChoice:choice})
     }
     return(
         <Container>

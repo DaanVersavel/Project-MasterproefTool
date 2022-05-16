@@ -15,8 +15,9 @@ import ReviewSubjects from "./pages/subjects/ReviewSubjects";
 import ManageUsers from "./pages/users/ManageUsers";
 import StarredSubjects from "./pages/subjects/StarredSubjects";
 import NoMatch from "./pages/noMatch/NoMatch";
+import StudentBoostPage from "./pages/boosting/StudentBoostPage";
 
-export default function App() {
+export default function App () {
     return (
         <Router>
             <BNavbar/>
@@ -36,6 +37,7 @@ export default function App() {
                     <Route path='/Login' element={<Login/>}/>
                     <Route path='/Subjects/Details/*' element={<RequireAuth><Details/></RequireAuth>}/>
                     <Route path='/Subjects/Details/?=id' element={<RequireAuth><Details/></RequireAuth>}/>
+                    <Route path = '/Promotor/Boost' element={<RequireAuth><StudentBoostPage/></RequireAuth>} />
                 </Routes>
             </div>
         </Router>
