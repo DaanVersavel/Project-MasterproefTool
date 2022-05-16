@@ -1,12 +1,13 @@
 import "./StarredListComponent"
 import "./SocialCardStarred.css"
 import {motion} from "framer-motion";
-import {Button} from "react-bootstrap";
-import React from "react";
+import React, {useRef} from "react";
 import {Link} from "react-router-dom";
-import {AiOutlineFileText, AiOutlineTeam, AiTwotoneBank} from "react-icons/ai";
+import {AiOutlineFileText, AiTwotoneBank} from "react-icons/ai";
 import axios from "../../api/axiosAccessToken";
-
+import {Button} from "@progress/kendo-react-buttons";
+import '@progress/kendo-theme-default/dist/all.css';
+import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
 
 
 const SocialCard=({subjectData})=>{
@@ -22,14 +23,22 @@ const SocialCard=({subjectData})=>{
         })
     };
 
+    const handlePDFClick=(event) =>{
+        ReactToPdfComponent.current.save();
+
+    }
+
+    const ReactToPdfComponent=useRef(null);
+
     return(
         <div className="card">
-            <div className="card__title">{subjectData.title} </div>
-            <div className="card-body">
-                <div><AiOutlineFileText className={"side-icon"}/>{subjectData.description}</div>
-                <div>{listDisciplines}</div>
-                <div><AiOutlineTeam className="side-icon"/>Amount of students: {subjectData.aStudents}</div>
-            </div>
+            <PDFExport ref={ReactToPdfComponent} paperSize={"A4"}>
+                <div className="card__title">{subjectData.title} </div>
+                <div className="card-body">
+                    <div><AiOutlineFileText className={"side-icon"}/>{subjectData.description}</div>
+                    <div>{listDisciplines}</div>
+                </div>
+            </PDFExport>
             <div>
                 <Link to={'/Subjects/Details/?id='+id} >
                     <motion.button
@@ -46,6 +55,9 @@ const SocialCard=({subjectData})=>{
                     onClick={handleUnStar}>
                     UnStar
                 </motion.button>
+                <div >
+                    <Button onClick={handlePDFClick}className="save-button" primary={true}>Download PDF</Button>
+                </div>
             </div>
 
 

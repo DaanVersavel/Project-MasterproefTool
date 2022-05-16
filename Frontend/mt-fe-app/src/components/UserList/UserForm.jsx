@@ -28,12 +28,16 @@ const UserForm=()=>{
         const fetchSubjects = async () =>{
             try {
                 const {data: response} = await axios.get('/Role');
+                setRole(response);
                 setOptions(response);
+                console.log(response);
             } catch (error) {
                 console.error(error.message);
             }
         }
         fetchSubjects()
+
+
     }, []);
 
     const handleChange = (e) => {
@@ -44,7 +48,6 @@ const UserForm=()=>{
     const handleSelect = roles => {
         setFormData({...formData, roles});
     }
-
 
     const handleSubmitCoordinator = (e) => {
         e.preventDefault();
@@ -107,7 +110,9 @@ const UserForm=()=>{
     }
 
     let buttons;
-    if(role==="ROLE_COÖRDINATOR"){
+    let rolnaam;
+
+    if(role.roleName==="ROLE_COÖRDINATOR"){
         buttons=(
             <Form onSubmit={handleSubmitCoordinator}>
                 <Form.Group controlId={"campusvanCoördinator"}>
@@ -134,7 +139,7 @@ const UserForm=()=>{
             </Form>
         )
     }
-    else if(role==="ROLE_STUDENT"){
+    else if(role.roleName==="ROLE_STUDENT"){
         buttons=(
             <Form onSubmit={handleSubmitStudent}>
                 <Form.Group controlId={"campusvanStudent"}>
@@ -171,7 +176,7 @@ const UserForm=()=>{
             </Form>
         )
     }
-    else if(role==="ROLE_COMPANY"){
+    else if(role.roleName==="ROLE_COMPANY"){
         buttons=(
             <Form onSubmit={handleSubmitCompany}>
                 <Form.Group controlId={"firstName"}>
@@ -244,7 +249,7 @@ const UserForm=()=>{
         )
 
     }
-    else if (role==="ROLE_PROMOTOR"){
+    else if (role.roleName==="ROLE_PROMOTOR"){
         buttons=(
             <Form onSubmit={handleSubmitPromotor}>
                 <Form.Group controlId={"campusvanPromotor"}>

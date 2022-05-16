@@ -179,7 +179,7 @@ public class MasterproefToolApplication {
 			promotorService.saveNewPromotor(p);
 
 			//goed subject
-			subjectRepository.save(new Subject("goed subejct","prachtige bescrhijving","goede opmerking",p,disciplineSubject,campussenSubject,1,true));
+			subjectRepository.save(new Subject("goed subject","prachtige bescrhijving","goede opmerking",p,disciplineSubject,campussenSubject,1,true));
 		};
 	}
 

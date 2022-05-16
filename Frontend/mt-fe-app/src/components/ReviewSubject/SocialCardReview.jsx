@@ -16,7 +16,7 @@ const SocialCardReview=({subjectData})=>{
 
     function handleApprove() {
         let subjectId=subjectData.id;
-        axios.put(`/Subjects/Approved/${subjectData.id}`,{subjectId},{
+        axios.put(`/Subjects/Review/Approved/${subjectData.id}`,{subjectId},{
 
         }).then(response=>{
             console.log(response)
@@ -26,7 +26,7 @@ const SocialCardReview=({subjectData})=>{
     }
 
     function handleDeny() {
-        axios.put(`/Subjects/Denied/${subjectData.id}`)
+        axios.put(`/Subjects/Review/Denied/${subjectData.id}`)
     }
 
     return(

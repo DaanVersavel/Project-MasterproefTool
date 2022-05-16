@@ -1,11 +1,13 @@
 import "./FormSList"
 import "./SocialCard.css"
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 import {motion} from "framer-motion";
-import Pdf from "react-to-pdf"
 import {Link} from "react-router-dom";
 import axios from "../../api/axiosAccessToken";
-import {AiOutlineFileText, AiOutlineStar, AiOutlineTeam, AiTwotoneBank} from "react-icons/ai";
+import {AiOutlineFileText, AiOutlineStar, AiTwotoneBank} from "react-icons/ai";
+import '@progress/kendo-theme-default/dist/all.css';
+import { Button } from "@progress/kendo-react-buttons";
+import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
 
 const ref = React.createRef();
 
@@ -39,23 +41,30 @@ const SocialCard=({subjectData})=>{
 
     };
     const id=subjectData.id;
+
+    const handlePDFClick=(event) =>{
+        ReactToPdfComponent.current.save();
+
+    }
+
+    const ReactToPdfComponent=useRef(null);
     return(
 
       <div className="card">
-        <div className="card__title">{subjectData.title}
-            <div
-                className={style}
-                onClick={handleStarClick}>
-                <AiOutlineStar/>
+          <PDFExport ref={ReactToPdfComponent} paperSize={"A4"}>
+            <div className="card__title">{subjectData.title}
+                <div
+                    className={style}
+                    onClick={handleStarClick}>
+                    <AiOutlineStar/>
+                </div>
+
             </div>
-
-        </div>
-
-        <div className="card-body">
-            <div><AiOutlineFileText className={"side-icon"}/>{subjectData.description}</div>
-            <div>{listDisciplines}</div>
-            <div><AiOutlineTeam className="side-icon"/>Amount of students: {subjectData.aStudents}</div>
-        </div>
+            <div className="card-body">
+                <div><AiOutlineFileText className={"side-icon"}/>{subjectData.description}</div>
+                <div>{listDisciplines}</div>
+            </div>
+          </PDFExport>
         <div>
             <Link to={'/Subjects/Details/?id='+id} >
               <motion.button
@@ -65,10 +74,11 @@ const SocialCard=({subjectData})=>{
                   Details
               </motion.button>
             </Link>
-            {/*<Pdf targetRef={ref} filename= {subjectData.title}>
-              {({ toPdf }) => <button onClick={toPdf}>Pdf</button>}
-          </Pdf>*/}
+            <div >
+                <Button onClick={handlePDFClick}className="save-button" primary={true}>Download PDF</Button>
+            </div>
         </div>
+
       </div>
 
     )

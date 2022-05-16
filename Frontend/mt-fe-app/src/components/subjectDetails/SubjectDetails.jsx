@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from '../../api/axiosAccessToken';
-import {Button, Container} from "react-bootstrap";
 import'./SubjectDetails.css'
-import {useParams} from "react-router-dom";
-import {stringify} from "qs";
+
 
 
 const SubjectDetails = () => {
@@ -20,9 +18,9 @@ const SubjectDetails = () => {
             setLoading(true);
             try {
                 const {data: response} = await axios.get(`/Subjects/${id}`,{
-
                 });
                 setSubjects(response);
+
             } catch (error) {
                 console.error(error.message);
             }
@@ -31,10 +29,18 @@ const SubjectDetails = () => {
         fetchSubjects()
     }, []);
 
+    function checkSubjects() {
+        console.log("subjects:",subjects)
+        console.log("Subject promotor", subjects.promotor.firstName)
+        console.log("last name",subjects.promotor.surname)
+
+    }
+
     return(
         <>
-            <h1>{subjects.title}</h1>
-            <div>{subjects.description}</div>
+            <h1 className={"detailheader"}>{subjects.title}</h1>
+            <div className={"detailcontent"}>{subjects.description}</div>
+            {/*<button onClick={checkSubjects}>Subject Details</button>*/}
         </>
     )
 

@@ -3,19 +3,18 @@ import "./UserTable.css";
 import "./UserList";
 import {Button} from "react-bootstrap";
 import axios from '../../../../mt-fe-app/src/api/axiosAccessToken'
-import fetchUsers from './UserList.jsx'
-import {AiTwotoneBank} from "react-icons/ai";
+
 
 function UserTable({userData}) {
-
     const deleteHandler = (e,id) =>{
-        axios.delete(`/Users/delete/${id}.json`
-        ).then(fetchUsers);
+        axios.delete(`/User/delete/${id}`,{}
+        ).then(response=>{
+            console.log(response)
+        }).catch(error => {
+            console.log(error)
+        });
     }
 
-    function handleShowRole(user) {
-        
-    }
 
     return (
         <div className={"app-container"}>
@@ -29,7 +28,7 @@ function UserTable({userData}) {
                         <th>Delete</th>
                     </tr>
                 </thead>
-                <tbody >
+                <tbody>
                 {userData.map((user)=>
                 <tr >
                     <td>{user.firstName}</td>
@@ -37,7 +36,7 @@ function UserTable({userData}) {
                     <td>{user.email}</td>
                     {/*<td>{user.roles.roleName}</td>*/}
                         <td>
-                            <Button onClick={() =>deleteHandler}>Delete</Button>
+                            <button onClick={deleteHandler(user.id)}>Delete</button>
                         </td>
                 </tr>
                 )}
