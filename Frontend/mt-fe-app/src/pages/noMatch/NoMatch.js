@@ -1,4 +1,5 @@
 import React from 'react';
+import {Container} from "react-bootstrap";
 
 export default function NoMatch() {
     setTimeout(function(){
@@ -6,7 +7,10 @@ export default function NoMatch() {
     }, 100);
 
     return (
-        <h2>Redirecting...</h2>
+        <Container>
+            <h2>Redirecting...</h2>
+        </Container>
+
     );
 }
 

@@ -1,9 +1,11 @@
 import {useState, useEffect} from 'react';
-import axiosNoToken from "../../api/axiosNoToken.js";
+import axios from "../../api/axiosSignUp.js";
+import {useNavigate} from "react-router-dom";
 
 const useForm = (successful, validate) => {
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const navigate = useNavigate()
 
     const [values, setValues] = useState({
         role: '',
@@ -41,6 +43,10 @@ const useForm = (successful, validate) => {
         setValues({...values, [id]: value});
     };
 
+    const handleRole = (selectedOption) => {
+        setValues({...values, role: selectedOption});
+    }
+
     const handleChangeStudent = e => {
         const {id, value} = e.target;
         setStudentValues({...studentValues, [id]: value});
@@ -68,8 +74,8 @@ const useForm = (successful, validate) => {
         setErrors(validate(values, studentValues, coordinatorValues, promotorValues, companyValues));
         setIsSubmitting(true);
 
-        if(values.role === 'student') {
-            axiosNoToken
+        if(values.role === 'ROLE_STUDENT') {
+            axios
                 .post("/Student/Save", {values, studentValues})
                 .then((response) => {
                     console.log(response)
@@ -78,8 +84,8 @@ const useForm = (successful, validate) => {
                     console.log(error)
                 });
         }
-        if(values.role === 'coordinator') {
-            axiosNoToken
+        if(values.role === 'ROLE_COÖRDINATOR') {
+            axios
                 .post("/Coordinator/Save", {values, coordinatorValues})
                 .then((response) => {
                     console.log(response)
@@ -88,8 +94,8 @@ const useForm = (successful, validate) => {
                     console.log(error)
                 });
         }
-        if(values.role === 'promotor') {
-            axiosNoToken
+        if(values.role === 'ROLE_PROMOTOR') {
+            axios
                 .post("/Promotor/Save", {values, promotorValues})
                 .then((response) => {
                     console.log(response)
@@ -98,8 +104,8 @@ const useForm = (successful, validate) => {
                     console.log(error)
                 });
         }
-        if(values.role === 'company') {
-            axiosNoToken
+        if(values.role === 'ROLE_COMPANY') {
+            axios
                 .post("/Company/Save", {values, companyValues})
                 .then((response) => {
                     console.log(response)
@@ -108,6 +114,9 @@ const useForm = (successful, validate) => {
                     console.log(error)
                 });
         }
+
+        sessionStorage.clear()
+        navigate('Login')
     };
 
     // only submit if zero errors
@@ -121,7 +130,7 @@ const useForm = (successful, validate) => {
     );
 
     return {
-        handleChange, handleChangeStudent,
+        handleChange, handleRole, handleChangeStudent,
         handleChangeCoordinator, handleChangePromotor,
         handleChangeCompany, handleSubmit,
         values, studentValues,
