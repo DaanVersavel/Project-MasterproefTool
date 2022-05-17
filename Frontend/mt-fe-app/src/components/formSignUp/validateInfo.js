@@ -1,7 +1,7 @@
-export default function validateInfo(values, studentValues, coordinatorValues, promoterValues, companyValues) {
+export default function validateInfo(role, password2, values, studentValues, coordinatorValues, promoterValues, companyValues) {
     let errors = {};
 
-    if (!values.role) {
+    if (!role) {
         errors.role = 'Role required';
     }
 
@@ -33,25 +33,25 @@ export default function validateInfo(values, studentValues, coordinatorValues, p
         errors.firstName = 'First name required';
     }
 
-    if (!values.lastName) {
-        errors.lastName = 'Last name required';
+    if (!values.surname) {
+        errors.surname = 'Last name required';
     }
 
     if (!values.email) {
         errors.email = 'Email required';
     }
 
-    if (!values.phone) {
-        errors.phone = 'Phone number required';
+    if (!values.gsm) {
+        errors.gsm = 'Phone number required';
     }
 
     if (!values.password) {
         errors.password = 'Password is required';
     }
 
-    if (!values.password2) {
+    if (!password2) {
         errors.password2 = 'Password is required';
-    } else if (values.password2 !== values.password) {
+    } else if (password2 !== values.password) {
         errors.password2 = 'Passwords do not match';
     }
 

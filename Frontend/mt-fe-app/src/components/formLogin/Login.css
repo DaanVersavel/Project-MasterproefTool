@@ -7,10 +7,7 @@
 
 .logForm label, span {
     color: #fff;
-}
-
-.logForm label {
-    flex-direction: row;
+    padding-top: 10px;
 }
 
 .login-btn {
