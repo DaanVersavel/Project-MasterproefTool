@@ -1,15 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import axios from '../../api/axiosAccessToken';
 import Select from "react-select";
-import BoostTable from "./BoostTable";
 
 const StudentBoost = () =>{
 
     const [firstChoiceStudents,setFirstChoiceStudents]=useState([]);
     const [options, setOptions] = useState([]);
-    const [presentSubject,setPresentSubject] = useState({
-        id:""
-    });
+    const [presentSubjectId,setPresentSubjectId] = useState("");
     let temp;
 
     let buttons;
@@ -30,15 +27,15 @@ const StudentBoost = () =>{
     const handleSelect = (selectedOption) => {
             temp=selectedOption.id;
             console.log("temp: ",temp)
-            setPresentSubject(temp);
-        findStudents();
-        console.log(firstChoiceStudents)
-        //makeList();
+            setPresentSubjectId(temp);
+            findStudents();
+            console.log(firstChoiceStudents)
+            //makeList();
     }
 
     const findStudents=()=> {
         try{
-            const {data:response} =  axios.get(`/Promotor/MySubjects/Students/${temp}`);
+            const {data:response} =  axios.get(`/Promotor/MySubjects/Students/${presentSubjectId}`);
             setFirstChoiceStudents(response);
         }catch(error){
             console.error(error.message);
@@ -71,7 +68,7 @@ const StudentBoost = () =>{
     }
 
     function BoostHandler(user) {
-        axios.put(`/Promotor/MySubjects/${temp}/${user.keyId}`,{},{
+        axios.put(`/Promotor/MySubjects/${presentSubjectId}/${user.keyId}`,{},{
         }).then(response=>
             console.log(response)
         )
@@ -83,7 +80,7 @@ const StudentBoost = () =>{
             <div>
                 <Select
                     name={"firstChoice"}
-                    value={presentSubject}
+                    value={presentSubjectId}
                     placeholder={"Select a subject"}
                     options={options}
                     onChange={handleSelect}
