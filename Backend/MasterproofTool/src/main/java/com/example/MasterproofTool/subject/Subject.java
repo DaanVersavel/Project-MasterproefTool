@@ -137,7 +137,17 @@ public class Subject {
         this.campussen = campussenSubject;
         this.aStudents= aStudents;
         this.approved = approved;
-
+    }
+    public Subject(String title, String description, String remark, Promotor promotor, Set<Discipline> disciplineSubject, Set<Campus> campussenSubject, int aStudents, boolean approved, Coördinator coordinator) {
+        this.title =title;
+        this.description = description;
+        this.remark = remark;
+        this.promotor =promotor;
+        this.disciplines= disciplineSubject;
+        this.campussen = campussenSubject;
+        this.aStudents= aStudents;
+        this.approved = approved;
+        this.coordinator = coordinator;
     }
 
     public void setApprovedTrue() {

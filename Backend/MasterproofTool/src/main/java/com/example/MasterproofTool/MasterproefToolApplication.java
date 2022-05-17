@@ -95,7 +95,7 @@ public class MasterproefToolApplication {
 	CommandLineRunner run2(DisciplineRepository disciplineRepository,PromotorRepository promotorRepository ,
 						   PromotorService  promotorService,CampusRepository campusRepository,
 						   SubjectRepository subjectRepository, CoördinatorService coordinatorService,
-						   StudentRepository studentRepository){
+						   StudentRepository studentRepository, CoördinatorRepository coordinatorRepository){
 		return args -> {
 			//Disciplines
 			//gent
@@ -177,9 +177,15 @@ public class MasterproefToolApplication {
 
 			Promotor p= new Promotor( "Daan", "v", "151", "daan@gmail.com", gent, elict, "daan123");
 			promotorService.saveNewPromotor(p);
+			Coördinator coord= coordinatorRepository.findExistingCoordinatorByEmail("elian@gmail.com");
+
 
 			//goed subject
-			subjectRepository.save(new Subject("goed subject","prachtige bescrhijving","goede opmerking",p,disciplineSubject,campussenSubject,1,true));
+			subjectRepository.save(new Subject("Automated hacking", "Detecting vulnerabilities in IoT devices","geen",p,disciplineSubject,campussenSubject,1,false,coord));
+			subjectRepository.save(new Subject("Language Identification", " Word-level language identification for annotating street and place names","geen",p,disciplineSubject,campussenSubject,1,false,coord));
+			subjectRepository.save(new Subject("Cybersecurity", "a world in danger by cyberattacks","Geen",p,disciplineSubject,campussenSubject,1,true,coord));
+			subjectRepository.save(new Subject("Acro Planning", "Planning gymnastic competiton","Geen",p,disciplineSubject,campussenSubject,1,true,coord));
+			subjectRepository.save(new Subject("Hacking tool", "Tool for hacking","",p,disciplineSubject,campussenSubject,1,true,coord));
 		};
 	}
 
