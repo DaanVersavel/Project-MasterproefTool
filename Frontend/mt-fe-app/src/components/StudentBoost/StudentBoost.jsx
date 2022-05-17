@@ -7,7 +7,11 @@ const StudentBoost = () =>{
 
     const [firstChoiceStudents, setFirstChoiceStudents]=useState([]);
     const [options, setOptions] = useState([]);
-    const [presentSubject,setPresentSubject] = useState('');
+    const [presentSubject,setPresentSubject] = useState({
+        id:""
+    });
+    let temp;
+
     let buttons;
 
     useEffect(() => {
@@ -24,18 +28,17 @@ const StudentBoost = () =>{
     }, []);
 
     const handleSelect = (selectedOption) => {
-        console.log("selectedOption: ",selectedOption)
-        console.log("selectedOption id: ", selectedOption.id)
-        setPresentSubject(selectedOption.id)
-        console.log("presentSubject; ", presentSubject)
-
-        //findStudents();
+            temp=selectedOption.id;
+            console.log("temp: ",temp)
+            setPresentSubject(temp);
+        findStudents();
+        console.log(firstChoiceStudents)
         //makeList();
     }
 
     const findStudents=()=> {
         try{
-            const {data:response} =  axios.get(`/Promotor/MySubjects/Students/${presentSubject}`);
+            const {data:response} =  axios.get(`/Promotor/MySubjects/Students/${temp}`);
             setFirstChoiceStudents(response);
         }catch(error){
             console.error(error.message);
@@ -68,7 +71,7 @@ const StudentBoost = () =>{
     }
 
     function BoostHandler(user) {
-        axios.put(`/Promotor/MySubjects/${presentSubject}/${user.keyId}`,{},{
+        axios.put(`/Promotor/MySubjects/${temp}/${user.keyId}`,{},{
         }).then(response=>
             console.log(response)
         )

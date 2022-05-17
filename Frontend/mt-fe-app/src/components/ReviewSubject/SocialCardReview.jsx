@@ -47,8 +47,8 @@ const SocialCardReview=({subjectData})=>{
                     </motion.button>
                 </Link>
 
-                <Button onClick={handleApprove}>Approve</Button>
-                <Button onClick={handleDeny}>Deny</Button>
+                <Button onClick={handleApprove} className="save-button">Approve</Button>
+                <Button onClick={handleDeny}className="save-button">Deny</Button>
             </div>
 
         </div>
