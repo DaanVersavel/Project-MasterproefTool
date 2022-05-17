@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {Container, Nav, Navbar, NavDropdown} from 'react-bootstrap'
 import KULogo from '../../KU_Leuven_logo.svg'
 import axios from '../../api/axiosAccessToken'
-import { MdSubject  } from "react-icons/md";
 
 const BNavbar = () => {
     let buttons
@@ -12,7 +11,6 @@ const BNavbar = () => {
         axios
             .get('/User/whoami')
             .then((response) => {
-                console.log(response);
                 setRole(response.data['role'].roleName)
                 sessionStorage.setItem('name', response.data['firstName'].concat(' ', response.data['surname']))
                 sessionStorage.setItem('firstName', response.data['firstName'])

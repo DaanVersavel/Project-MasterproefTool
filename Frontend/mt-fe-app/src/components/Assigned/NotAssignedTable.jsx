@@ -3,7 +3,7 @@ import React from 'react';
 const NotAssignedTable = (notAssSubjects) => {
     return (
         <div>
-            <h1>JOOOO</h1>
+            <h1>Not assigned subjects</h1>
             <table className="table">
                 <thead>
                 <tr>

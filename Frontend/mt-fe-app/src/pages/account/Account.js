@@ -1,8 +1,10 @@
 import React from 'react';
 import {Button, Container, Row} from "react-bootstrap";
 import axios from "../../api/axiosAccessToken";
+import {useNavigate} from "react-router-dom";
 
 export default function Account() {
+    const navigate=useNavigate()
 
     const handleLogout = () => {
         sessionStorage.clear()
@@ -16,10 +18,9 @@ export default function Account() {
             })*/
     }
 
-    let userId = sessionStorage.getItem('userId')
     const handleDelete = () => {
         axios
-            .delete(`/User/delete/${userId}`)
+            .delete(`/User/delete/${sessionStorage.getItem('userID')}`)
             .then(response => {
                 console.log(response)
             })
@@ -28,6 +29,7 @@ export default function Account() {
             });
 
         handleLogout()
+        navigate('/Login')
     }
 
     return (
@@ -40,6 +42,7 @@ export default function Account() {
                     <th>Surname</th>
                     <th>Phone number</th>
                     <th>Email adress</th>
+                    <th>User id</th>
                 </tr>
                 </thead>
                 <tfoot>
@@ -48,13 +51,13 @@ export default function Account() {
                     <td>{sessionStorage.getItem('surname')}</td>
                     <td>{sessionStorage.getItem('phone')}</td>
                     <td>{sessionStorage.getItem('email')}</td>
+                    <td>{sessionStorage.getItem('userID')}</td>
                 </tr>
                 </tfoot>
             </table>
             <Row className={'d-flex justify-content-center'}>
-                <Button className="btn btn-primary mr-3" href={"/Edit"}>Edit user info</Button>
-                <Button className="btn btn-primary mr-3" onClick={handleLogout} href={"/Login"}>Log out</Button>
-                <Button className="btn btn-primary mr-3" onClick={handleDelete} href={"/Login"}>Delete account</Button>
+                <Button className="btn btn-block btn-primary mr-3" onClick={handleLogout} href={"/Login"}>Log out</Button>
+                <Button className="btn btn-block btn-primary mr-3" onClick={handleDelete}>Delete account</Button>
             </Row>
         </Container>
 

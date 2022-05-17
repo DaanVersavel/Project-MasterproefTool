@@ -49,8 +49,8 @@ const FormS = () => {
         setFormData({...formData, disciplines});
     }
 
-    const handleCampus = disciplines => {
-        setFormData({...formData, disciplines});
+    const handleCampus = campuses => {
+        setFormData({...formData, campuses});
     }
 
     const handleSubmit = (e) => {
@@ -146,7 +146,7 @@ const FormS = () => {
                         value={1}
                         onChange={handleChange}
                     />
-                    <label>1 student</label>
+                    <label className={"labelRadio"}>1 student</label>
                     <br/>
                     <input
                         id={'radio2'}
@@ -155,7 +155,7 @@ const FormS = () => {
                         value={2}
                         onChange={handleChange}
                     />
-                    <label>2 students</label>
+                    <label className={"labelRadio"}>2 students</label>
                 </Form.Group>
 
                 <Button variant="primary" type="submit"

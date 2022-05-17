@@ -17,8 +17,7 @@ const SubjectDetails = () => {
         const fetchSubjects = async () =>{
             setLoading(true);
             try {
-                const {data: response} = await axios.get(`/Subjects/${id}`,{
-                });
+                const {data: response} = await axios.get(`/Subjects/${id}`);
                 setSubjects(response);
 
             } catch (error) {
