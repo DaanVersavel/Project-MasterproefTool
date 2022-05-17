@@ -105,6 +105,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/Student/Starred").hasAnyAuthority(ROLE_STUDENT);
         http.authorizeRequests().antMatchers("/Student/StarredSave/{id}").hasAnyAuthority(ROLE_STUDENT);
         http.authorizeRequests().antMatchers("/Student/StarredRemove/{id}").hasAnyAuthority(ROLE_STUDENT);
+        http.authorizeRequests().antMatchers("/Student/Save").hasAnyAuthority("ROLE_LOGIN");
 
 
 

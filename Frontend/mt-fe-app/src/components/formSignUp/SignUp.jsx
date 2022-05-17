@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import validate from './validateInfo';
 import useForm from './useForm';
 import Select from "react-select";
-import axios from "../../api/axiosSignUp.js"
+import axios from "../../api/axiosSignUp";
 import axiosLogin from "../../api/axiosLogin";
 import qs from "qs";
 import PhoneInput from 'react-phone-number-input'
@@ -22,68 +22,82 @@ const SignUp = () => {
     ]
     const [optionsDiscipline, setOptionsDiscipline] = useState([]);
     const [optionsCampus, setOptionsCampus] = useState([]);
+    const [access_token, setAccess_token] = useState(null);
 
-    useEffect(() => {
-        axiosLogin
-            .post("/login", qs.stringify({
-                email: 'login@gmail.com',
-                password: 'login123'
-            }))
-            .then((response) => {
-                console.log(response)
-                sessionStorage.setItem('access_signup', response.data['access_token'])
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }, []);
-
-    useEffect(() => {
+    function fetchData() {
         axios
-            .get('/Discipline')
+            .get('/Discipline', {
+                headers: {
+                    Authorization: `Bearer ${access_token}`,
+                    'content-type': 'application/json'
+                }
+            })
             .then((response) => {
                 console.log(response.data);
-                setOptionsDiscipline(response.data.map(( discipline ) => ({ value: discipline.naam, label: discipline.naam})))
+                setOptionsDiscipline(response.data.map((discipline) => ({
+                    value: discipline.naam,
+                    label: discipline.naam
+                })))
             })
             .catch(error => {
                 console.log(error)
             })
-    }, []);
-
-
-    useEffect(() => {
         axios
-            .get('/Campus')
+            .get('/Campus',{
+                headers: {
+                    Authorization: `Bearer ${access_token}`,
+                    'content-type': 'application/json'
+                }
+            })
             .then(response => {
                 console.log(response.data);
-                setOptionsCampus(response.data.map(( campus ) => ({ value: campus.name, label: campus.name})))
+                setOptionsCampus(response.data.map((campus) => ({value: campus.name, label: campus.name})))
             })
             .catch(error => {
                 console.log(error)
             })
-    }, []);
+    }
 
+    useEffect(() => {
+        const fetchAccess = async () => {
+            axiosLogin
+                .post("/login", qs.stringify({
+                    email: 'login@gmail.com',
+                    password: 'login123'
+                }))
+                .then((response) => {
+                    console.log(response)
+                    setAccess_token(response.data['access_token'])
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }
+        fetchAccess();
+    }, []);
 
     function successful() {
         setSuccess(true)
     }
 
     const {
+        handleCampus,
+        handleDiscipline,
         handleChange,
         handleRole,
+        handlePassword2,
+        handlePhone,
         handleChangeStudent,
-        handleChangeCoordinator,
-        handleChangePromotor,
         handleChangeCompany,
         handleSubmit,
-        values, studentValues,
-        coordinatorValues, promotorValues,
+        role, campus, discipline,
+        password2, values, studentValues,
         companyValues, errors
-    } = useForm(successful, validate);
+    } = useForm(fetchData, access_token, successful, validate);
 
     let roleSignUp, roleSpecificSignUp;
 
-    if (values.role === 'ROLE_STUDENT') {
+    if (role.value === 'ROLE_STUDENT') {
         roleSpecificSignUp = (
             <>
                 <div className='form-inputs'>
@@ -113,8 +127,8 @@ const SignUp = () => {
                         id={"campus"}
                         required
                         options={optionsCampus}
-                        value={studentValues.campus}
-                        onChange={handleChangeStudent}
+                        value={campus}
+                        onChange={handleCampus}
                     />
                     {errors.campus && <p>{errors.campus}</p>}
                 </div>
@@ -129,15 +143,14 @@ const SignUp = () => {
                         id={"discipline"}
                         required
                         options={optionsDiscipline}
-                        value={studentValues.discipline}
-                        onChange={handleChangeStudent}
+                        value={discipline}
+                        onChange={handleDiscipline}
                     />
                     {errors.discipline && <p>{errors.discipline}</p>}
                 </div>
             </>
         )
-    }
-    else if (values.role === 'ROLE_COÖRDINATOR') {
+    } else if (role.value === 'ROLE_COÖRDINATOR' || role.value === 'ROLE_PROMOTOR') {
         roleSpecificSignUp = (
             <>
                 <div className='form-inputs'>
@@ -150,8 +163,8 @@ const SignUp = () => {
                         id={"campus"}
                         required
                         options={optionsCampus}
-                        value={coordinatorValues.campus}
-                        onChange={handleChangeCoordinator}
+                        value={campus}
+                        onChange={handleCampus}
                     />
                     {errors.campus && <p>{errors.campus}</p>}
                 </div>
@@ -166,52 +179,14 @@ const SignUp = () => {
                         id={"discipline"}
                         required
                         options={optionsDiscipline}
-                        value={coordinatorValues.discipline}
-                        onChange={handleChangeCoordinator}
+                        value={discipline}
+                        onChange={handleDiscipline}
                     />
                     {errors.discipline && <p>{errors.discipline}</p>}
                 </div>
             </>
         )
-    }
-    else if (values.role === 'ROLE_PROMOTOR') {
-        roleSpecificSignUp = (
-            <>
-                <div className='form-inputs'>
-                    <label className='form-label'>
-                        Campus:
-                    </label>
-                    <Select
-                        className={"form-input"}
-                        placeholder={"Select your campus"}
-                        id={"campus"}
-                        required
-                        options={optionsCampus}
-                        value={promotorValues.campus}
-                        onChange={handleChangePromotor}
-                    />
-                    {errors.campus && <p>{errors.campus}</p>}
-                </div>
-
-                <div className='form-inputs'>
-                    <label className='form-label'>
-                        Discipline:
-                    </label>
-                    <Select
-                        className={"form-input"}
-                        placeholder={"Select your discipline"}
-                        id={"discipline"}
-                        required
-                        options={optionsDiscipline}
-                        value={promotorValues.discipline}
-                        onChange={handleChangePromotor}
-                    />
-                    {errors.discipline && <p>{errors.discipline}</p>}
-                </div>
-            </>
-        )
-    }
-    else if (values.role === 'ROLE_COMPANY') {
+    } else if (role.value === 'ROLE_COMPANY') {
         roleSpecificSignUp = (
             <>
                 <div className='form-inputs'>
@@ -247,12 +222,11 @@ const SignUp = () => {
                     />
                     {errors.vat && <p>{errors.vat}</p>}
                 </div>
-
             </>
         )
     }
 
-    if (values.role) {
+    if (role) {
         roleSignUp = (
             <>
                 <div className='form-inputs'>
@@ -272,8 +246,6 @@ const SignUp = () => {
                     {errors.firstName && <p>{errors.firstName}</p>}
                 </div>
 
-                {roleSpecificSignUp}
-
                 <div className='form-inputs'>
                     <label className='form-label'>
                         Last name:
@@ -282,13 +254,13 @@ const SignUp = () => {
                         className={"form-input"}
                         placeholder={"Enter your last name"}
                         type={"text"}
-                        id={"lastName"}
+                        id={"surname"}
                         autoComplete={"off"}
                         required
-                        value={values.lastName}
+                        value={values.surname}
                         onChange={handleChange}
                     />
-                    {errors.lastName && <p>{errors.lastName}</p>}
+                    {errors.surname && <p>{errors.surname}</p>}
                 </div>
 
 
@@ -299,14 +271,14 @@ const SignUp = () => {
                     <PhoneInput
                         className={"form-input"}
                         placeholder={"Enter your phone number"}
-                        id={"phone"}
+                        id={"gsm"}
                         defaultCountry="BE"
                         autoComplete={"off"}
                         required
-                        value={values.phone}
-                        onChange={handleChange}
+                        value={values.gsm}
+                        onChange={handlePhone}
                     />
-                    {errors.phone && <p>{errors.phone}</p>}
+                    {errors.gsm && <p>{errors.gsm}</p>}
                 </div>
 
 
@@ -337,6 +309,7 @@ const SignUp = () => {
                         placeholder='Enter your password'
                         type='password'
                         id='password'
+                        autoComplete={"off"}
                         required
                         value={values.password}
                         onChange={handleChange}
@@ -354,9 +327,10 @@ const SignUp = () => {
                         placeholder={"Confirm your password"}
                         type={"password"}
                         id={"password2"}
+                        autoComplete={"off"}
                         required
-                        value={values.password2}
-                        onChange={handleChange}
+                        value={password2}
+                        onChange={handlePassword2}
                     />
                     {errors.password2 && <p>{errors.password2}</p>}
                 </div>
@@ -368,6 +342,7 @@ const SignUp = () => {
         <>
             <div className={"form-container"}>
                 <div className="form-content-left">
+
                     <img src={KULBuilding} alt="kuleuven building" className={'form-img'}/>
                 </div>
                 {success ? (
@@ -392,7 +367,7 @@ const SignUp = () => {
                                     id={"role"}
                                     required
                                     options={optionsRole}
-                                    value={values.role}
+                                    value={role}
                                     onChange={handleRole}
                                 />
                                 {errors.role && <p>{errors.role}</p>}
@@ -400,8 +375,10 @@ const SignUp = () => {
 
                             {roleSignUp}
 
+                            {roleSpecificSignUp}
+
                             <Button className='form-input-btn' type='submit'
-                                    disabled={!(values.role && values.firstName && values.lastName && values.email && values.phone && values.password && values.password2)}>
+                                    disabled={!(role && values.firstName && values.surname && values.email && values.gsm && values.password && password2)}>
                                 Sign up
                             </Button>
 

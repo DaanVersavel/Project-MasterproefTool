@@ -5,7 +5,7 @@ import BoostTable from "./BoostTable";
 
 const StudentBoost = () =>{
 
-    const [firstChoiceStudents,setFirstChoiceStudents]=useState([]);
+    const [firstChoiceStudents, setFirstChoiceStudents]=useState([]);
     const [options, setOptions] = useState([]);
     const [presentSubject,setPresentSubject] = useState('');
     let buttons;
