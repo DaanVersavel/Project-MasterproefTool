@@ -9,6 +9,14 @@ export const RequireAuth = ({children}) => {
         return <Navigate to='/Login' state={{path: location.pathname}}/>
     }
 
+    // implementeer de fases
+    /*var faseEenEind = new Date();
+    var faseTweeEind = new Date();
+    var faseDrieEind = new Date();
+
+    var time = new Date().getTime();*/
+
+
     //controleer of access_token al die niet vervallen is
     /*if (
         axios

@@ -49,6 +49,7 @@ const Login = () => {
             <div>
                 <label htmlFor="email">
                     <BsPersonCircle/>
+                    Email:
                 </label>
                 <input
                     className={"login-input"}
@@ -64,6 +65,7 @@ const Login = () => {
             <div>
                 <label htmlFor="password">
                     <RiLockPasswordLine/>
+                    Password:
                 </label>
                 <input
                     className={"login-input"}

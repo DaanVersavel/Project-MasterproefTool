@@ -64,11 +64,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/User/role/save").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
 //      http.authorizeRequests().antMatchers("/User/users").hasAnyAuthority(ROLE_ADMIN,ROLE_PROMOTOR,ROLE_COÖRDINATOR);
 //      http.authorizeRequests().antMatchers("/User/token/refresh").hasAnyAuthority(ROLE_ADMIN,ROLE_STUDENT,ROLE_PROMOTOR,ROLE_COÖRDINATOR);
-        http.authorizeRequests().antMatchers("/User/delete/{id}").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
+        http.authorizeRequests().antMatchers("/User/delete/{id}").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR, "ROLE_LOGIN", "ROLE_STUDENT", "ROLE_PROMOTOR", "ROLE_COMPANY");
         http.authorizeRequests().antMatchers("/User/whoami").hasAnyAuthority(ROLE_ADMIN,ROLE_STUDENT,ROLE_PROMOTOR,ROLE_COÖRDINATOR,ROLE_COMPANY);
 
         //Campus controller
-        http.authorizeRequests().antMatchers("/Campus").hasAnyAuthority("ROLE_ADMIN","ROLE_COÖRDINATOR", "ROLE_LOGIN");
+        http.authorizeRequests().antMatchers("/Campus").hasAnyAuthority("ROLE_ADMIN","ROLE_COÖRDINATOR", "ROLE_LOGIN", "ROLE_STUDENT", "ROLE_PROMOTOR", "ROLE_COMPANY");
         //CompanyController
         http.authorizeRequests().antMatchers("/Company/list").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR);
 //        http.authorizeRequests().antMatchers("/Company").hasAnyAuthority(ROLE_COMPANY);
@@ -76,7 +76,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests().antMatchers("/Company/Save").hasAnyAuthority("ROLE_LOGIN","ROLE_ADMIN");
         //Discipline
-        http.authorizeRequests().antMatchers("/Discipline").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR,"ROLE_LOGIN");
+        http.authorizeRequests().antMatchers("/Discipline").hasAnyAuthority(ROLE_ADMIN,ROLE_COÖRDINATOR,"ROLE_LOGIN", "ROLE_STUDENT", "ROLE_PROMOTOR", "ROLE_COMPANY");
 
         //Promotor
         http.authorizeRequests().antMatchers("/Promotor/MySubjects/Students/{id}").hasAnyAuthority(ROLE_PROMOTOR);
