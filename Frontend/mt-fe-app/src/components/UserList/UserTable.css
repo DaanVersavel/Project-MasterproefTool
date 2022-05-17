@@ -25,4 +25,4 @@ th {
 td {
     background-color: rgb(205, 235, 253);
 }
-
+tr:hover {background-color: #ddd;}
