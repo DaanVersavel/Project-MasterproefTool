@@ -34,7 +34,8 @@ const Login = () => {
                 window.location.reload()
             })
             .catch(error => {
-                console.log(error)
+                alert("Something went wrong, please login again.")
+                window.location.reload()
             })
     }
 
@@ -49,7 +50,6 @@ const Login = () => {
                 <label htmlFor="email">
                     <BsPersonCircle/>
                 </label>
-                <br/>
                 <input
                     className={"login-input"}
                     placeholder={"Enter your email"}
@@ -65,7 +65,6 @@ const Login = () => {
                 <label htmlFor="password">
                     <RiLockPasswordLine/>
                 </label>
-                <br/>
                 <input
                     className={"login-input"}
                     placeholder={"Enter your password"}

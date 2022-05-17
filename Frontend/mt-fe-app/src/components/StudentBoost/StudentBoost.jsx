@@ -4,7 +4,7 @@ import Select from "react-select";
 
 const StudentBoost = () =>{
 
-    const [firstChoiceStudents,setFirstChoiceStudents]=useState([]);
+    const [firstChoiceStudents, setFirstChoiceStudents]=useState([]);
     const [options, setOptions] = useState([]);
     const [presentSubjectId,setPresentSubjectId] = useState("");
     let temp;

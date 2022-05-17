@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Container, Nav, Navbar, NavDropdown} from 'react-bootstrap'
 import KULogo from '../../KU_Leuven_logo.svg'
 import axios from '../../api/axiosAccessToken'
+import { MdSubject  } from "react-icons/md";
 
 const BNavbar = () => {
     let buttons
@@ -28,13 +29,15 @@ const BNavbar = () => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav>
                         <NavDropdown title="Subjects" id="collasible-nav-dropdown">
-                            <NavDropdown.Item href="/Subjects">Subject List</NavDropdown.Item>
+                            <NavDropdown.Item href="/Subjects">Available subjects</NavDropdown.Item>
                             <NavDropdown.Item href="/Subjects/Post">Add Subject</NavDropdown.Item>
-                            <NavDropdown.Item href="/Student/Starred">Enlist for Subject</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="/Subjects/Review">Approve Subject</NavDropdown.Item>
+                            <NavDropdown.Item href="/Student/Starred">My subjects</NavDropdown.Item>
                         </NavDropdown>
                         <Nav.Link href="/Account">Account</Nav.Link>
+                    </Nav>
+                    <Nav className="ml-auto">
+                        <Nav.Link href="/Login" onClick={() => sessionStorage.clear()}>Logout</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             )
@@ -44,13 +47,17 @@ const BNavbar = () => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav>
                         <NavDropdown title="Subjects" id="collasible-nav-dropdown">
-                            <NavDropdown.Item href="/Subjects">Subject List</NavDropdown.Item>
-                            <NavDropdown.Item href="/Subjects/Post">Add Subject</NavDropdown.Item>
-                            <NavDropdown.Item href="/Student/Starred">Enlist for Subject</NavDropdown.Item>
+                            <NavDropdown.Item href="/Subjects">Available subjects</NavDropdown.Item>
+                            <NavDropdown.Item href="/Subjects/Post">Submit subject</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="/Subjects/Review">Approve Subject</NavDropdown.Item>
+                            <NavDropdown.Item href="/Subjects/Review">Approve Subjects</NavDropdown.Item>
+                            <NavDropdown.Item href="/Subjects/Assign">Assign Subjects</NavDropdown.Item>
+
                         </NavDropdown>
                         <Nav.Link href="/Account">Account</Nav.Link>
+                    </Nav>
+                    <Nav className="ml-auto">
+                        <Nav.Link href="/Login" onClick={() => sessionStorage.clear()}>Logout</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             )
@@ -61,13 +68,14 @@ const BNavbar = () => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav>
                         <NavDropdown title="Subjects" id="collasible-nav-dropdown">
-                            <NavDropdown.Item href="/Subjects">Subject List</NavDropdown.Item>
-                            <NavDropdown.Item href="/Subjects/Post">Add Subject</NavDropdown.Item>
-                            <NavDropdown.Item href="/Student/Starred">Enlist for Subject</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="/Subjects/Review">Approve Subject</NavDropdown.Item>
+                            <NavDropdown.Item href="/Subjects">Available subjects</NavDropdown.Item>
+                            <NavDropdown.Item href="/Subjects/Post">Submit subject</NavDropdown.Item>
                         </NavDropdown>
+                        <Nav.Link href="/Promotor/Boost">Boost students</Nav.Link>
                         <Nav.Link href="/Account">Account</Nav.Link>
+                    </Nav>
+                    <Nav className="ml-auto">
+                    <Nav.Link href="/Login" onClick={() => sessionStorage.clear()}>Logout</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             )
@@ -78,14 +86,15 @@ const BNavbar = () => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav>
                         <NavDropdown title="Subjects" id="collasible-nav-dropdown">
-                            <NavDropdown.Item href="/Subjects">Subject List</NavDropdown.Item>
-                            <NavDropdown.Item href="/Subjects/Post">Add Subject</NavDropdown.Item>
-                            <NavDropdown.Item href="/Student/Starred">Enlist for Subject</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="/Subjects/Review">Approve Subject</NavDropdown.Item>
+                            <NavDropdown.Item href="/Subjects">Available subjects</NavDropdown.Item>
+                            <NavDropdown.Item href="/Subjects/Post">Submit subject</NavDropdown.Item>
                         </NavDropdown>
                         <Nav.Link href="/Account">Account</Nav.Link>
                     </Nav>
+                    <Nav className="ml-auto">
+                    <Nav.Link href="/Login" onClick={() => sessionStorage.clear()}>Logout</Nav.Link>
+                    </Nav>
+
                 </Navbar.Collapse>
             )
         }
@@ -95,13 +104,17 @@ const BNavbar = () => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav>
                         <NavDropdown title="Subjects" id="collasible-nav-dropdown">
-                            <NavDropdown.Item href="/Subjects">Subject List</NavDropdown.Item>
-                            <NavDropdown.Item href="/Subjects/Post">Add Subject</NavDropdown.Item>
-                            <NavDropdown.Item href="/Student/Starred">Enlist for Subject</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="/Subjects/Review">Approve Subject</NavDropdown.Item>
+                            <NavDropdown.Item href="/Subjects">Available subjects</NavDropdown.Item>
+                            <NavDropdown.Item href="/Subjects/Post">Submit subject</NavDropdown.Item>
+                        </NavDropdown>
+                        <NavDropdown title="User management" id="collasible-nav-dropdown">
+                            <NavDropdown.Item href="/User/usermgmt">Add user</NavDropdown.Item>
+                            <NavDropdown.Item href="/User/users">View users</NavDropdown.Item>
                         </NavDropdown>
                         <Nav.Link href="/Account">Account</Nav.Link>
+                    </Nav>
+                    <Nav className="ml-auto">
+                    <Nav.Link href="/Login" onClick={() => sessionStorage.clear()}>Logout</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             )

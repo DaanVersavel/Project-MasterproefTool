@@ -19,6 +19,7 @@ const SocialCard=({subjectData})=>{
         axios.put(`/Student/StarredRemove/${subjectData.id}`,{
             }).then(response => {
                 console.log(response);
+                window.location.reload()
         })
     };
 

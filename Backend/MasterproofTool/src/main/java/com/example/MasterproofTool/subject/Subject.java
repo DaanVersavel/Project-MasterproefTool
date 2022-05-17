@@ -25,9 +25,7 @@ public class Subject {
     private String title;
     private String description;
     private boolean approved;
-
     private boolean denied;
-
     private String remark;
     @ManyToOne
     @JoinColumn(name = "company_id")

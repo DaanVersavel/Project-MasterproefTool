@@ -8,12 +8,14 @@ import '../../components/formSubject/FormS.css'
 const animatedComponents = makeAnimated();
 
 const FormS = () => {
-    const [options, setOptions] = useState([])
+    const [disciplineOptions, setDisciplineOptions] = useState([])
+    const [campusOptions, setCampusOptions] = useState([])
     const [formData, setFormData] = useState({
         title: "",
         description: "",
         remark: "",
         disciplines: new Set(),
+        campuses: new Set(),
         aStudents: null
     });
 
@@ -22,7 +24,16 @@ const FormS = () => {
             .get('/Discipline')
             .then((response) => {
                 console.log(response.data);
-                setOptions(response.data.map((discipline) => ({value: discipline.naam, label: discipline.naam})))
+                setDisciplineOptions(response.data.map((discipline) => ({value: discipline.naam, label: discipline.naam})))
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        axios
+            .get('/Campus')
+            .then((response) => {
+                console.log(response.data);
+                setCampusOptions(response.data.map((campus) => ({value: campus.name, label: campus.name})))
             })
             .catch(error => {
                 console.log(error)
@@ -34,7 +45,11 @@ const FormS = () => {
         setFormData({...formData, [name]: value});
     }
 
-    const handleSelect = disciplines => {
+    const handleDiscipline = disciplines => {
+        setFormData({...formData, disciplines});
+    }
+
+    const handleCampus = disciplines => {
         setFormData({...formData, disciplines});
     }
 
@@ -42,12 +57,15 @@ const FormS = () => {
         e.preventDefault();
         console.log(formData);
         axios
-            .post('/Subjects/Post', {formData}, {})
+            .post('/Subjects/Post', {formData})
             .then(response => {
                 console.log(response)
+                alert("Thank you for your submission")
+                window.location = '/Home'
             })
             .catch(error => {
-                console.log(error)
+                alert("Something went wrong, please enter your subject again.")
+                window.location.reload()
             });
     }
 
@@ -99,35 +117,49 @@ const FormS = () => {
                             closeMenuOnSelect={false}
                             isMulti
                             components={animatedComponents}
-                            options={options}
-                            onChange={handleSelect}
+                            options={disciplineOptions}
+                            onChange={handleDiscipline}
                         />
                     </Form.Group>
 
-                    <Form.Group as={Col} controlId="aStudents">
-                        <ModalTitle>Amount of students</ModalTitle>
-                        <input
-                            id={'radio1'}
-                            name="aStudents"
-                            type="radio"
-                            value={1}
-                            onChange={handleChange}
+                    <Form.Group as={Col} controlId="campuses">
+                        <ModalTitle>Campuses</ModalTitle>
+                        <Select
+                            name={"campuses"}
+                            value={formData.campuses}
+                            placeholder={"Select campus(es)"}
+                            closeMenuOnSelect={false}
+                            isMulti
+                            components={animatedComponents}
+                            options={campusOptions}
+                            onChange={handleCampus}
                         />
-                        <label>1 student</label>
-                        <br/>
-                        <input
-                            id={'radio2'}
-                            name="aStudents"
-                            type="radio"
-                            value={2}
-                            onChange={handleChange}
-                        />
-                        <label>2 students</label>
                     </Form.Group>
                 </Row>
 
+                <Form.Group as={Col} controlId="aStudents">
+                    <ModalTitle>Amount of students</ModalTitle>
+                    <input
+                        id={'radio1'}
+                        name="aStudents"
+                        type="radio"
+                        value={1}
+                        onChange={handleChange}
+                    />
+                    <label>1 student</label>
+                    <br/>
+                    <input
+                        id={'radio2'}
+                        name="aStudents"
+                        type="radio"
+                        value={2}
+                        onChange={handleChange}
+                    />
+                    <label>2 students</label>
+                </Form.Group>
+
                 <Button variant="primary" type="submit"
-                        disabled={!(formData.title && formData.description && formData.remark && formData.disciplines)}
+                        disabled={!(formData.title && formData.description && formData.remark && formData.disciplines && formData.campuses && formData.aStudents)}
                 >Submit</Button>
             </Form>
         </Container>

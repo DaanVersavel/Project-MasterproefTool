@@ -15,9 +15,10 @@ import ReviewSubjects from "./pages/subjects/ReviewSubjects";
 import ManageUsers from "./pages/users/ManageUsers";
 import StarredSubjects from "./pages/subjects/StarredSubjects";
 import NoMatch from "./pages/noMatch/NoMatch";
+import AssignSubjects from "./pages/subjects/AssignSubjects";
 import StudentBoostPage from "./pages/boosting/StudentBoostPage";
 
-export default function App () {
+export default function App() {
     return (
         <Router>
             <BNavbar/>
@@ -31,13 +32,14 @@ export default function App () {
                     <Route path='/User/usermgmt' element={<RequireAuth><ManageUsers/></RequireAuth>}/>
                     <Route path='/Subjects/Review' element={<RequireAuth><ReviewSubjects/></RequireAuth>}/>
                     <Route path='/Student/Starred' element={<RequireAuth><StarredSubjects/></RequireAuth>}/>
+                    <Route path='/Subjects/Assign' element={<RequireAuth><AssignSubjects/></RequireAuth>}/>
+                    <Route path='/Subjects/Details/*' element={<RequireAuth><Details/></RequireAuth>}/>
+                    <Route path='/Subjects/Details/?=id' element={<RequireAuth><Details/></RequireAuth>}/>
+                    <Route path='/Promotor/Boost' element={<RequireAuth><StudentBoostPage/></RequireAuth>} />
 
                     <Route path='/*' element={<NoMatch/>}/>
                     <Route path='/SignUp' element={<Register/>}/>
                     <Route path='/Login' element={<Login/>}/>
-                    <Route path='/Subjects/Details/*' element={<RequireAuth><Details/></RequireAuth>}/>
-                    <Route path='/Subjects/Details/?=id' element={<RequireAuth><Details/></RequireAuth>}/>
-                    <Route path = '/Promotor/Boost' element={<RequireAuth><StudentBoostPage/></RequireAuth>} />
                 </Routes>
             </div>
         </Router>
