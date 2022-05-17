@@ -18,7 +18,7 @@ To run the backend, you simply need to open the project in an IDE and run the fi
 This will open the project in development mode.\
 The back-end will run on [http://localhost:8080](http://localhost:8080)
 
-#HTTPS Configuration
+# HTTPS Configuration
 
 To configure the HTTPS-connection, you simply have to follow 4 steps. First off, install the mkcert package globally.
 Then, you have to create the required Certificate Authorities and Certificates. Then, you have to install the created Certificate Authrity as the Trusted root certificate Authority.
