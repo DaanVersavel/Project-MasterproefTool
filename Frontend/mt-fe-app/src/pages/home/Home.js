@@ -9,9 +9,12 @@ export default function Home() {
             <div className={'home-block'}>
                 <h1>Welcome</h1>
                 <h2>What would you like to do?</h2>
-                <Button className="btn btn-primary btn-lg btn-block mr-3" href={'/Subjects'} >View all subjects</Button>
-                <Button className="btn btn-primary btn-lg btn-block mr-3" href={'/Subjects/Post'}>Submit a subject</Button>
-                <Button className="btn btn-primary btn-lg btn-block mr-3" href={'/Student/Starred'}>View your favorite subjects</Button>
+                <div class=" text-center">
+                    <Button className="btn btn-info" href={'/Subjects'} >View all subjects</Button>
+                    <Button className="btn btn-info" href={'/Subjects/Post'}>Submit a subject</Button>
+                    <Button className="btn btn-info" href={'/Student/Starred'}>View your favorite subjects</Button>
+                </div>
+
             </div>
         </Container>
     );
