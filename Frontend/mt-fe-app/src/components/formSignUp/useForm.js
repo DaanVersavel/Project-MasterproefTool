@@ -18,18 +18,18 @@ const useForm = (fetchData, access_token, successful, validate) => {
 
     const [studentValues, setStudentValues] = useState({
         studentNumber: '',
-        campus: campus.value,
-        discipline: discipline.value
+        campus: null,
+        discipline: null
     })
 
     const [coordinatorValues, setCoordinatorValues] = useState({
-        campus: campus.value,
-        discipline: discipline.value
+        campus: null,
+        discipline: null
     })
 
     const [promotorValues, setPromotorValues] = useState({
-        campus: campus['value'],
-        discipline: discipline['value']
+        campus: null,
+        discipline: null
     })
 
     const [companyValues, setCompanyValues] = useState({
@@ -80,8 +80,9 @@ const useForm = (fetchData, access_token, successful, validate) => {
         setIsSubmitting(true);
 
         if(role.value === 'ROLE_STUDENT') {
+            setStudentValues({...studentValues, [campus]: campus.value})
+            setStudentValues({...studentValues, [discipline]: discipline.value})
             const formData = {...values, ...studentValues}
-            console.log(formData)
             axios
                 .post("/Student/Save", {formData}, {
                     headers: {
@@ -99,6 +100,8 @@ const useForm = (fetchData, access_token, successful, validate) => {
                 });
         }
         if(role.value === 'ROLE_COÖRDINATOR') {
+            setCoordinatorValues({...coordinatorValues, ['campus']: campus.value})
+            setCoordinatorValues({...coordinatorValues, ['discipline']: discipline.value.value})
             const formData = {...values, ...coordinatorValues}
             console.log(formData)
             axios
@@ -118,6 +121,8 @@ const useForm = (fetchData, access_token, successful, validate) => {
                 });
         }
         if(role.value === 'ROLE_PROMOTOR') {
+            setPromotorValues({...promotorValues, ['campus']: campus.value})
+            setPromotorValues({...promotorValues, ['discipline']: discipline.value})
             const formData = {...values, ...promotorValues}
             console.log(formData)
             axios
